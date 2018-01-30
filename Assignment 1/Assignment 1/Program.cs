@@ -12,7 +12,7 @@ namespace Assignment_1
 
         static void Main(string[] args)
         {
-            double grossIncome = 0, totalTax = 0, percentTaxOfGrossIncome, percentTaxOfAGI, taxBracket = 0, standardDeduction = 6350, taxAfterDeduction, totalItemizedDeduction;
+            double grossIncome = 0, totalTax = 0, percentTaxOfGrossIncome, percentTaxOfAGI, taxBracket = 0;
             string entryAsString, deductionsChoice;
             double entryAsDouble;
 
@@ -30,7 +30,7 @@ namespace Assignment_1
             //calculating total taxes
             if (grossIncome > 0)
             {
-               totalTax = calculateTotalTaxesOwed(grossIncome);
+               totalTax = calculateTotalTaxesOwed(grossIncome, ref taxBracket);
             }
             else if(grossIncome <= 0)//no earnings
             {
@@ -53,21 +53,44 @@ namespace Assignment_1
                 }
             } while (deductionsChoice != "yes" && deductionsChoice != "no" && deductionsChoice != "Yes" && deductionsChoice != "No" && deductionsChoice != "y" && deductionsChoice != "n");
 
+            calculatePercentOfAGI(grossIncome, totalTax, taxBracket, deductionsChoice);
+
+        }
+
+        static double calculatePercentOfAGI(double grossIncome, double totalTax, double taxBracket, string deductionsChoice)
+        {
+            double standardDeduction = 6350, taxAfterDeduction, totalItemizedDeduction = 0, deductionEntry, percentTaxOfAGI = 0;
+            string entryAsString;
+
             //itemize
             if (deductionsChoice == "Yes" || deductionsChoice == "yes" || deductionsChoice == "y")
             {
-                Console.WriteLine("Please enter all deductions. Enter -1 when you are done.")
+                Console.WriteLine("Please enter all deductions. Enter -1 when you are done.");
+
+                //adding up deductions
+                do
+                {
+                    entryAsString = Console.ReadLine();
+                    deductionEntry = Convert.ToDouble(entryAsString);
+
+                    totalItemizedDeduction += deductionEntry;
+
+                } while (deductionEntry != -1);
+
+                taxAfterDeduction = totalTax;
+                taxAfterDeduction -= (totalItemizedDeduction * taxBracket); //toatal tax after itemized deuction
+                percentTaxOfAGI = (taxAfterDeduction / grossIncome) * 100;
             }
             //standard deuction
             else if (deductionsChoice == "No" || deductionsChoice == "no" || deductionsChoice == "n")
             {
                 taxAfterDeduction = totalTax;
-                taxAfterDeduction -= (standardDeduction * taxBracket); //toatal tax after deuction
+                taxAfterDeduction -= (standardDeduction * taxBracket); //toatal tax after standard deuction
                 percentTaxOfAGI = (taxAfterDeduction / grossIncome) * 100;
             }
 
+            return percentTaxOfAGI;
         }
-
 
         static double calculateTotalTaxesOwed(double grossIncome, ref double taxBracket)
         {
