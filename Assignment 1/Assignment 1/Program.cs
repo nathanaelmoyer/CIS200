@@ -13,6 +13,7 @@ namespace Assignment_1
         static void Main(string[] args)
         {
             double grossIncome = 0, totalTax = 0, percentTaxOfGrossIncome, percentTaxOfAGI, taxBracket = 0;
+            double taxAt10 = 0, taxAt15 = 0, taxAt25 = 0, taxAt28 = 0, taxAt33 = 0, taxAt35 = 0, taxAt396 = 0;
             string entryAsString, deductionsChoice;
             double entryAsDouble;
 
@@ -30,7 +31,7 @@ namespace Assignment_1
             //calculating total taxes
             if (grossIncome > 0)
             {
-               totalTax = calculateTotalTaxesOwed(grossIncome, ref taxBracket);
+               totalTax = calculateTotalTaxesOwed(grossIncome, ref taxBracket, ref taxAt10, ref  taxAt15, ref  taxAt25, ref  taxAt28, ref  taxAt33, ref  taxAt35, ref  taxAt396);
             }
             else if(grossIncome <= 0)//no earnings
             {
@@ -53,7 +54,10 @@ namespace Assignment_1
                 }
             } while (deductionsChoice != "yes" && deductionsChoice != "no" && deductionsChoice != "Yes" && deductionsChoice != "No" && deductionsChoice != "y" && deductionsChoice != "n");
 
-            calculatePercentOfAGI(grossIncome, totalTax, taxBracket, deductionsChoice);
+            percentTaxOfAGI = calculatePercentOfAGI(grossIncome, totalTax, taxBracket, deductionsChoice);
+
+            //displaying tax information
+
 
         }
 
@@ -92,10 +96,10 @@ namespace Assignment_1
             return percentTaxOfAGI;
         }
 
-        static double calculateTotalTaxesOwed(double grossIncome, ref double taxBracket)
+        static double calculateTotalTaxesOwed(double grossIncome, ref double taxBracket, ref double taxAt10, ref double taxAt15, ref double taxAt25, ref double taxAt28, ref double taxAt33, ref double taxAt35, ref double taxAt396)
         {
             double taxTemp;
-            double totalTax = 0, taxAt10, taxAt15, taxAt25, taxAt28, taxAt33, taxAt35, taxAt396;
+            double totalTax = 0;
 
             //using single bracket from 2017
             taxTemp = grossIncome;
