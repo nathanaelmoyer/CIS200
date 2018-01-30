@@ -57,7 +57,21 @@ namespace Assignment_1
             percentTaxOfAGI = calculatePercentOfAGI(grossIncome, totalTax, taxBracket, deductionsChoice);
 
             //displaying tax information
-
+            Console.WriteLine("Tax information");
+            Console.WriteLine("Tax bracket: " + (taxBracket) * 100);
+            Console.WriteLine("Taxes owed at 10%: $" + taxAt10);
+            Console.WriteLine("Taxes owed at 15%: $" + taxAt15);
+            Console.WriteLine("Taxes owed at 25%: $" + taxAt25);
+            Console.WriteLine("Taxes owed at 28%: $" + taxAt28);
+            Console.WriteLine("Taxes owed at 33%: $" + taxAt33);
+            Console.WriteLine("Taxes owed at 35%: $" + taxAt35);
+            Console.WriteLine("Taxes owed at 39.6%: $" + taxAt396);
+            Console.WriteLine("Total taxes owed " + Math.Round(totalTax, 2));
+            Console.WriteLine("Taxes as a percentage of Gross income: %" + Math.Round(percentTaxOfGrossIncome, 2));
+            Console.WriteLine("Taxes as a percentage of Adjusted Gross Income: %" + Math.Round(percentTaxOfAGI, 2));
+            Console.WriteLine();
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
 
         }
 
@@ -122,7 +136,7 @@ namespace Assignment_1
             {
                 taxBracket = .35;
 
-                taxAt35 = (418400 - 416700) * .35;
+                taxAt35 = (taxTemp - 416700) * .35;
                 taxAt33 = (416700 - 191650) * .33;
                 taxAt28 = (191650 - 91900) * .28;
                 taxAt25 = (91900 - 37950) * .25;
@@ -135,7 +149,7 @@ namespace Assignment_1
             {
                 taxBracket = .33;
 
-                taxAt33 = (416700 - 191650) * .33;
+                taxAt33 = (taxTemp - 191650) * .33;
                 taxAt28 = (191650 - 91900) * .28;
                 taxAt25 = (91900 - 37950) * .25;
                 taxAt15 = (37950 - 9325) * .15;
@@ -147,7 +161,7 @@ namespace Assignment_1
             {
                 taxBracket = .28;
 
-                taxAt28 = (191650 - 91900) * .28;
+                taxAt28 = (taxTemp - 91900) * .28;
                 taxAt25 = (91900 - 37950) * .25;
                 taxAt15 = (37950 - 9325) * .15;
                 taxAt10 = (9325 - 0) * .1;
@@ -158,7 +172,7 @@ namespace Assignment_1
             {
                 taxBracket = .25;
 
-                taxAt25 = (91900 - 37950) * .25;
+                taxAt25 = (taxTemp - 37950) * .25;
                 taxAt15 = (37950 - 9325) * .15;
                 taxAt10 = (9325 - 0) * .1;
 
@@ -168,7 +182,7 @@ namespace Assignment_1
             {
                 taxBracket = .15;
 
-                taxAt15 = (37950 - 9325) * .15;
+                taxAt15 = (taxTemp - 9325) * .15;
                 taxAt10 = (9325 - 0) * .1;
 
                 totalTax = taxAt15 + taxAt10;
@@ -177,7 +191,7 @@ namespace Assignment_1
             {
                 taxBracket = .1;
 
-                taxAt10 = (9325 - 0) * .1;
+                taxAt10 = (taxTemp - 0) * .1;
 
                 totalTax = taxAt10;
             }
