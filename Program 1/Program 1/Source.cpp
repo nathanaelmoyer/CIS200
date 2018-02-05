@@ -84,36 +84,36 @@ public:
 		return name[pos];
 	}
 
-	//bool emptyString()
-	//{
-
-	//	int a = 0;
-	//	for (int i = 0; i < length; i++)
-	//	{
-	//		if (name[i] != NULL)
-	//		{
-	//			a = a + 1;
-	//		}
-	//	}
-
-	//	
-	//	return a;
-	//}
-
-	//bool fullString()
-	//{
-	//	int a = 0;
-	//	for (int i = 0; i < length; i++)
-	//	{
-	//		if (name[i] != NULL)
-	//		{
-	//			a = a + 1;
-	//		}
-	//	}
-
-
-	//	return a;
-	//}
+	bool emptyString()
+	{
+	
+		int a = 0;
+		for (int i = 0; i < length; i++)
+		{
+			if (name[i] != NULL)
+			{
+				a = a + 1;
+			}
+		}
+	
+		
+		return a;
+	}
+	
+	bool fullString()
+	{
+		int a = 0;
+		for (int i = 0; i < length; i++)
+		{
+			if (name[i] != NULL)
+			{
+				a = a + 1;
+			}
+		}
+	
+	
+		return a;
+	}
 
 	void initString()
 	{
@@ -157,7 +157,8 @@ public:
 	void replPartString(char firstString[25], int startPos)
 	{
 
-		for (int i = startPos, int x = 0; i > length; i++, x++)
+
+		for (int i = startPos, x = 0; i < length; i++, x++)
 		{
 			name[i] = firstString[x];
 		}
@@ -210,16 +211,22 @@ int main()
 	cout << instance1.getString() << endl;
 
 	cout << "Length of string: " << instance1.size() << endl;
+	
+	cout << "Enter starting position" << endl;
+	cin >> startPos;
 
 	cout << "Enter second string" << endl;
 
-	cin >> inString2;
-	cout << "Enter starting position" << endl;
+	cin >> inString;
+	
 	instance1.replPartString(inString, startPos);
+	cout << "New string: " << instance1.getString() << endl;
 
 
 
-	int a = instance1.compareString(inString2);
+
+
+	/*int a = instance1.compareString(inString2);
 	if (a = 1)
 	{
 		cout << "Strings are not equal" << endl;
@@ -228,7 +235,7 @@ int main()
 	{
 		cout << "Strings are equal" << endl;
 	}
-
+*/
 
 
 	
