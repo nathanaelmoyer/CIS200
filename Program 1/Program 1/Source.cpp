@@ -10,7 +10,7 @@
 
 using namespace std;
 
-//
+
 class myString
 {
 private:
@@ -53,24 +53,24 @@ public:
 	void addStart(myString x)
 	{
 		char temp[25];
-		x.setString(temp);
+		char temp2[25];
+		x.setString(temp2);
 		//if (length + x.size() > 25)
 		//{
-			for (int i = length; i > 0; i--)
-			{
-				name[i] = name[i - 1];
-			}
-			cout << "0: " << name[0] << endl;
-			x.size();
-			for (int i = 0; i > length; i++)
-			{
-				name[i] = temp[i];
-			}
+		for (int i = length; i = 0; i--)
+		{
+			temp[i] = name[i];
+		}
+		for (int i = length; i = 0; i--)
+		{
+			name[i] = temp2[i];
+		}
+		x.size();
+		for (int i = length + 1; name[i] != NULL; i++)
+		{
+			name[i] = temp[i];
+		}
 			
-			/*for (int i = 0; i < 25; i++)
-			{
-				name[i] = x.charAt(i);
-			}*/
 		//}
 			
 	}
@@ -113,8 +113,8 @@ int main()
 	cout << "Length of string: " << instance1.size() << endl;
 
 	cout << "Enter characters to go before previous string" << endl;
-	cin >> inString2;
-	instance2.setString(inString2);
+	cin >> inString;
+	instance2.setString(inString);
 	instance1.addStart(instance2);
 	
 
