@@ -63,13 +63,13 @@ public:
 		}
 		for (int i = length; i = 0; i--)
 		{
-			name[i] = temp2[i];
+			name[i] = temp2[i] + temp[i];
 		}
-		x.size();
+		/*x.size();
 		for (int i = length + 1; name[i] != NULL; i++)
 		{
 			name[i] = temp[i];
-		}
+		}*/
 			
 		//}
 			
