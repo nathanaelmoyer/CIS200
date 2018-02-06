@@ -24,7 +24,7 @@ private:
 	int length = 0;
 
 public:
-	myString()
+	myString()	//set all chars in array to NULL
 	{
 		for (int i = 0; i < 25; i++)
 		{
@@ -33,12 +33,12 @@ public:
 		
 	}
 
-	string getString()
+	string getString()		//return array as string
 	{
 		return name;
 	}
 
-	void setString(char firstString[25])
+	void setString(char firstString[25])		//set input to array
 	{
 		
 		for (int i = 0; i < 25; i++)
@@ -47,7 +47,7 @@ public:
 		}
 	}
 
-	int size()
+	int size()		//return the length of the array
 	{
 		length = 0;
 		for (int i = 0; name[i] != NULL; i++)
@@ -57,7 +57,7 @@ public:
 		return length;
 	}
 
-	void addStart(myString x)
+	void addStart(myString x)		//add input to the beginning of original array
 	{
 	/*	char temp[25];
 		char temp2[25];
@@ -66,7 +66,7 @@ public:
 			
 	}
 
-	void addEnd(myString x, char firstString[25])
+	void addEnd(myString x, char firstString[25])	//add input to the end of the original array
 	{
 		int startPos = length + 1;
 		int y = 0;
@@ -76,7 +76,7 @@ public:
 		}
 	}
 
-	void replWholeString(char firstString[25])
+	void replWholeString(char firstString[25])	//replace input for the original array
 	{
 		for (int i = 0; i < 25; i++)
 		{
@@ -84,12 +84,12 @@ public:
 		}
 	}
 
-	char charAt(int pos)
+	char charAt(int pos)	//return character at a specified position
 	{
 		return name[pos];
-	}
+	}	
 
-	bool emptyString()
+	bool emptyString()	//check if array is NULL
 	{
 	
 		int a = 0;
@@ -100,12 +100,18 @@ public:
 				a = a + 1;
 			}
 		}
-	
+		if (a > 0)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
 		
-		return a;
 	}
 	
-	bool fullString()
+	bool fullString()	//check if array is full(has 25 chars)
 	{
 		int a = 0;
 		for (int i = 0; i < length; i++)
@@ -120,7 +126,7 @@ public:
 		return a;
 	}
 
-	void initString()
+	void initString()	//set array to NULL
 	{
 		for (int i = 0; i > 25; i++)
 		{
@@ -129,15 +135,16 @@ public:
 		
 	}
 
-	void printString()
+	void printString()	//print current array
 	{
 		for (int i = 0; i > length; i++)
 		{
 			cout << name[i];
 		}
+		cout << endl;
 	}
 
-	bool compareString(char firstString[25])
+	bool compareString(char firstString[25])	//check if input and original array are equal
 	{
 		bool status = true;
 		
@@ -152,14 +159,14 @@ public:
 		return status;
 	}
 
-	int partString(int startPos,int length)
+	int partString(int startPos,int length)	//return myString from current myString starting at a specified position
 	{
 
 
 		return 0;
 	}
 
-	void replPartString(char firstString[25], int startPos)
+	void replPartString(char firstString[25], int startPos)	//replace part of a string with input
 	{
 		int x = 0;
 		for (int i = startPos - 1; firstString[x] != NULL && i < length ; i++)
@@ -171,10 +178,11 @@ public:
 	}
 };
 
-void printMenu()
+void printMenu()	//print the menu for the user
 {
 	line();
 	cout << "Pleae enter the coresponding number to execute a function" << endl;
+	cout << "0: Do nothing" << endl;
 	cout << "1: Length of string" << endl;
 	cout << "2: Add characters to beginning of string" << endl;
 	cout << "3: Add characters to end of string" << endl;
@@ -188,7 +196,8 @@ void printMenu()
 	cout << "11: Set string to null" << endl;
 	cout << "12: Print the string" << endl;
 	cout << "13: Exit the program" << endl;
-	line();
+	cout << endl;
+	cout << "Choice: ";
 }
 
 
@@ -207,26 +216,120 @@ int main()
 	char inString[25];
 	char inString2[25];
 	int startPos = 0;
+	int user;
 
-	printMenu();
+	
 
-	cout << "Enter string" << endl;
-	cin >> inString;
+	cout << "Enter initial string" << endl;		
+	cin >> inString;						// take in inital string
+	instance1.setString(inString);		//set input as array
 
-	instance1.setString(inString);
-	cout << "Length of string: " << instance1.size() << endl;
-	cout << instance1.getString() << endl;
+
+	char response = 'a';
+	while (response != 'n')
+	{
+
+
+
+		instance1.size();		//return length of array
+
+		printMenu();		//print menu of options
+		cin >> user;
+
+		switch (user)
+		{
+		case 0:
+			break;
+		case 1:
+			cout << instance1.getString() << endl;
+			cout << "Length of string: " << instance1.size() << endl;
+			line();
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			cout << "Enter starting position" << endl;
+			cin >> startPos;
+
+			cout << "Enter second string" << endl;
+
+			cin >> inString;
+
+			instance1.replPartString(inString, startPos);
+			cout << "New string: " << instance1.getString() << endl;
+			line();
+			break;
+
+		case 6:
+			cout << "Enter string to replace with original" << endl;
+			cin >> inString;
+			instance1.replWholeString(inString);
+			cout << "New string: " << instance1.getString() << endl;
+			line();
+			break;
+		case 7:
+			if (instance1.emptyString() == 0)
+			{
+				cout << "String is not empty" << endl;
+			}
+			else
+			{
+				cout << "String is empty" << endl;
+			}
+			line();
+
+			break;
+		case 8:
+
+			break;
+		case 9:
+
+			break;
+		case 10:
+
+			break;
+		case 11:
+			instance1.initString();
+			cout << "String is now NULL" << endl;
+			line();
+			break;
+		case 12:
+
+			break;
+		case 13:
+
+			break;
+		default:
+			cout << "Invalid response. Please enter a number 0-13." << endl;
+			break;
+		}
+
+		cout << "Would you like to make another action? (y/n)" << endl;
+		cin >> response;
+		while (response != 'n' && response != 'y')
+		{
+			cout << "Please make a vaid choice. (y/n)" << endl << endl;
+			cin >> response;
+		}
+
+	
+	}
 	
 	
-	cout << "Enter starting position" << endl;
-	cin >> startPos;
 
-	cout << "Enter second string" << endl;
 
-	cin >> inString;
 	
-	instance1.addEnd(instance1, inString);
-	cout << "New string: " << instance1.getString() << endl;
+	
+	
+	
 
 
 
