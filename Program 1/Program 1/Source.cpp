@@ -20,7 +20,7 @@ void line()
 class myString
 {
 private:
-	char name[26];
+	char name[25];
 	int length = 0;
 
 public:
@@ -38,10 +38,10 @@ public:
 		return name;
 	}
 
-	void setString(char firstString[26])
+	void setString(char firstString[25])
 	{
 		
-		for (int i = 0; i > 25; i++)
+		for (int i = 0; i < 25; i++)
 		{
 			name[i] = firstString[i];
 		}
@@ -66,9 +66,14 @@ public:
 			
 	}
 
-	void addEnd(myString x)
+	void addEnd(myString x, char firstString[25])
 	{
-
+		int startPos = length + 1;
+		int y = 0;
+		for (int i = startPos; firstString[y] != NULL; i++)
+		{
+			name[i] = firstString[y];
+		}
 	}
 
 	void replWholeString(char firstString[25])
@@ -156,11 +161,12 @@ public:
 
 	void replPartString(char firstString[25], int startPos)
 	{
-
-
-		for (int i = startPos, x = 0; i < length; i++, x++)
+		int x = 0;
+		for (int i = startPos - 1; firstString[x] != NULL && i < length ; i++)
 		{
+			
 			name[i] = firstString[x];
+			x++;
 		}
 	}
 };
@@ -181,6 +187,7 @@ void printMenu()
 	cout << "10: Return a character at a specific position" << endl;
 	cout << "11: Set string to null" << endl;
 	cout << "12: Print the string" << endl;
+	cout << "13: Exit the program" << endl;
 	line();
 }
 
@@ -207,10 +214,9 @@ int main()
 	cin >> inString;
 
 	instance1.setString(inString);
-
-	cout << instance1.getString() << endl;
-
 	cout << "Length of string: " << instance1.size() << endl;
+	cout << instance1.getString() << endl;
+	
 	
 	cout << "Enter starting position" << endl;
 	cin >> startPos;
@@ -219,7 +225,7 @@ int main()
 
 	cin >> inString;
 	
-	instance1.replPartString(inString, startPos);
+	instance1.addEnd(instance1, inString);
 	cout << "New string: " << instance1.getString() << endl;
 
 
