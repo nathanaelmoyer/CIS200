@@ -57,12 +57,25 @@ public:
 		return length;
 	}
 
-	void addStart(myString x)		//add input to the beginning of original array
+	void addStart(char inPut[25])		//add input to the beginning of original array
 	{
-	/*	char temp[25];
-		char temp2[25];
-		x.setString(temp2);*/
-		
+		string original = "";
+		string inString = "";
+		for (int i = 0; i < 26; i++)
+		{
+			original[i] = name[i];
+		}
+		for (int i = 0; i < 26; i++)
+		{
+			inString[i] = inPut[i];
+		}
+
+		original = inString + original;
+	
+		for (int i = 0; i < 26; i++)
+		{
+			name[i] = original[i];
+		}
 			
 	}
 
@@ -249,7 +262,12 @@ int main()
 			line();
 			break;
 		case 2:	//add to starty of array
-
+			cout << "Original string: " << instance1.getString() << endl;
+			cout << "Enter string to input before current string" << endl;
+			cin >> inString;
+			instance1.addStart(inString);
+			cout << "New String : " << instance1.getString() << endl;
+			line();
 			break;
 		case 3:	//add to end of array
 
@@ -271,7 +289,7 @@ int main()
 			line();
 			break;
 
-		case 6:	//Replace the whole strin
+		case 6:	//Replace the whole string
 			cout << "Enter string to replace with original" << endl;
 			cin >> inString;
 			instance1.replWholeString(inString);
