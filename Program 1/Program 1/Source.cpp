@@ -41,7 +41,7 @@ public:
 	void setString(char firstString[25])		//set input to array
 	{
 		
-		for (int i = 0; i < 25; i++)
+		for (int i = 0; i < 26; i++)
 		{
 			name[i] = firstString[i];
 		}
@@ -78,7 +78,7 @@ public:
 
 	void replWholeString(char firstString[25])	//replace input for the original array
 	{
-		for (int i = 0; i < 25; i++)
+		for (int i = 0; i < 26; i++)
 		{
 			name[i] = firstString[i];
 		}
@@ -92,43 +92,34 @@ public:
 	bool emptyString()	//check if array is NULL
 	{
 	
-		int a = 0;
-		for (int i = 0; i < length; i++)
+		if (name[0] == NULL)
 		{
-			if (name[i] != NULL)
-			{
-				a = a + 1;
-			}
-		}
-		if (a > 0)
-		{
-			return false;
+			return true;
 		}
 		else
 		{
-			return true;
+			return false;
 		}
 		
 	}
 	
 	bool fullString()	//check if array is full(has 25 chars)
 	{
-		int a = 0;
-		for (int i = 0; i < length; i++)
+		if (length = 25)
 		{
-			if (name[i] != NULL)
-			{
-				a = a + 1;
-			}
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	
-	
-		return a;
+		
 	}
 
 	void initString()	//set array to NULL
 	{
-		for (int i = 0; i > 25; i++)
+		for (int i = 0; i < 25; i++)
 		{
 			name[i] = NULL;
 		}
@@ -137,7 +128,7 @@ public:
 
 	void printString()	//print current array
 	{
-		for (int i = 0; i > length; i++)
+		for (int i = 0; i < length; i++)
 		{
 			cout << name[i];
 		}
@@ -216,14 +207,19 @@ int main()
 	char inString[25];
 	char inString2[25];
 	int startPos = 0;
-	int user;
+	int userResponse;
 
 	
 
 	cout << "Enter initial string" << endl;		
 	cin >> inString;						// take in inital string
 	instance1.setString(inString);		//set input as array
-
+	while (instance1.size() > 25)
+	{
+		cout << "String is too long. Please enter a string of 25 characters or less" << endl;
+		cin >> inString;
+		instance1.setString(inString);
+	}
 
 	char response = 'a';
 	while (response != 'n')
@@ -234,27 +230,34 @@ int main()
 		instance1.size();		//return length of array
 
 		printMenu();		//print menu of options
-		cin >> user;
+		cin >> userResponse;
 
-		switch (user)
+		while (userResponse != 1 && userResponse != 2 && userResponse != 3 && userResponse != 4 && 
+			userResponse != 5 && userResponse != 6 && userResponse != 7 && userResponse != 8 && userResponse != 9 && 
+			userResponse != 10 && userResponse != 11 && userResponse != 12 && userResponse != 13)
 		{
-		case 0:
-			break;
-		case 1:
+			cout << "Invalid response. Please enter a number -13." << endl;
+			cin >> userResponse;
+		}
+
+		switch (userResponse)
+		{
+		
+		case 1:	//check size
 			cout << instance1.getString() << endl;
 			cout << "Length of string: " << instance1.size() << endl;
 			line();
 			break;
-		case 2:
+		case 2:	//add to starty of array
 
 			break;
-		case 3:
+		case 3:	//add to end of array
 
 			break;
-		case 4:
+		case 4:	//print part of string
 
 			break;
-		case 5:
+		case 5:	//Replace part of the string
 
 			cout << "Enter starting position" << endl;
 			cin >> startPos;
@@ -268,14 +271,14 @@ int main()
 			line();
 			break;
 
-		case 6:
+		case 6:	//Replace the whole strin
 			cout << "Enter string to replace with original" << endl;
 			cin >> inString;
 			instance1.replWholeString(inString);
 			cout << "New string: " << instance1.getString() << endl;
 			line();
 			break;
-		case 7:
+		case 7:	//Check if string is empty
 			if (instance1.emptyString() == 0)
 			{
 				cout << "String is not empty" << endl;
@@ -287,28 +290,43 @@ int main()
 			line();
 
 			break;
-		case 8:
+		case 8:	//Check if string is full
+			if (instance1.fullString() == 0)
+			{
+				cout << "String is not full" << endl;
+			}
+			else
+			{
+				cout << "String is full" << endl;
+			}
+			line();
+
+			if (true)
+			{
+
+			}
+			break;
+		case 9:	//Compare input with current string
 
 			break;
-		case 9:
+		case 10: //Return a character at a specific position
 
 			break;
-		case 10:
+		case 11: //Set array to NULL
 
-			break;
-		case 11:
-			instance1.initString();
 			cout << "String is now NULL" << endl;
 			line();
 			break;
-		case 12:
-
+		case 12:	//Print the array
+			cout << "Current string: ";
+			instance1.printString();
+			line();
 			break;
-		case 13:
+		case 13:	//exit program
 
 			break;
 		default:
-			cout << "Invalid response. Please enter a number 0-13." << endl;
+			
 			break;
 		}
 
