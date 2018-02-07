@@ -59,23 +59,7 @@ public:
 
 	void addStart(char inPut[25])		//add input to the beginning of original array
 	{
-		string original = "";
-		string inString = "";
-		for (int i = 0; i < 26; i++)
-		{
-			original[i] = name[i];
-		}
-		for (int i = 0; i < 26; i++)
-		{
-			inString[i] = inPut[i];
-		}
-
-		original = inString + original;
-	
-		for (int i = 0; i < 26; i++)
-		{
-			name[i] = original[i];
-		}
+		
 			
 	}
 
@@ -99,6 +83,7 @@ public:
 
 	char charAt(int pos)	//return character at a specified position
 	{
+		pos = pos - 1;
 		return name[pos];
 	}	
 
@@ -163,11 +148,23 @@ public:
 		return status;
 	}
 
-	int partString(int startPos,int length)	//return myString from current myString starting at a specified position
+	string partString(int startPos)	//return myString from current myString starting at a specified position
 	{
+		char part[25];
+		if (startPos = length)
+		{
+			return NULL;
+		}
+		for (int i = 0; i < length; i++)
+		{
+			int x = startPos;
+			
+			part[i] = name[x];
 
+			x++;
+		}
 
-		return 0;
+		return part;
 	}
 
 	void replPartString(char firstString[25], int startPos)	//replace part of a string with input
@@ -186,7 +183,6 @@ void printMenu()	//print the menu for the user
 {
 	line();
 	cout << "Pleae enter the coresponding number to execute a function" << endl;
-	cout << "0: Do nothing" << endl;
 	cout << "1: Length of string" << endl;
 	cout << "2: Add characters to beginning of string" << endl;
 	cout << "3: Add characters to end of string" << endl;
@@ -249,7 +245,7 @@ int main()
 			userResponse != 5 && userResponse != 6 && userResponse != 7 && userResponse != 8 && userResponse != 9 && 
 			userResponse != 10 && userResponse != 11 && userResponse != 12 && userResponse != 13)
 		{
-			cout << "Invalid response. Please enter a number -13." << endl;
+			cout << "Invalid response. Please enter a number 1-13." << endl;
 			cin >> userResponse;
 		}
 
@@ -261,20 +257,27 @@ int main()
 			cout << "Length of string: " << instance1.size() << endl;
 			line();
 			break;
-		case 2:	//add to starty of array
-			cout << "Original string: " << instance1.getString() << endl;
-			cout << "Enter string to input before current string" << endl;
-			cin >> inString;
-			instance1.addStart(inString);
-			cout << "New String : " << instance1.getString() << endl;
+
+
+		case 2:	//add to start of array
+			cout << "This function does not work" << endl;
 			line();
 			break;
-		case 3:	//add to end of array
 
+
+		case 3:	//add to end of array
+			cout << "This function does not work" << endl;
+			line();
 			break;
+
+
 		case 4:	//print part of string
 
+			cout << "This function does not work" << endl;
+			line();
 			break;
+
+
 		case 5:	//Replace part of the string
 
 			cout << "Enter starting position" << endl;
@@ -289,6 +292,7 @@ int main()
 			line();
 			break;
 
+
 		case 6:	//Replace the whole string
 			cout << "Enter string to replace with original" << endl;
 			cin >> inString;
@@ -296,6 +300,8 @@ int main()
 			cout << "New string: " << instance1.getString() << endl;
 			line();
 			break;
+
+
 		case 7:	//Check if string is empty
 			if (instance1.emptyString() == 0)
 			{
@@ -308,6 +314,8 @@ int main()
 			line();
 
 			break;
+
+
 		case 8:	//Check if string is full
 			if (instance1.fullString() == 0)
 			{
@@ -319,29 +327,43 @@ int main()
 			}
 			line();
 
-			if (true)
-			{
-
-			}
 			break;
+
+
 		case 9:	//Compare input with current string
-
+			cout << "This function does not work" << endl;
+			line();
 			break;
+
+
 		case 10: //Return a character at a specific position
-
+			cout << "Enter position of character" << endl;
+			cin >> startPos;
+			cout << "Character: " << instance1.charAt(startPos) << endl;
+			line();
 			break;
+
+
 		case 11: //Set array to NULL
 
 			cout << "String is now NULL" << endl;
 			line();
 			break;
+
+
 		case 12:	//Print the array
 			cout << "Current string: ";
 			instance1.printString();
 			line();
 			break;
-		case 13:	//exit program
 
+
+		case 13:	//exit program
+			line();
+			cout << "Thank you for running the myString program written by Nathan";
+			line();
+
+			return 0;
 			break;
 		default:
 			
@@ -359,57 +381,6 @@ int main()
 	
 	}
 	
-	
-
-
-	
-	
-	
-	
-
-
-
-
-
-	/*int a = instance1.compareString(inString2);
-	if (a = 1)
-	{
-		cout << "Strings are not equal" << endl;
-	}
-	else
-	{
-		cout << "Strings are equal" << endl;
-	}
-*/
-
-
-	
-	//if (instance1.fullString() == 25)
-	//{
-	//	cout << "String is full" << endl;
-	//}
-	//else
-	//{
-	//	cout << "String is not full" << endl;
-	//}
-
-
-
-
-	/*cout << "Enter characters to go before previous string" << endl;
-	cin >> inString;
-	instance2.setString(inString);
-	instance1.addStart(instance2);
-	
-
-	cout << "New: ";
-	cout << instance1.getString() << endl;
-	cout << "Length of string: " << instance1.size() << endl;
-	*/
-
-
-
-
 
 	//#############################################################################
 
