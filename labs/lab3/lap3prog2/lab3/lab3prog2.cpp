@@ -8,6 +8,7 @@
 #include <iomanip>
 #include <fstream>
 #include <cstdlib>
+#include <assert.h>
 
 using namespace std;
 
@@ -20,13 +21,14 @@ void line()
 
 }
 
-int size(int intArray[], int length)		//return the length of the array
+int size(int tempArray[], int length)		//return the length of the array
 {
 	length = 0;
-	for (int i = 0; intArray[i] != NULL; i++)
+	for (int i = 0; tempArray[i] != NULL; i++)
 	{
 		length++;
 	}
+	
 	return length;
 }
 
@@ -35,27 +37,41 @@ bool isEmpty(ifstream& file)
 	return file.peek() == ifstream::traits_type::eof();
 }
 
-void readIntFile(ifstream &x, int intArray[], int &length)
+int readIntFile(ifstream &x, int intArray[20], int &length)
 {
-	
+	int i = 0;
+	int tempArray[200];
 	while (!x.eof())
 	{
-		int i = 0;
-		x >> intArray[i];
+		
+		x >> tempArray[i];
 
 		i++;
 		
 	}
-	if (length > 20)
+	if (size(tempArray, length) > 20)
 	{
-		cout << "***ERROR: Array overflow. Length of input from file must be 20 characters or less***" << endl;
-		return;
+		cout << endl << "***ERROR: Length of input from file must be 20 characters or less***" << endl << endl;
+		return 0;
 	}
+	else
+	{
+		for (int i = 0; i < 20; i++)
+		{
+			intArray[i] = tempArray[i];
+		}
+	}
+	return 0;
 }
 
-void printFileValues(int intArray[], int &length)
+void printFileValues(int intArray[], int &length, string userFile)
 {
-
+	cout << "Data in '" << userFile << "': " << endl;
+	for (int i = 0; i < 20; i++)
+	{
+		cout  << intArray[i];
+	}
+	cout << endl;
 }
 int main()
 {
@@ -78,19 +94,28 @@ int main()
 
 	if (file.fail())	//check if file will open
 	{
-		cout << "Error: canot open " << inFile << endl;
+		cout << "***ERROR: cannot open '" << inFile << "'***" <<  endl;
 		file.close();
 		return 0;
 	}
 
 	if (isEmpty(file) == 1)
 	{
-		cout << "***ERROR: File is empty***" << endl;
+
+		cout << endl << "***ERROR: File is empty***" << endl << endl;
 		return 0;
 	}
 
 	readIntFile(file, intArray, length);
-	size(intArray, length);
+
+	/*if (size(intArray, length) > 20)
+	{
+		cout << endl << "***ERROR: Length of input from file must be 20 characters or less***" << endl << endl;
+		return 0;
+	}*/
+
+	printFileValues(intArray, length, userFile);
+	
 
 
 
