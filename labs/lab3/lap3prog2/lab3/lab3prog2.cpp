@@ -21,16 +21,6 @@ void line()
 
 }
 
-int size(int tempArray[], int length)		//return the length of the array
-{
-	length = 0;
-	for (int i = 0; tempArray[i] != NULL; i++)
-	{
-		length++;
-	}
-	
-	return length;
-}
 
 bool isEmpty(ifstream& file)
 {
@@ -49,7 +39,8 @@ int readIntFile(ifstream &x, int intArray[20], int &length)
 		i++;
 		
 	}
-	if (size(tempArray, length) > 20)
+	length = sizeof(tempArray);
+	if (length < 20)
 	{
 		cout << endl << "***ERROR: Length of input from file must be 20 characters or less***" << endl << endl;
 		return 0;
@@ -64,10 +55,10 @@ int readIntFile(ifstream &x, int intArray[20], int &length)
 	return 0;
 }
 
-void printFileValues(int intArray[], int &length, string userFile)
+void printFileValues(int intArray[], int length, string userFile)
 {
 	cout << "Data in '" << userFile << "': " << endl;
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < length; i++)
 	{
 		cout  << intArray[i];
 	}
