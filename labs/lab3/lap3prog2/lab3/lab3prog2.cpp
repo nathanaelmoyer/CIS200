@@ -11,7 +11,7 @@
 
 using namespace std;
 
-
+#define inFile userFile
 
 void line()
 {
@@ -20,6 +20,15 @@ void line()
 
 }
 
+int size(int intArray[], int length)		//return the length of the array
+{
+	length = 0;
+	for (int i = 0; intArray[i] != NULL; i++)
+	{
+		length++;
+	}
+	return length;
+}
 
 bool isEmpty(ifstream& file)
 {
@@ -28,7 +37,20 @@ bool isEmpty(ifstream& file)
 
 void readIntFile(ifstream &x, int intArray[], int &length)
 {
+	
+	while (!x.eof())
+	{
+		int i = 0;
+		x >> intArray[i];
 
+		i++;
+		
+	}
+	if (length > 20)
+	{
+		cout << "***ERROR: Array overflow. Length of input from file must be 20 characters or less***" << endl;
+		return;
+	}
 }
 
 void printFileValues(int intArray[], int &length)
@@ -44,8 +66,10 @@ int main()
 
 	string userFile = "";
 	ifstream file;
+	int intArray[20];
+	int length;
 
-	#define inFile userFile
+	
 
 	cout << "Enter file name you wish to open" << endl;
 	cin >> userFile;
@@ -61,12 +85,12 @@ int main()
 
 	if (isEmpty(file) == 1)
 	{
-		cout << "File is empty" << endl;
+		cout << "***ERROR: File is empty***" << endl;
 		return 0;
 	}
 
-
-
+	readIntFile(file, intArray, length);
+	size(intArray, length);
 
 
 

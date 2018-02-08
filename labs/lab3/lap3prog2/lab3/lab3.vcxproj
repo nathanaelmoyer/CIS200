@@ -149,6 +149,9 @@
   <ItemGroup>
     <ClCompile Include="lab3prog2.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="1.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
