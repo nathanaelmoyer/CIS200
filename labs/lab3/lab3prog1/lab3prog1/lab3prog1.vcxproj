@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5E2CE6A0-EA3D-4846-8EF8-41E16EBF5C11}</ProjectGuid>
+    <ProjectGuid>{0AE3B81C-ED8F-45FA-9804-6D3FBD4786EE}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>lab3</RootNamespace>
+    <RootNamespace>lab3prog1</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -146,7 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="lab3prog2.cpp" />
+    <ClCompile Include="lab3prog1.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
