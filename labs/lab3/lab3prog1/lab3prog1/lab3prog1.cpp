@@ -28,12 +28,12 @@ double squareRoot(double userNum)
 	assert(userNum > -1);
 	double x0 = userNum / 2;
 	double x1 = 0.0;
-	double y = x0;
+	double updater = x0;
 	do
 	{
-		x0 = y;
+		x0 = updater;
 		x1 = (x0 + (userNum / x0)) / 2;
-		y = x1;
+		updater = x1;
 	} while (fabs(x0 - x1) > .0001);
 	
 
