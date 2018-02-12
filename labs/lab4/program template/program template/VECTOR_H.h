@@ -1,15 +1,21 @@
-#pragma once
-
 #ifndef VECTOR_H
 #define VECTOR_H
+
+
+template<class T>
 class Vector
 {
+private:
+	int size;				//sets the # of elements used
+	int *entries;			//point to array of integers with size entries
+							//e.g. entries = new int[size]
+
 public:
 	Vector();		//Defualt constructor
 
 	Vector(int s)
 	{
-
+		entries = new int[size];
 	}
 					//makes size = s
 					//allocates s space
@@ -25,9 +31,13 @@ public:
 
 	~Vector();		//default deconstructor
 
-	void print()		//prints out the vector
+	void print(T input)		//prints out the vector
 	{
-
+		for (int i = 0; i < size; i++)
+		{
+			cout << input[i];
+		}
+		
 	};
 	void set(int val, int pos)		//if 0<=pos<size
 	{
@@ -37,10 +47,7 @@ public:
 									//otherwise
 									//error message
 
-private:
-	int size;				//sets the # of elements used
-	int *entries;			//point to array of integers with size entries
-							//e.g. entries = new int[size]
+
 };
 
 
