@@ -55,8 +55,9 @@ int main()
 
 	//My code after this point
 
-	Vector e(3);
+	Vector e(a);
 	e.print(e);
+	a.print(a);
 
 	
 

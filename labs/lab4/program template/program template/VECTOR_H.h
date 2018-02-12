@@ -15,6 +15,7 @@ public:
 
 	Vector(int s)
 	{
+		size = s;
 		entries = new int[size];
 	}
 					//makes size = s
