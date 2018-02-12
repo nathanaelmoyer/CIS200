@@ -27,41 +27,37 @@ bool isEmpty(ifstream& file)
 	return file.peek() == ifstream::traits_type::eof();
 }
 
-void readIntFile(ifstream &x, int intArray[20], int &length)
+int readIntFile(ifstream &x, int intArray[20], int &length)
 {
 	int i = 0;
+	int tempArray[200];
 	while (!x.eof())
 	{
 		
-		x >> intArray[i];
+		x >> tempArray[i];
 
 		i++;
 		
 	}
-<<<<<<< HEAD
-	
-	
-	
-=======
 	length = i;
->>>>>>> 6063ac776e13ef02ad3348329ddafb3998964b64
 	if (length > 20)
 	{
 		cout << endl << "***ERROR: Length of input from file must be 20 characters or less***" << endl << endl;
-		
+		return 0;
 	}
-
-	
+	else
+	{
+		for (int i = 0; i < 20; i++)
+		{
+			intArray[i] = tempArray[i];
+		}
+	}
+	return 0;
 }
 
-void printFileValues(int intArray[], int &length, string userFile)
+void printFileValues(int intArray[], int length, string userFile)
 {
-<<<<<<< HEAD
-	cout << "Data in '" << userFile << "': " << endl;
-	for (int i = 0; intArray[i] != NULL; i++)
-=======
 	if (length <= 20) //won't print if length is greater than 20
->>>>>>> 6063ac776e13ef02ad3348329ddafb3998964b64
 	{
 		cout << "Data in '" << userFile << "': " << endl;
 		for (int i = 0; i < length; i++)
