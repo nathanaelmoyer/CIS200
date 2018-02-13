@@ -37,27 +37,27 @@ int main()
 
 	Vector a, b(3), c(3);
 
-	a.print(a);			//outputs[]
-	b.print(b);			//outputs[0 0 0]
+	a.print();			//outputs[]
+	b.print();			//outputs[0 0 0]
 	c.set(0, -1);		//outputs error message
 	c.set(1, 0);
 	c.set(2, 1);
 	c.set(3, 2);
 	c.set(4, 3);		//outputs error message
-	c.print(c);			//outputs[1 2 3]
+	c.print();			//outputs[1 2 3]
 
 	Vector d(c);
-	d.print(d);			//outputs[1 2 3]
+	d.print();			//outputs[1 2 3]
 
 	d.set(0, 1);
-	d.print(d);			//outputs [1 0 3]
-	c.print(c);			//outputs [1 2 3] proves deep copy
+	d.print();			//outputs [1 0 3]
+	c.print();			//outputs [1 2 3] proves deep copy
 
 	//My code after this point
 
 	Vector e(a);
-	e.print(e);
-	a.print(a);
+	e.print();
+	a.print();
 
 	
 
