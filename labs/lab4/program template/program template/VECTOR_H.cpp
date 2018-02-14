@@ -21,14 +21,12 @@ Vector::Vector(int s)
 
 Vector::Vector(const Vector & other)
 {
+	entries = new int[other.size];
 	size = other.size;
-
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < other.size; i++)
 	{
 		entries[i] = other.entries[i];
-		
 	}
-	
 	
 }
 
@@ -40,7 +38,7 @@ Vector::~Vector()
 
 void Vector::print()
 {
-	cout << "Values in specified vector: " << endl << "[";
+	cout << "Values in vector " << size << ": " << endl << "[";
 	for (int i = 0; i < size; i++)
 	{
 		cout << entries[i] << " ";
