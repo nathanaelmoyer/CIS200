@@ -38,12 +38,12 @@ Vector::~Vector()
 
 void Vector::print()
 {
-	cout << "Values in vector " << size << ": " << endl << "[";
+	cout << endl << "Values in vector:" << endl << "[ ";
 	for (int i = 0; i < size; i++)
 	{
 		cout << entries[i] << " ";
 	}
-	cout << "]" <<endl;
+	cout << "]" <<endl << endl;
 	
 }
 
@@ -52,11 +52,11 @@ void Vector::set(int val, int pos)
 {
 	if (pos < 0)
 	{
-		cout << "Position is out of range" << endl;
+		cout << "***ERROR: Position " << pos << " is out of range***" << endl;
 	}
-	else if (pos > size)
+	else if (pos > size - 1)
 	{
-		cout << "Position is greater than size of vector" << endl;
+		cout << "***ERROR: Position " << pos << " is greater than size (" << size << ") of specified vector***" << endl;
 	}
 	else
 	{
@@ -65,3 +65,12 @@ void Vector::set(int val, int pos)
 }
 
 
+void Vector::changeSize(Vector other)
+{
+	size = other.size;
+	entries = new int[size];
+	for (int i = 0; i < size; i++)
+	{
+		entries[i] = 0;
+	}
+}

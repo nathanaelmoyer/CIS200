@@ -56,10 +56,13 @@ int main()
 	//My code after this point
 
 	Vector e(a);
-	e.print();
-	a.print();
+	e.print();			//outputs []
+	a.print();			//outputs []
+	e.changeSize(4);	//change size of vector
+	e.set(2, 2);
+	e.print();			//outputs [0 0 2 0]
+	a.print();			//outputs []
 
-	
 
 
 	//####################################################################

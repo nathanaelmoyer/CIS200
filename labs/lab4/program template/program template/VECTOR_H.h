@@ -29,7 +29,7 @@ public:
 									//stores val at pos in entries
 									//otherwise
 									//error message
-
+	void changeSize(Vector other);
 private:
 	int size;						//sets the # of elements used
 	int *entries;					//point to array of integers with size entries
