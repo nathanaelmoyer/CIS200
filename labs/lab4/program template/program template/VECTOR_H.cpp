@@ -38,7 +38,7 @@ Vector::~Vector()
 
 void Vector::print()
 {
-	cout << endl << "Values in vector:" << endl << "[ ";
+	cout << endl << "Size of vector: " << size << endl<< "Values in vector:" << endl << "[ ";
 	for (int i = 0; i < size; i++)
 	{
 		cout << entries[i] << " ";
@@ -73,4 +73,6 @@ void Vector::changeSize(Vector other)
 	{
 		entries[i] = 0;
 	}
+	
+	
 }
