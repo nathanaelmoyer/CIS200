@@ -23,12 +23,10 @@ void line()
 
 int recursiveLinearSearch(int array[], int key, int size, bool methodStatus)
 {
-	int result;
+	
 
-	array[size - 1] = result;
-
-
-	return 0;
+	
+	
 }
 
 
@@ -39,6 +37,7 @@ int main()
 	line();
 	//####################################################################
 
+	
 	int size = 0;
 	bool methodStatus = true;
 	int key = 0;
@@ -52,7 +51,7 @@ int main()
 	cin >> key;
 
 	recursiveLinearSearch(array, key, size, methodStatus);
-
+	
 
 	//#####################################################################
 	line();
