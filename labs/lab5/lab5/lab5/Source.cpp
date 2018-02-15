@@ -21,7 +21,15 @@ void line()
 
 }
 
+int recursiveLinearSearch(int array[], int key, int size, bool methodStatus)
+{
+	int result;
 
+	array[size - 1] = result;
+
+
+	return 0;
+}
 
 
 int main()
@@ -31,9 +39,19 @@ int main()
 	line();
 	//####################################################################
 
+	int size = 0;
+	bool methodStatus = true;
+	int key = 0;
+	int array[5000];
+	for (int i = 0; i < 5000; i++)
+	{
+		array[i] = i;
+	}
 
+	cout << "Enter key value to search for: ";
+	cin >> key;
 
-
+	recursiveLinearSearch(array, key, size, methodStatus);
 
 
 	//#####################################################################
