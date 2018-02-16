@@ -23,9 +23,12 @@ void line()
 
 int recursiveLinearSearch(int array[], int key, int size, bool methodStatus)
 {
+	int first = 0;
+	int last = size - 1;
+	int mid = (first + last) / 2;
 	
-
 	
+	return 0;
 	
 }
 
@@ -38,11 +41,11 @@ int main()
 	//####################################################################
 
 	
-	int size = 0;
-	bool methodStatus = true;
+	int size = 10;
+	bool methodStatus = false;
 	int key = 0;
-	int array[5000];
-	for (int i = 0; i < 5000; i++)
+	int array[10];
+	for (int i = 0; i < size; i++)
 	{
 		array[i] = i;
 	}
@@ -52,7 +55,6 @@ int main()
 
 	recursiveLinearSearch(array, key, size, methodStatus);
 	
-
 	//#####################################################################
 	line();
 	cout << "Thank you for running the program written by Nathan!";
