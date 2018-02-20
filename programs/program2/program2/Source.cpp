@@ -27,7 +27,7 @@ private:
 	string lastName;
 	string firstName;
 	string ssn;				//MIGHT HAVE TO CHANGE VARIABLE TYPE
-	char empNum[4];
+	string empNum;
 
 public:
 	employee()
@@ -35,6 +35,7 @@ public:
 		lastName = "xx";
 		firstName = "xxx";
 		ssn = "xxx-xx-xxxx";		//MIGHT HAVE TO CHANGE
+		empNum = "xxx-L";
 	}
 	string getFirstName()
 	{
@@ -42,6 +43,7 @@ public:
 	}
 	void setFirstName(string input)
 	{
+		
 		firstName = input;
 	}
 
@@ -60,7 +62,36 @@ public:
 	}
 	void setSsn(string input)
 	{
+		while (input.size() != 11)
+		{
+			cout << "Invalid ssn entered. Please enter in the correct format. (xxx-xx-xxxx)" << endl;
+			cin >> input;
+		}
+		while (input.at(3) != '-' || input.at(6) != '-')
+		{
+			cout << "Invalid ssn entered. Please enter in the correct format. (xxx-xx-xxxx)" << endl;
+			cin >> input;
+		}
 		ssn = input;
+	}
+
+	string getEmpNum()
+	{
+		return empNum;
+	}
+	void setEmpNum(string input)
+	{
+		while (input.size() != 5)
+		{
+			cout << "Invalid employee number entered. Plese enter in the correct formant. (xxx-L)" << endl;
+			cin >> input;
+		}
+		while (input.at(3) != '-')
+		{
+			cout << "Invalid employee number entered. Plese enter in the correct formant. (xxx-L)" << endl;
+			cin >> input;
+		}
+		empNum = input;
 	}
 
 
@@ -130,14 +161,20 @@ int main()
 	salaryEmployeePay x;
 	string yes = "";
 	
+	cout << "First name: ";
 	cin >> yes;
 	x.setFirstName(yes);
+	cout << "Last name: ";
 	cin >> yes;
 	x.setLastName(yes);
+	cout << "SSN: ";
 	cin >> yes;
 	x.setSsn(yes);
+	cout << "Emp num: ";
+	cin >> yes;
+	x.setEmpNum(yes);
 
-	cout << x.getFirstName() << " " << x.getLastName() << " " << x.getSsn();
+	cout << x.getFirstName() << " " << x.getLastName() << " " << x.getSsn() << " " << x.getEmpNum();
 
 
 
