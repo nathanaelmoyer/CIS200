@@ -36,22 +36,37 @@ public:
 		firstName = "xxx";
 		ssn = "xxx-xx-xxxx";		//MIGHT HAVE TO CHANGE
 	}
-	string getfirstName()
+	string getFirstName()
 	{
 		return firstName;
 	}
+	void setFirstName(string input)
+	{
+		firstName = input;
+	}
+
 	string getLastName()
 	{
 		return lastName;
 	}
+	void setLastName(string input)
+	{
+		lastName = input;
+	}
+
 	string getSsn()
 	{
 		return ssn;
 	}
+	void setSsn(string input)
+	{
+		ssn = input;
+	}
+
 
 };
 
-class salaryEmployeePay
+class salaryEmployeePay : public employee
 {
 private:
 	int taxCode;
@@ -59,12 +74,12 @@ private:
 	double weeklyPay;
 
 public:
-
+	
 
 
 };
 
-class hourlyEmployee
+class hourlyEmployee : public employee
 {
 private:
 	double hourPay;
@@ -77,7 +92,7 @@ public:
 
 };
 
-class hourlyEmployeePay
+class hourlyEmployeePay : public hourlyEmployee
 {
 private:
 	double weekPay;
@@ -93,7 +108,7 @@ public:
 
 };
 
-class agencyEmployeePay
+class agencyEmployeePay : public hourlyEmployeePay
 {
 private:
 	string company;
@@ -112,7 +127,17 @@ int main()
 	line();
 	//####################################################################
 
+	salaryEmployeePay x;
+	string yes = "";
+	
+	cin >> yes;
+	x.setFirstName(yes);
+	cin >> yes;
+	x.setLastName(yes);
+	cin >> yes;
+	x.setSsn(yes);
 
+	cout << x.getFirstName() << " " << x.getLastName() << " " << x.getSsn();
 
 
 
