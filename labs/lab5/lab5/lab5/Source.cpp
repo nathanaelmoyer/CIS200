@@ -36,18 +36,29 @@ int recursiveLinearSearch(int &count, int array[], int key, int size, bool metho
 	{
 		return 0;
 	}
-	if (key < mid) //check values less than the middle value
-	{
-		recursiveLinearSearch(count, array, key, size - 1, methodStatus);
-	}
-	else if (key > mid)	//check values greater than the middle value
-	{
-		recursiveLinearSearch(count, array, key, size + 1, methodStatus);
-	}
-	else if (key == mid)	//check middle value
+
+
+	if (key == last)	//linear search from the last position
 	{
 		return 1;
 	}
+	else if (key < last)	
+	{
+		recursiveLinearSearch(count, array, key, size - 1, methodStatus);
+	}
+
+	//if (key < mid) //check values less than the middle value	//binary search from middle position
+	//{
+	//	recursiveLinearSearch(count, array, key, size - 1, methodStatus);
+	//}
+	//else if (key > mid)	//check values greater than the middle value
+	//{
+	//	recursiveLinearSearch(count, array, key, size + 1, methodStatus);
+	//}
+	//else if (key == mid)	//check middle value
+	//{
+	//	return 1;
+	//}
 	
 	
 }
@@ -73,6 +84,8 @@ int main()
 	}
 	while (response != 'n' && response != 'N')
 	{
+
+		count = 0;
 		cout << "Enter key value to search for: ";
 		cin >> key;
 
