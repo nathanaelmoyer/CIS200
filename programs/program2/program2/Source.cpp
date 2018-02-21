@@ -21,20 +21,21 @@ void line()
 
 }
 
+//##############################
 class employee
 {
 private:
 	string lastName;
 	string firstName;
-	string ssn;				//MIGHT HAVE TO CHANGE VARIABLE TYPE
+	string ssn;
 	string empNum;
 
 public:
-	employee()
+	employee()	//default constructor sets default values
 	{
 		lastName = "xx";
 		firstName = "xxx";
-		ssn = "xxx-xx-xxxx";		//MIGHT HAVE TO CHANGE
+		ssn = "xxx-xx-xxxx";
 		empNum = "xxx-L";
 	}
 	string getFirstName()
@@ -43,7 +44,7 @@ public:
 	}
 	void setFirstName(string input)
 	{
-		
+
 		firstName = input;
 	}
 
@@ -96,6 +97,7 @@ public:
 
 
 };
+//##############################
 
 class salaryEmployeePay : public employee
 {
@@ -105,7 +107,13 @@ private:
 	double weeklyPay;
 
 public:
-	
+	salaryEmployeePay()	//default constructor sets default values
+	{
+		taxCode = 0;
+		annualPay = 0.0;
+		weeklyPay = 0.0;
+	}
+
 
 
 };
@@ -138,6 +146,7 @@ public:
 
 
 };
+//##############################
 
 class agencyEmployeePay : public hourlyEmployeePay
 {
@@ -150,6 +159,7 @@ public:
 
 
 };
+//##############################
 
 int main()
 {
