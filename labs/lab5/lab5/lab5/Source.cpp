@@ -90,11 +90,11 @@ int main()
 
 		line();
 
-		cout << "Would you like to enter another value to search for" << endl;		//continue loop
+		cout << "Would you like to enter another value to search for (y/n)" << endl;		//continue loop
 		cin >> response;
 		while (response != 'n' && response != 'N' && response != 'y' && response != 'Y')
 		{
-			cout << "Please enter a valid response" << endl;
+			cout << "Please enter (y/n)" << endl;
 			cin >> response;
 		}
 
@@ -108,4 +108,3 @@ int main()
 
 	return 0;
 }
-
