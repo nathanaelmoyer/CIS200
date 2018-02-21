@@ -24,6 +24,11 @@ void line()
 
 int factorial(int value, bool methodStatus)
 {
+	if (value < 0)
+	{
+		methodStatus = 0;
+		return -1;
+	}
 	if (value == 0 || value == 1)
 	{
 		return 1;
@@ -49,12 +54,6 @@ int main()
 	{
 		cout << "Enter an integer to solve its factorial: " << endl;
 		cin >> value;
-
-		while (value < 0)	//check user input if value is negeative
-		{
-			cout << "Invalid input. Value must be greater than 0" << endl;
-			cin >> value;
-		}
 
 		cout << "Answer: " << factorial(value, methodStatus);
 
