@@ -26,10 +26,10 @@ class BankAccount
 private:
 	
 	string accountNum;
-
+	double balance;
 
 public:
-	double balance;
+	
 	BankAccount()
 	{
 		balance = 0.0;
@@ -79,7 +79,7 @@ public:
 
 class CheckingAccount : public BankAccount
 {
-
+	
 private:
 	int withdrawNum;
 public:
@@ -88,7 +88,7 @@ public:
 		withdrawNum = 0;
 	};
 
-	void Withdraw()
+	void withdraw()
 	{
 		char response = 'a';
 		int count = 0;
@@ -98,14 +98,14 @@ public:
 			cout << "Enter amount you would like to withdraw from checking account" << endl;
 			cin >> amount;
 			
-			if ((balance - amount) < 0)
+			if ((getBalance() - amount) < 0)
 			{
 				cout << "Insuficcent funds" << endl;
 				
 			}
 			else
 			{
-				cout << " New balance for checking account: " << withdraw(amount) << endl;
+				cout << "New balance for checking account: " << withdraw(amount) << endl;
 
 				count = count + 1;
 
@@ -193,9 +193,27 @@ int main()
 
 
 
+	cout << "Savings account" << endl;
+	cout << "Enter account number" << endl;
+	cin >> stringInput;
+	z.setAccountNum(stringInput);
 
 
-	cout << "Checking account" << endl;
+
+	cout << "Account number: " << x.getAccountNum() << endl;
+
+	cout << "Balance: " << x.getBalance() << endl;
+
+	cout << "Deposit amount: ";
+	cin >> doubleInput;
+	z.deposit(doubleInput);
+	cout << "New balance: :" << y.getBalance() << endl;
+
+	//z.Withdraw();
+
+
+
+	/*cout << "Checking account" << endl;
 	cout << "Enter account number" << endl;
 	cin >> stringInput;
 	x.setAccountNum(stringInput);
@@ -209,8 +227,9 @@ int main()
 	cout << "Deposit amount: ";
 	cin >> doubleInput;
 	y.deposit(doubleInput);
+	cout << "New balance: :" << y.getBalance() << endl;
 
-	y.Withdraw();
+	y.Withdraw();*/
 
 
 
