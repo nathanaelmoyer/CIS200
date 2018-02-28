@@ -114,6 +114,62 @@ public:
 		weeklyPay = 0.0;
 	}
 
+	int getTaxCode()
+	{
+		return taxCode;
+	}
+
+	void setTaxCode(double input)
+	{
+		while (input < 0 || input > 3)
+		{
+			cout << "Invalid tax rate code entered. Enter 1, 2, or 3" << endl;
+			cin >> input;
+		}
+		taxCode = input;
+	}
+
+	double getAnnualPay()
+	{
+		return annualPay;
+	}
+
+	void setAnnualPay(double input)
+	{
+		while (input < 0)
+		{
+			cout << "Invalid pay entered. Please enter a value greater than zero." << endl;
+			cin >> input;
+		}
+		annualPay = input;
+	}
+
+	double getWeeklyPay()
+	{
+		return weeklyPay;
+	}
+
+	void setWeeklyPay(double input)
+	{
+		weeklyPay = input;
+	}
+
+	void calcWeeklyPay()
+	{
+		weeklyPay = annualPay / 52;
+	}
+
+	void printSalaryEmp()
+	{
+		line();
+		cout << "Employee name : " << getFirstName() << " " << getLastName() << endl;
+		cout << "Social security number: " << getSsn() << endl;
+		cout << "Employee number: " << getEmpNum() << endl;
+		cout << "Annual Pay: " << getAnnualPay() << endl;
+		calcWeeklyPay();
+		cout << "Weekly pay: " << getWeeklyPay() << endl;
+		line();
+	}
 
 
 };
@@ -170,7 +226,10 @@ int main()
 
 	salaryEmployeePay x;
 	string yes = "";
+	double doubleInput = 0.0;
+	int intInput = 0;
 	
+	//Salary employee
 	cout << "First name: ";
 	cin >> yes;
 	x.setFirstName(yes);
@@ -184,9 +243,18 @@ int main()
 	cin >> yes;
 	x.setEmpNum(yes);
 
-	cout << x.getFirstName() << " " << x.getLastName() << " " << x.getSsn() << " " << x.getEmpNum();
+	cout << "Salary annual pay: ";
+	cin >> doubleInput;
+	x.setAnnualPay(doubleInput);
+	cout << "Tax rate code: ";
+	cin >> intInput;
+	x.setTaxCode(intInput);
 
 
+	
+
+
+	x.printSalaryEmp();
 
 
 	//#####################################################################
