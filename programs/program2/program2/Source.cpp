@@ -349,6 +349,7 @@ int main()
 	string yes = "";
 	double doubleInput = 0.0;
 	int intInput = 0;
+	char charInput = 'a';
 	
 	
 	cout << "First name: ";
@@ -385,7 +386,9 @@ int main()
 	cin >> doubleInput;
 	y.setHoursWorked(doubleInput);
 
-
+	cout << "Work status (F = full time, P = part time): ";
+	cin >> charInput;
+	y.setWorkStatus(charInput);
 
 
 
