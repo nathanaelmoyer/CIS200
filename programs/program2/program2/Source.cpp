@@ -126,7 +126,19 @@ public:
 			cout << "Invalid tax rate code entered. Enter 1, 2, or 3" << endl;
 			cin >> input;
 		}
-		taxCode = input;
+
+		if (input == 1)
+		{
+			taxCode = 25;
+		}
+		else if (input == 2)
+		{
+			taxCode = 20;
+		}
+		else
+		{
+			taxCode = 15;
+		}
 	}
 
 	double getAnnualPay()
@@ -143,7 +155,7 @@ public:
 		}
 		annualPay = input;
 	}
-
+	
 	double getWeeklyPay()
 	{
 		return weeklyPay;
@@ -168,6 +180,7 @@ public:
 		cout << "Annual Pay: " << getAnnualPay() << endl;
 		calcWeeklyPay();
 		cout << "Weekly pay: " << getWeeklyPay() << endl;
+		cout << "Taxe rate: " << taxCode << "%" << endl;
 		line();
 	}
 
@@ -179,9 +192,48 @@ class hourlyEmployee : public employee
 private:
 	double hourPay;
 	double hoursWorked;
+	double weekPay;
 
 public:
+	double getHourPay()
+	{
+		return hourPay;
+	}
+	
+	void setHourPay(double input)
+	{
+		if (input < 10)
+		{
+			cout << "Hour pay cannot be less than 10. Enter another value." << endl;
+			cin >> input;
+		}
+		hourPay = input;
+	}
 
+	double getHoursWrorked()
+	{
+		return hoursWorked;
+	}
+
+	void setHoursWorked(double input)
+	{
+		if (input > 60)
+		{
+			cout << "Cannot be more than 60 hours worked. Enter another value" << endl;
+			cin >> input;
+		}
+		hoursWorked = input;
+	}
+
+	double getWeekPay()
+	{
+		return weekPay;
+	}
+
+	void setWeekPay(double input)
+	{
+		weekPay = input;
+	}
 
 
 
@@ -190,7 +242,6 @@ public:
 class hourlyEmployeePay : public hourlyEmployee
 {
 private:
-	double weekPay;
 	int taxCode;
 	double const otRate = 1.5;	//overtime rate
 	char workStatus;
@@ -198,7 +249,76 @@ private:
 
 public:
 
+	int getTaxCode()
+	{
+		return taxCode;
+	}
 
+	void setTaxCode(double input)
+	{
+		while (input < 0 || input > 3)
+		{
+			cout << "Invalid tax rate code entered. Enter 1, 2, or 3" << endl;
+			cin >> input;
+		}
+
+		if (input == 1)
+		{
+			taxCode = 25;
+		}
+		else if (input == 2)
+		{
+			taxCode = 20;
+		}
+		else
+		{
+			taxCode = 15;
+		}
+	}
+
+	double getOtRate()
+	{
+		return otRate;
+	}
+
+	char getWorkStatus()
+	{
+		return workStatus;
+	}
+
+	void setWorkStatus(char input)
+	{
+		while (input != 'f' || input != 'F' || input != 'p' || input != 'P')
+		{
+			cout << "Invalid work status. Please enter F or P" << endl;
+			cin >> input;
+
+			if (input == 'f' || input == 'F')
+			{
+				workStatus = 'F';
+			}
+			else if (input == 'p' || input == 'P')
+			{
+				workStatus = 'P';
+			}
+		}
+	}
+
+
+
+	void calcWeeklyPay()
+	{
+		double calc = 0;
+		if (getHoursWrorked() <= 40)
+		{
+			setWeekPay(getHoursWrorked() * getHourPay());
+		}
+		else if (getHoursWrorked() > 40)
+		{
+			calc = getHourPay() * 40;
+			setWeekPay(calc + ((getHoursWrorked() - 40) * otRate));
+		}
+	}
 
 
 };
@@ -224,12 +344,13 @@ int main()
 	line();
 	//####################################################################
 
+	hourlyEmployeePay y;
 	salaryEmployeePay x;
 	string yes = "";
 	double doubleInput = 0.0;
 	int intInput = 0;
 	
-	//Salary employee
+	
 	cout << "First name: ";
 	cin >> yes;
 	x.setFirstName(yes);
@@ -243,18 +364,29 @@ int main()
 	cin >> yes;
 	x.setEmpNum(yes);
 
+	//Salary employee
 	cout << "Salary annual pay: ";
 	cin >> doubleInput;
 	x.setAnnualPay(doubleInput);
-	cout << "Tax rate code: ";
+	cout << "Tax rate code (1 = 25%, 2 = 20%, 3 = 15%): ";
 	cin >> intInput;
 	x.setTaxCode(intInput);
 
 
-	
-
-
 	x.printSalaryEmp();
+
+
+	//hourly employee
+	cout << "Hourly pay: ";
+	cin >> doubleInput;
+	y.setHourPay(doubleInput);
+
+	cout << "Hours worked (in one week): ";
+	cin >> doubleInput;
+	y.setHoursWorked(doubleInput);
+
+
+
 
 
 	//#####################################################################
