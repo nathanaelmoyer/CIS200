@@ -217,7 +217,7 @@ public:
 
 	void setHoursWorked(double input)
 	{
-		if (input > 60)
+		while (input > 60)
 		{
 			cout << "Cannot be more than 60 hours worked. Enter another value" << endl;
 			cin >> input;
@@ -243,7 +243,6 @@ class hourlyEmployeePay : public hourlyEmployee
 {
 private:
 	int taxCode;
-	double const otRate = 1.5;	//overtime rate
 	char workStatus;
 
 
@@ -276,11 +275,6 @@ public:
 		}
 	}
 
-	double getOtRate()
-	{
-		return otRate;
-	}
-
 	char getWorkStatus()
 	{
 		return workStatus;
@@ -288,7 +282,7 @@ public:
 
 	void setWorkStatus(char input)
 	{
-		while (input != 'f' || input != 'F' || input != 'p' || input != 'P')
+		while (input != 'f' && input != 'F' && input != 'p' && input != 'P')
 		{
 			cout << "Invalid work status. Please enter F or P" << endl;
 			cin >> input;
@@ -309,14 +303,16 @@ public:
 	void calcWeeklyPay()
 	{
 		double calc = 0;
+		double calc2 = 0;
 		if (getHoursWrorked() <= 40)
 		{
 			setWeekPay(getHoursWrorked() * getHourPay());
 		}
-		else if (getHoursWrorked() > 40)
+		else if (getHoursWrorked() > 40)		//over time
 		{
 			calc = getHourPay() * 40;
-			setWeekPay(calc + ((getHoursWrorked() - 40) * otRate));
+			calc2 = (getHoursWrorked() - 40) * (getHourPay() * 1.5);
+			setWeekPay(calc + calc2);
 		}
 	}
 
@@ -352,7 +348,7 @@ int main()
 	char charInput = 'a';
 	
 	
-	cout << "First name: ";
+	/*cout << "First name: ";
 	cin >> yes;
 	x.setFirstName(yes);
 	cout << "Last name: ";
@@ -363,10 +359,10 @@ int main()
 	x.setSsn(yes);
 	cout << "Emp num: ";
 	cin >> yes;
-	x.setEmpNum(yes);
+	x.setEmpNum(yes);*/
 
 	//Salary employee
-	cout << "Salary annual pay: ";
+	/*cout << "Salary annual pay: ";
 	cin >> doubleInput;
 	x.setAnnualPay(doubleInput);
 	cout << "Tax rate code (1 = 25%, 2 = 20%, 3 = 15%): ";
@@ -374,7 +370,7 @@ int main()
 	x.setTaxCode(intInput);
 
 
-	x.printSalaryEmp();
+	x.printSalaryEmp();*/
 
 
 	//hourly employee
@@ -389,6 +385,11 @@ int main()
 	cout << "Work status (F = full time, P = part time): ";
 	cin >> charInput;
 	y.setWorkStatus(charInput);
+
+	y.calcWeeklyPay();
+
+	cout << "Weekly pay: $" << y.getWeekPay();
+
 
 
 
