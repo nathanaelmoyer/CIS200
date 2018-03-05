@@ -12,7 +12,7 @@
 
 using namespace std;
 
-
+#define onFile "pay.dat"
 
 void line()
 {
@@ -102,7 +102,7 @@ public:
 class salaryEmployeePay : public employee
 {
 private:
-	int taxCode;
+	double taxCode;
 	double annualPay;
 	double weeklyPay;
 
@@ -119,19 +119,19 @@ public:
 		return taxCode;
 	}
 
-	void setTaxCode(double input)
+	void setTaxCode(string input)
 	{
-		while (input < 0 || input > 3)
+		while (input != "1" && input != "2" && input != "3")
 		{
 			cout << "Invalid tax rate code entered. Enter 1, 2, or 3" << endl;
 			cin >> input;
 		}
 
-		if (input == 1)
+		if (input == "1")
 		{
 			taxCode = 25;
 		}
-		else if (input == 2)
+		else if (input == "2")
 		{
 			taxCode = 20;
 		}
@@ -169,6 +169,8 @@ public:
 	void calcWeeklyPay()
 	{
 		weeklyPay = annualPay / 52;
+
+		weeklyPay = weeklyPay * (1 - (taxCode / 100));	//tax
 	}
 
 	void printSalaryEmp()
@@ -243,7 +245,7 @@ public:
 class hourlyEmployeePay : public hourlyEmployee
 {
 private:
-	int taxCode;
+	double taxCode;
 	char workStatus;
 
 
@@ -254,19 +256,19 @@ public:
 		return taxCode;
 	}
 
-	void setTaxCode(double input)
+	void setTaxCode(string input)
 	{
-		while (input < 0 || input > 3)
+		while (input != "1" && input != "2" && input != "3")
 		{
 			cout << "Invalid tax rate code entered. Enter 1, 2, or 3" << endl;
 			cin >> input;
 		}
 
-		if (input == 1)
+		if (input == "1")
 		{
 			taxCode = 25;
 		}
-		else if (input == 2)
+		else if (input == "2")
 		{
 			taxCode = 20;
 		}
@@ -314,7 +316,7 @@ public:
 			setWeeklyPay(calc + calc2);
 		}
 
-		setWeeklyPay((getWeeklyPay() * (1 - (taxCode / 100))));
+		setWeeklyPay((getWeeklyPay() * (1 - (taxCode / 100))));		//tax
 	}
 
 
@@ -357,7 +359,7 @@ public:
 		cout << "Employee name : " << getFirstName() << " " << getLastName() << endl;
 		cout << "Social security number: xxx-xx-" << getSsn().at(7) << getSsn().at(8) << getSsn().at(9) << getSsn().at(10) << endl;
 		cout << "Employee number: " << getEmpNum() << endl;
-
+		cout << "Company to pay: " << company << endl;
 		calcWeeklyPay();
 		cout << "Weekly pay: $" << getWeeklyPay() << endl;
 		cout << "Taxe rate: " << getTaxCode() << "%" << endl;
@@ -375,15 +377,17 @@ int main()
 	line();
 	//####################################################################
 
-	hourlyEmployeePay y;
-	salaryEmployeePay x;
+	ifstream out;
+
+	out << "This is a test" << endl;
+	
 	string yes = "";
 	double doubleInput = 0.0;
 	int intInput = 0;
 	char charInput = 'a';
+	employee x;
 	
-	
-	/*cout << "First name: ";
+	cout << "First name: ";
 	cin >> yes;
 	x.setFirstName(yes);
 	cout << "Last name: ";
@@ -394,66 +398,110 @@ int main()
 	x.setSsn(yes);
 	cout << "Emp num: ";
 	cin >> yes;
-	x.setEmpNum(yes);*/
-
-	//Salary employee
-	/*cout << "Salary annual pay: ";
-	cin >> doubleInput;
-	x.setAnnualPay(doubleInput);
-	cout << "Tax rate code (1 = 25%, 2 = 20%, 3 = 15%): ";
-	cin >> intInput;
-	x.setTaxCode(intInput);
+	x.setEmpNum(yes);
 
 
-	x.printSalaryEmp();*/
-
-
-	//hourly employee
-
-	cout << "First name: ";
+	cout << "Salary employee (1), Hourly Employee (2), or Agency Employee (3)" << endl;
 	cin >> yes;
-	y.setFirstName(yes);
-	cout << "Last name: ";
-	cin >> yes;
-	y.setLastName(yes);
-	cout << "SSN: ";
-	cin >> yes;
-	y.setSsn(yes);
-	cout << "Emp num: ";
-	cin >> yes;
-	y.setEmpNum(yes);
+	while (yes != "1" && yes != "2" && yes != "3")
+	{
+		cout << "Invalid response. Please enter 1, 2, or 3" << endl;
+		cin >> yes;
+	}
+
+	if (yes == "1")		//Salary employee
+	{
+		salaryEmployeePay a;
+
+		a.setFirstName(x.getFirstName());
+		a.setLastName(x.getLastName());
+		a.setSsn(x.getSsn());
+		a.setEmpNum(x.getEmpNum());
 
 
-	cout << "Agency employee? (y/n)" << endl;
-	cin >> charInput;
-		while (charInput != 'n' && charInput != 'N' && charInput != 'y' && charInput != 'Y')
-		{
-			cout << "Enter (y/n)" << endl;
-			cin >> charInput;
-		}
 
-	cout << "Hourly pay: ";
-	cin >> doubleInput;
-	y.setHourPay(doubleInput);
-
-	cout << "Work status (F = full time, P = part time): ";
-	cin >> charInput;
-	y.setWorkStatus(charInput);
-
-	cout << "Hours worked (in one week): ";
-	cin >> doubleInput;
-	y.setHoursWorked(doubleInput);
-
-	cout << "Tax code: ";
-	cin >> intInput;
-	y.setTaxCode(intInput);
+		cout << "Salary annual pay: ";
+		cin >> doubleInput;
+		a.setAnnualPay(doubleInput);
+		cout << "Tax rate code (1 = 25%, 2 = 20%, 3 = 15%): ";
+		cin >> yes;
+		a.setTaxCode(yes);
 
 
-	y.calcWeeklyPay();
+		a.printSalaryEmp();
+	}
+	else if (yes == "2")		//hourly employee
+	{
+		hourlyEmployeePay y;
 
-	cout << "Weekly pay: $" << y.getWeeklyPay();
+		y.setFirstName(x.getFirstName());
+		y.setLastName(x.getLastName());
+		y.setSsn(x.getSsn());
+		y.setEmpNum(x.getEmpNum());
 
-	y.printHourlyEmp();
+
+
+		cout << "Hourly pay: ";
+		cin >> doubleInput;
+		y.setHourPay(doubleInput);
+
+		cout << "Work status (F = full time, P = part time): ";
+		cin >> charInput;
+		y.setWorkStatus(charInput);
+
+		cout << "Hours worked (in one week): ";
+		cin >> doubleInput;
+		y.setHoursWorked(doubleInput);
+
+		cout << "Tax code: ";
+		cin >> yes;
+		y.setTaxCode(yes);
+
+
+		y.calcWeeklyPay();
+
+		cout << "Weekly pay: $" << y.getWeeklyPay();
+
+		y.printHourlyEmp();
+	}
+	else		//agency employee
+	{
+		agencyEmployeePay z;
+
+		z.setFirstName(x.getFirstName());
+		z.setLastName(x.getLastName());
+		z.setSsn(x.getSsn());
+		z.setEmpNum(x.getEmpNum());
+
+
+		
+		cout << "Hourly pay: ";
+		cin >> doubleInput;
+		z.setHourPay(doubleInput);
+
+		cout << "Work status (F = full time, P = part time): ";
+		cin >> charInput;
+		z.setWorkStatus(charInput);
+
+		cout << "Hours worked (in one week): ";
+		cin >> doubleInput;
+		z.setHoursWorked(doubleInput);
+
+		cout << "Tax code: ";
+		cin >> yes;
+		z.setTaxCode(yes);
+
+		cout << "Company to pay: ";
+		cin >> yes;
+		z.setCompany(yes);
+
+		z.calcWeeklyPay();
+
+		cout << "Weekly pay: $" << z.getWeeklyPay();
+
+		z.printAgenctEmp();
+
+	}
 
 
 	//#####################################################################
