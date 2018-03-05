@@ -377,39 +377,63 @@ int main()
 	line();
 	//####################################################################
 
-	ifstream out;
+	ofstream out;
+	out << "Create instance of file variable" << endl;
 
-	out << "This is a test" << endl;
+	out.open(onFile);
+	out << "Open file" << endl;
 	
-	string yes = "";
+	
+	
+	string stringInput = "";
+	out << "Initialize string stringInput" << endl;
 	double doubleInput = 0.0;
+	out << "Initialize double doubleInput" << endl;
 	int intInput = 0;
+	out << "Initialize int intInput" << endl;
 	char charInput = 'a';
+	out << "Initialize char charInput" << endl;
 	employee x;
+	out << "Initialize employee class instance x" << endl << endl;
 	
 	cout << "First name: ";
-	cin >> yes;
-	x.setFirstName(yes);
+	out << "Ask user for first name" << endl;
+	cin >> stringInput;
+	out << "Initialaize stringInput to what user typed" << endl;
+	x.setFirstName(stringInput);
+	out << "Call employee function setFirstName(stringInput)" << endl;
+
 	cout << "Last name: ";
-	cin >> yes;
-	x.setLastName(yes);
+	out << "Ask user for last name" << endl;
+	cin >> stringInput;
+	out << "Initialaize stringInput to what user typed" << endl;
+	x.setLastName(stringInput);
+	out << "Call employee function setLastName(stringInput)" << endl;
+
 	cout << "SSN: ";
-	cin >> yes;
-	x.setSsn(yes);
+	out << "Ask user for ssn" << endl;
+	cin >> stringInput;
+	out << "Initialize stringInput to what user typed" << endl;
+	x.setSsn(stringInput);
+	out << "Call employee function setSsn(stringInput)" << endl;
+
 	cout << "Emp num: ";
-	cin >> yes;
-	x.setEmpNum(yes);
+	out << "Ask user for emp num" << endl;
+	cin >> stringInput;
+	out << "Initialize stringInput to what user typed" << endl;
+	x.setEmpNum(stringInput);
+	out << "Call employee function setEmpNum(stringInput)" << endl;
 
 
 	cout << "Salary employee (1), Hourly Employee (2), or Agency Employee (3)" << endl;
-	cin >> yes;
-	while (yes != "1" && yes != "2" && yes != "3")
+	cin >> stringInput;
+	while (stringInput != "1" && stringInput != "2" && stringInput != "3")
 	{
 		cout << "Invalid response. Please enter 1, 2, or 3" << endl;
-		cin >> yes;
+		cin >> stringInput;
 	}
 
-	if (yes == "1")		//Salary employee
+	if (stringInput == "1")		//Salary employee
 	{
 		salaryEmployeePay a;
 
@@ -424,13 +448,13 @@ int main()
 		cin >> doubleInput;
 		a.setAnnualPay(doubleInput);
 		cout << "Tax rate code (1 = 25%, 2 = 20%, 3 = 15%): ";
-		cin >> yes;
-		a.setTaxCode(yes);
+		cin >> stringInput;
+		a.setTaxCode(stringInput);
 
 
 		a.printSalaryEmp();
 	}
-	else if (yes == "2")		//hourly employee
+	else if (stringInput == "2")		//hourly employee
 	{
 		hourlyEmployeePay y;
 
@@ -454,8 +478,8 @@ int main()
 		y.setHoursWorked(doubleInput);
 
 		cout << "Tax code: ";
-		cin >> yes;
-		y.setTaxCode(yes);
+		cin >> stringInput;
+		y.setTaxCode(stringInput);
 
 
 		y.calcWeeklyPay();
@@ -488,12 +512,12 @@ int main()
 		z.setHoursWorked(doubleInput);
 
 		cout << "Tax code: ";
-		cin >> yes;
-		z.setTaxCode(yes);
+		cin >> stringInput;
+		z.setTaxCode(stringInput);
 
 		cout << "Company to pay: ";
-		cin >> yes;
-		z.setCompany(yes);
+		cin >> stringInput;
+		z.setCompany(stringInput);
 
 		z.calcWeeklyPay();
 
