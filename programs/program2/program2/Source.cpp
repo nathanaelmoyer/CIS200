@@ -236,21 +236,7 @@ public:
 	}
 
 
-	void calcWeeklyPay()
-	{
-		double calc = 0;
-		double calc2 = 0;
-		if (getHoursWrorked() <= 40)
-		{
-			setWeeklyPay(getHoursWrorked() * getHourPay());
-		}
-		else if (getHoursWrorked() > 40)		//over time
-		{
-			calc = getHourPay() * 40;
-			calc2 = (getHoursWrorked() - 40) * (getHourPay() * 1.5);
-			setWeeklyPay(calc + calc2);
-		}
-	}
+	
 
 };
 
@@ -313,7 +299,23 @@ public:
 		
 	}
 
+	void calcWeeklyPay()
+	{
+		double calc = 0;
+		double calc2 = 0;
+		if (getHoursWrorked() <= 40)
+		{
+			setWeeklyPay(getHoursWrorked() * getHourPay());
+		}
+		else if (getHoursWrorked() > 40)		//over time
+		{
+			calc = getHourPay() * 40;
+			calc2 = (getHoursWrorked() - 40) * (getHourPay() * 1.5);
+			setWeeklyPay(calc + calc2);
+		}
 
+		setWeeklyPay((getWeeklyPay() * (1 - (taxCode / 100))));
+	}
 
 
 	void printHourlyEmp()
