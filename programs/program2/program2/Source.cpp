@@ -320,7 +320,7 @@ public:
 };
 //##############################
 
-class agencyEmployeePay : public hourlyEmployeePay
+class agencyEmployeePay : public hourlyEmployee
 {
 private:
 	string company;
