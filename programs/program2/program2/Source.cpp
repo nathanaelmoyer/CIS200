@@ -179,7 +179,7 @@ public:
 		cout << "Employee number: " << getEmpNum() << endl;
 		cout << "Annual Pay: " << getAnnualPay() << endl;
 		calcWeeklyPay();
-		cout << "Weekly pay: " << getWeeklyPay() << endl;
+		cout << "Weekly pay: $" << getWeeklyPay() << endl;
 		cout << "Taxe rate: " << taxCode << "%" << endl;
 		line();
 	}
@@ -192,7 +192,7 @@ class hourlyEmployee : public employee
 private:
 	double hourPay;
 	double hoursWorked;
-	double weekPay;
+	double weeklPay;
 
 public:
 	double getHourPay()
@@ -225,14 +225,14 @@ public:
 		hoursWorked = input;
 	}
 
-	double getWeekPay()
+	double getWeeklyPay()
 	{
-		return weekPay;
+		return weeklPay;
 	}
 
-	void setWeekPay(double input)
+	void setWeeklyPay(double input)
 	{
-		weekPay = input;
+		weeklPay = input;
 	}
 
 
@@ -286,16 +286,16 @@ public:
 		{
 			cout << "Invalid work status. Please enter F or P" << endl;
 			cin >> input;
-
+		}
 			if (input == 'f' || input == 'F')
 			{
 				workStatus = 'F';
 			}
-			else if (input == 'p' || input == 'P')
+			else
 			{
 				workStatus = 'P';
 			}
-		}
+		
 	}
 
 
@@ -306,17 +306,29 @@ public:
 		double calc2 = 0;
 		if (getHoursWrorked() <= 40)
 		{
-			setWeekPay(getHoursWrorked() * getHourPay());
+			setWeeklyPay(getHoursWrorked() * getHourPay());
 		}
 		else if (getHoursWrorked() > 40)		//over time
 		{
 			calc = getHourPay() * 40;
 			calc2 = (getHoursWrorked() - 40) * (getHourPay() * 1.5);
-			setWeekPay(calc + calc2);
+			setWeeklyPay(calc + calc2);
 		}
 	}
 
+	void printHourlyEmp()
+	{
+		line();
+		cout << "Employee name : " << getFirstName() << " " << getLastName() << endl;
+		cout << "Social security number: " << getSsn() << endl;
+		cout << "Employee number: " << getEmpNum() << endl;
 
+		calcWeeklyPay();
+		cout << "Weekly pay: $" << getWeeklyPay() << endl;
+		cout << "Taxe rate: " << taxCode << "%" << endl;
+		cout << "Work status: " << getWorkStatus() << endl;
+		line();
+	}
 };
 //##############################
 
@@ -374,6 +386,13 @@ int main()
 
 
 	//hourly employee
+	cout << "Agency employee? (y/n)" << endl;
+	cin >> charInput;
+		while (charInput != 'n' && charInput != 'N' && charInput != 'y' && charInput != 'Y')
+		{
+			cout << "Enter (y/n)" << endl;
+			cin >> charInput;
+		}
 	cout << "Hourly pay: ";
 	cin >> doubleInput;
 	y.setHourPay(doubleInput);
@@ -388,9 +407,9 @@ int main()
 
 	y.calcWeeklyPay();
 
-	cout << "Weekly pay: $" << y.getWeekPay();
+	cout << "Weekly pay: $" << y.getWeeklyPay();
 
-
+	y.printHourlyEmp();
 
 
 	//#####################################################################
