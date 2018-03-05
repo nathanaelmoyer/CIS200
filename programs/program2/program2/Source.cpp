@@ -175,7 +175,7 @@ public:
 	{
 		line();
 		cout << "Employee name : " << getFirstName() << " " << getLastName() << endl;
-		cout << "Social security number: " << getSsn() << endl;
+		cout << "Social security number: xxx-xx-" << getSsn().at(7) << getSsn().at(8) << getSsn().at(9) << getSsn().at(10) << endl;
 		cout << "Employee number: " << getEmpNum() << endl;
 		cout << "Annual Pay: " << getAnnualPay() << endl;
 		calcWeeklyPay();
@@ -236,6 +236,21 @@ public:
 	}
 
 
+	void calcWeeklyPay()
+	{
+		double calc = 0;
+		double calc2 = 0;
+		if (getHoursWrorked() <= 40)
+		{
+			setWeeklyPay(getHoursWrorked() * getHourPay());
+		}
+		else if (getHoursWrorked() > 40)		//over time
+		{
+			calc = getHourPay() * 40;
+			calc2 = (getHoursWrorked() - 40) * (getHourPay() * 1.5);
+			setWeeklyPay(calc + calc2);
+		}
+	}
 
 };
 
@@ -300,27 +315,12 @@ public:
 
 
 
-	void calcWeeklyPay()
-	{
-		double calc = 0;
-		double calc2 = 0;
-		if (getHoursWrorked() <= 40)
-		{
-			setWeeklyPay(getHoursWrorked() * getHourPay());
-		}
-		else if (getHoursWrorked() > 40)		//over time
-		{
-			calc = getHourPay() * 40;
-			calc2 = (getHoursWrorked() - 40) * (getHourPay() * 1.5);
-			setWeeklyPay(calc + calc2);
-		}
-	}
 
 	void printHourlyEmp()
 	{
 		line();
 		cout << "Employee name : " << getFirstName() << " " << getLastName() << endl;
-		cout << "Social security number: " << getSsn() << endl;
+		cout << "Social security number: xxx-xx-" << getSsn().at(7) << getSsn().at(8) << getSsn().at(9) << getSsn().at(10) << endl;
 		cout << "Employee number: " << getEmpNum() << endl;
 
 		calcWeeklyPay();
@@ -332,15 +332,36 @@ public:
 };
 //##############################
 
-class agencyEmployeePay : public hourlyEmployee
+class agencyEmployeePay : public hourlyEmployeePay
 {
 private:
 	string company;
 
 public:
 
+	string getCompany()
+	{
+		return company;
+	}
 
+	void setCompany(string input)
+	{
+		company = input;
+	}
 
+	void printAgenctEmp()
+	{
+		line();
+		cout << "Employee name : " << getFirstName() << " " << getLastName() << endl;
+		cout << "Social security number: xxx-xx-" << getSsn().at(7) << getSsn().at(8) << getSsn().at(9) << getSsn().at(10) << endl;
+		cout << "Employee number: " << getEmpNum() << endl;
+
+		calcWeeklyPay();
+		cout << "Weekly pay: $" << getWeeklyPay() << endl;
+		cout << "Taxe rate: " << getTaxCode() << "%" << endl;
+		cout << "Work status: " << getWorkStatus() << endl;
+		line();
+	}
 
 };
 //##############################
@@ -386,6 +407,21 @@ int main()
 
 
 	//hourly employee
+
+	cout << "First name: ";
+	cin >> yes;
+	y.setFirstName(yes);
+	cout << "Last name: ";
+	cin >> yes;
+	y.setLastName(yes);
+	cout << "SSN: ";
+	cin >> yes;
+	y.setSsn(yes);
+	cout << "Emp num: ";
+	cin >> yes;
+	y.setEmpNum(yes);
+
+
 	cout << "Agency employee? (y/n)" << endl;
 	cin >> charInput;
 		while (charInput != 'n' && charInput != 'N' && charInput != 'y' && charInput != 'Y')
@@ -393,17 +429,23 @@ int main()
 			cout << "Enter (y/n)" << endl;
 			cin >> charInput;
 		}
+
 	cout << "Hourly pay: ";
 	cin >> doubleInput;
 	y.setHourPay(doubleInput);
+
+	cout << "Work status (F = full time, P = part time): ";
+	cin >> charInput;
+	y.setWorkStatus(charInput);
 
 	cout << "Hours worked (in one week): ";
 	cin >> doubleInput;
 	y.setHoursWorked(doubleInput);
 
-	cout << "Work status (F = full time, P = part time): ";
-	cin >> charInput;
-	y.setWorkStatus(charInput);
+	cout << "Tax code: ";
+	cin >> intInput;
+	y.setTaxCode(intInput);
+
 
 	y.calcWeeklyPay();
 
