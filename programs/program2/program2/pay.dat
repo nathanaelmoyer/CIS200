@@ -1,0 +1,26 @@
+Open file pay.dat
+Initialize string stringInput
+Initialize double doubleInput
+Initialize int intInput
+Initialize char charInput
+Initialize employee class instance x
+
+Ask user for first name
+User entered: Noah
+Call employee function setFirstName(stringInput)
+
+Ask user for last name
+User entered: moyer
+Call employee function setLastName(stringInput)
+
+Ask user for ssn
+User entered: 123-45-6789
+Call employee function setSsn(stringInput)
+
+Ask user for emp num
+User entered: 123-d
+Call employee function setEmpNum(stringInput)
+
+Ask user which type of employee they are entering data for. Salary (1), Hourly(2), or Agency(3).
+The user is to enter an integer corresponding to the type of employee.
+User entered: 2
