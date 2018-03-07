@@ -66,7 +66,7 @@ public:
 	}
 	void setSsn(string input)
 	{
-		file << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" << endl;
+		
 		while (input.size() != 11)
 		{
 			cout << "Invalid ssn entered. Please enter in the correct format. (xxx-xx-xxxx)" << endl;
@@ -172,7 +172,6 @@ public:
 
 	void calcWeeklyPay()
 	{
-		file << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" << endl;
 		weeklyPay = annualPay / 52;
 
 		weeklyPay = weeklyPay * (1 - (taxCode / 100));	//tax

@@ -1,0 +1,44 @@
+Create instance of file variable
+Open file pay.dat
+Print welcome message to screen
+
+Initialize string stringInput
+Initialize double doubleInput
+Initialize int intInput
+Initialize char charInput
+Initialize employee class instance x
+
+Ask user for first name
+User entered: John
+Call employee function setFirstName(stringInput)
+
+Ask user for last name
+User entered: Smith
+Call employee function setLastName(stringInput)
+
+Ask user for ssn
+User entered: -123-45-6789
+Call employee function setSsn(stringInput)
+
+Ask user for emp num
+User entered: -223-a
+Call employee function setEmpNum(stringInput)
+
+Ask user which type of employee they are entering data for. Salary (1), Hourly(2), or Agency(3).
+The user is to enter an integer corresponding to the type of employee.
+User entered: 0
+
+***ERROR: User entered incorrect data***
+User must enter new data for type of employee
+User entered: 1
+
+Created instance of salaryEmployeePay class
+Copied firstName, lastName, ssn, and empNum using set functions from employee instance to salaryEmployeePay Instance
+Ask user for salary annual pay
+User entered: -600000
+Call setAnnualPay from salaryEmployee class: setAnnualPay(doubleInput)
+Ask user for tax rate code. 1 = 25%, 2 = 20%, 3 = 15%
+User entered: 1
+Call setTaxCode function from salaryEmployee class: setTaxCode(stringInput)
+
+Print thank you message to screen
