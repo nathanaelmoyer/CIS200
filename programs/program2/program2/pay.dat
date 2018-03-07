@@ -1,4 +1,7 @@
+Create instance of file variable
 Open file pay.dat
+Print welcome message to screen
+
 Initialize string stringInput
 Initialize double doubleInput
 Initialize int intInput
@@ -6,11 +9,11 @@ Initialize char charInput
 Initialize employee class instance x
 
 Ask user for first name
-User entered: Noah
+User entered: Nathan
 Call employee function setFirstName(stringInput)
 
 Ask user for last name
-User entered: moyer
+User entered: MOyer
 Call employee function setLastName(stringInput)
 
 Ask user for ssn
@@ -24,3 +27,21 @@ Call employee function setEmpNum(stringInput)
 Ask user which type of employee they are entering data for. Salary (1), Hourly(2), or Agency(3).
 The user is to enter an integer corresponding to the type of employee.
 User entered: 2
+
+Created instance of hourlyEmployeePay class
+Copy firstName, lastName, ssn, and empNum using set functions from employee instance to hourlyEmployeePay Instance
+Ask user for hourly pay
+User entered: 200
+Call setHourlyPay(doubleInput) from hourlyEmployee class
+Ask user for work status. (F = full time, P = part time)
+User entered: f
+Call setWorkStatus(charInput) from hourlyEmployeePay class
+Ask user for hours worked
+User entered: 60
+Call setHoursWorked(doubleInput) from hourlyEmployee class
+Ask user for tax rate code. (1 = 25%, 2 = 20%, 3 = 15%)
+User entered: 3
+Call setTaxCode(stringInput) from hourlyEmployeePay class
+Call calcWeeklyPay() from hourlyEmployeePay class
+Call printHourlyEmp() from hourlyEmployeePay class
+Print thank you message to screen

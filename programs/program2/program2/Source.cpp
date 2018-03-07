@@ -1,6 +1,6 @@
-//Program Name
+//Program 2
 //Nathanael Moyer
-//Date
+//Date 2-20-2018
 
 
 #include <iostream>
@@ -372,91 +372,116 @@ public:
 
 int main()
 {
+	ofstream file;
+
+
+	file.open(onFile);
+	file << "Create instance of file variable" << endl;
+	file << "Open file pay.dat" << endl;
+
+	//####################################################################
 	line();
-	cout << "Welcome to the employee paymetn program!";
+	cout << "Welcome to the employee payment program!";
 	line();
+
+	file << "Print welcome message to screen" << endl << endl;
 	//####################################################################
 
-	ofstream out;
-	out << "Create instance of file variable" << endl;
-
-	out.open(onFile);
-	out << "Open file pay.dat" << endl;
+	
 	
 	
 	
 	string stringInput = "";
-	out << "Initialize string stringInput" << endl;
+	file << "Initialize string stringInput" << endl;
 	double doubleInput = 0.0;
-	out << "Initialize double doubleInput" << endl;
+	file << "Initialize double doubleInput" << endl;
 	int intInput = 0;
-	out << "Initialize int intInput" << endl;
+	file << "Initialize int intInput" << endl;
 	char charInput = 'a';
-	out << "Initialize char charInput" << endl;
+	file << "Initialize char charInput" << endl;
 	employee x;
-	out << "Initialize employee class instance x" << endl << endl;
+	file << "Initialize employee class instance x" << endl << endl;
 	
 	cout << "First name: ";
-	out << "Ask user for first name" << endl;
+	file << "Ask user for first name" << endl;
 	cin >> stringInput;
-	out << "User entered: " << stringInput << endl;
-	out << "Call employee function setFirstName(stringInput)" << endl << endl;
+	file << "User entered: " << stringInput << endl;
+	file << "Call employee function setFirstName(stringInput)" << endl << endl;
 	x.setFirstName(stringInput);
 	
 
 	cout << "Last name: ";
-	out << "Ask user for last name" << endl;
+	file << "Ask user for last name" << endl;
 	cin >> stringInput;
-	out << "User entered: " << stringInput << endl;
-	out << "Call employee function setLastName(stringInput)" << endl << endl;
+	file << "User entered: " << stringInput << endl;
+	file << "Call employee function setLastName(stringInput)" << endl << endl;
 	x.setLastName(stringInput);
 	
 
 	cout << "SSN: ";
-	out << "Ask user for ssn" << endl;
+	file << "Ask user for ssn" << endl;
 	cin >> stringInput;
-	out << "User entered: " << stringInput << endl;
-	out << "Call employee function setSsn(stringInput)" << endl << endl;
+	file << "User entered: " << stringInput << endl;
+	file << "Call employee function setSsn(stringInput)" << endl << endl;
 	x.setSsn(stringInput);
 	
 
 	cout << "Emp num: ";
-	out << "Ask user for emp num" << endl;
+	file << "Ask user for emp num" << endl;
 	cin >> stringInput;
-	out << "User entered: " << stringInput << endl;
-	out << "Call employee function setEmpNum(stringInput)" << endl << endl;
+	file << "User entered: " << stringInput << endl;
+	file << "Call employee function setEmpNum(stringInput)" << endl << endl;
 	x.setEmpNum(stringInput);
 	
 
 
-	out << "Ask user which type of employee they are entering data for. Salary (1), Hourly(2), or Agency(3)." << endl;
-	out << "The user is to enter an integer corresponding to the type of employee." << endl;
+	file << "Ask user which type of employee they are entering data for. Salary (1), Hourly(2), or Agency(3)." << endl;
+	file << "The user is to enter an integer corresponding to the type of employee." << endl;
 	cout << "Salary employee (1), Hourly Employee (2), or Agency Employee (3)" << endl;
 	cin >> stringInput;
-	out << "User entered: " << stringInput << endl;
+	file << "User entered: " << stringInput << endl << endl;
 	while (stringInput != "1" && stringInput != "2" && stringInput != "3")
 	{
+		file << "***ERROR: User entered incorrect data***" << endl;
+		file << "User must enter new data for type of employee" << endl;
+
 		cout << "Invalid response. Please enter 1, 2, or 3" << endl;
 		cin >> stringInput;
+
+		file << "User entered: " << stringInput << endl << endl;
 	}
 
 	if (stringInput == "1")		//Salary employee
 	{
+		
 		salaryEmployeePay a;
+		file << "Created instance of salaryEmployeePay class" << endl;
 
+		file << "Copied firstName, lastName, ssn, and empNum using set functions from employee instance to salaryEmployeePay Instance" << endl;
 		a.setFirstName(x.getFirstName());
 		a.setLastName(x.getLastName());
 		a.setSsn(x.getSsn());
 		a.setEmpNum(x.getEmpNum());
+		
 
 
 
 		cout << "Salary annual pay: ";
+		file << "Ask user for salary annual pay" << endl;
 		cin >> doubleInput;
+		file << "User entered: " << doubleInput << endl;
+		file << "Call setAnnualPay from salaryEmployee class: setAnnualPay(doubleInput)" << endl;
 		a.setAnnualPay(doubleInput);
+		
+
+
 		cout << "Tax rate code (1 = 25%, 2 = 20%, 3 = 15%): ";
+		file << "Ask user for tax rate code. 1 = 25%, 2 = 20%, 3 = 15%" << endl;
 		cin >> stringInput;
+		file << "User entered: " << stringInput << endl;
+		file << "Call setTaxCode function from salaryEmployee class: setTaxCode(stringInput)" << endl;
 		a.setTaxCode(stringInput);
+		
 
 
 		a.printSalaryEmp();
@@ -464,39 +489,63 @@ int main()
 	else if (stringInput == "2")		//hourly employee
 	{
 		hourlyEmployeePay y;
+		file << "Created instance of hourlyEmployeePay class" << endl;
 
+		file << "Copy firstName, lastName, ssn, and empNum using set functions from employee instance to hourlyEmployeePay Instance" << endl;
 		y.setFirstName(x.getFirstName());
 		y.setLastName(x.getLastName());
 		y.setSsn(x.getSsn());
 		y.setEmpNum(x.getEmpNum());
-
+		
 
 
 		cout << "Hourly pay: ";
+		file << "Ask user for hourly pay" << endl;
 		cin >> doubleInput;
+		file << "User entered: " << doubleInput << endl;
+		file << "Call setHourlyPay(doubleInput) from hourlyEmployee class" << endl;
 		y.setHourPay(doubleInput);
+		
+
 
 		cout << "Work status (F = full time, P = part time): ";
+		file << "Ask user for work status. (F = full time, P = part time)" << endl;
 		cin >> charInput;
+		file << "User entered: " << charInput << endl;
+		file << "Call setWorkStatus(charInput) from hourlyEmployeePay class" << endl;
 		y.setWorkStatus(charInput);
+		
+
 
 		cout << "Hours worked (in one week): ";
+		file << "Ask user for hours worked" << endl;
 		cin >> doubleInput;
+		file << "User entered: " << doubleInput << endl;
+		file << "Call setHoursWorked(doubleInput) from hourlyEmployee class" << endl;
 		y.setHoursWorked(doubleInput);
+		
+
 
 		cout << "Tax rate code (1 = 25%, 2 = 20%, 3 = 15%): ";
+		file << "Ask user for tax rate code. (1 = 25%, 2 = 20%, 3 = 15%)" << endl;
 		cin >> stringInput;
+		file << "User entered: " << stringInput << endl;
+		file << "Call setTaxCode(stringInput) from hourlyEmployeePay class" << endl;
 		y.setTaxCode(stringInput);
+		
 
-
+		file << "Call calcWeeklyPay() from hourlyEmployeePay class" << endl;
 		y.calcWeeklyPay();
-
+		
+		file << "Call printHourlyEmp() from hourlyEmployeePay class" << endl;
 		y.printHourlyEmp();
 	}
 	else		//agency employee
 	{
 		agencyEmployeePay z;
+		file << "Created instance of agencyEmployeePay class" << endl;
 
+		file << "Copy firstName, lastName, ssn, and empNum using set functions from employee instance to agencyEmployeePay Instance" << endl;
 		z.setFirstName(x.getFirstName());
 		z.setLastName(x.getLastName());
 		z.setSsn(x.getSsn());
@@ -505,27 +554,46 @@ int main()
 
 		
 		cout << "Hourly pay: ";
+		file << "Ask user for hourly pay" << endl;
 		cin >> doubleInput;
+		file << "User entered: " << doubleInput << endl;
+		file << "Call setHourlyPay(doubleInput) from hourlyEmployee class" << endl;
 		z.setHourPay(doubleInput);
 
 		cout << "Work status (F = full time, P = part time): ";
+		file << "Ask user for work status. (F = full time, P = part time)" << endl;
 		cin >> charInput;
+		file << "User entered: " << charInput << endl;
+		file << "Call setWorkStatus(charInput) from hourlyEmployeePay class" << endl;
 		z.setWorkStatus(charInput);
 
 		cout << "Hours worked (in one week): ";
+		file << "Ask user for hours worked" << endl;
 		cin >> doubleInput;
+		file << "User entered: " << doubleInput << endl;
+		file << "Call setHoursWorked(doubleInput) from hourlyEmployee class" << endl;
 		z.setHoursWorked(doubleInput);
 
 		cout << "Tax rate code (1 = 25%, 2 = 20%, 3 = 15%): ";
+		file << "Ask user for tax rate code. (1 = 25%, 2 = 20%, 3 = 15%)" << endl;
 		cin >> stringInput;
+		file << "User entered: " << stringInput << endl;
+		file << "Call setTaxCode(stringInput) from hourlyEmployeePay class" << endl;
 		z.setTaxCode(stringInput);
 
 		cout << "Company to pay: ";
+		file << "Ask user for company to pay" << endl;
 		cin >> stringInput;
+		file << "User entered: " << stringInput << endl;
+		file << "Call setCompany(stringInput) from agencyEmployeePay class" << endl;
 		z.setCompany(stringInput);
 
+
+		file << "Call calcWeeklyPay() from hourlyEmployeePay class" << endl;
 		z.calcWeeklyPay();
 
+
+		file << "Call printHourlyEmp() from hourlyEmployeePay class" << endl;
 		z.printAgenctEmp();
 
 	}
@@ -535,6 +603,8 @@ int main()
 	line();
 	cout << "Thank you for running the program written by Nathan!";
 	line();
+	
+	file << endl << "Print thank you message to screen" << endl;
 
 
 	return 0;
