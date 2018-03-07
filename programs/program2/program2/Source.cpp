@@ -13,6 +13,7 @@
 using namespace std;
 
 #define onFile "pay.dat"
+ofstream file;
 
 void line()
 {
@@ -29,6 +30,7 @@ private:
 	string firstName;
 	string ssn;
 	string empNum;
+	
 
 public:
 	employee()	//default constructor sets default values
@@ -40,6 +42,7 @@ public:
 	}
 	string getFirstName()
 	{
+	
 		return firstName;
 	}
 	void setFirstName(string input)
@@ -63,6 +66,7 @@ public:
 	}
 	void setSsn(string input)
 	{
+		file << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" << endl;
 		while (input.size() != 11)
 		{
 			cout << "Invalid ssn entered. Please enter in the correct format. (xxx-xx-xxxx)" << endl;
@@ -168,6 +172,7 @@ public:
 
 	void calcWeeklyPay()
 	{
+		file << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" << endl;
 		weeklyPay = annualPay / 52;
 
 		weeklyPay = weeklyPay * (1 - (taxCode / 100));	//tax
@@ -372,7 +377,7 @@ public:
 
 int main()
 {
-	ofstream file;
+
 
 
 	file.open(onFile);
