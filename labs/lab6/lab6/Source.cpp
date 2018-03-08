@@ -52,6 +52,51 @@ int main()
 
 
 
+	//write data into the file
+
+	clientData client;
+
+	ofstream outCredit1("credit.dat", ios::ate); //ios::ate = access anywhere
+
+	cout << "Enter account number to edit. (1-100 or 0 to quit): ";
+	cin >> client.accountNumber;
+	if (client.accountNumber == 0)
+	{
+		;
+	}
+	else
+	{
+		cout << "First name: ";
+		cin >> client.firstName;
+		cout << "Last name: ";
+		cin >> client.lastName;
+		cout << "Account balance: ";
+		cin >> client.balance;
+	}
+
+	//cout << endl << client.firstName << endl << client.lastName << endl << client.balance << endl;
+
+	outCredit1.seekp((client.accountNumber - 1) * sizeof(clientData));
+	outCredit.write(reinterpret_cast<const char *>(&client), sizeof(clientData));
+
+	
+
+	//print out all records that do not have accountNumber = 0
+
+	ifstream inCredit("credit.dat", ios::out);
+
+	inCredit.read(reinterpret_cast<char *>(&client), sizeof(clientData));
+
+	while (inCredit && !inCredit.eof())
+	{
+		if (client.accountNumber != 0)
+		{
+			
+		}
+
+		inCredit.read(reinterpret_cast<char *>(&client), sizeof(clientData));
+	}
+
 
 
 
