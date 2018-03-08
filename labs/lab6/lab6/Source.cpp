@@ -79,11 +79,30 @@ int main()
 	outCredit1.seekp((client.accountNumber - 1) * sizeof(clientData));
 	outCredit.write(reinterpret_cast<const char *>(&client), sizeof(clientData));
 
+	line();
+
+	//read data from the file requested by user
+
+	ifstream inCredit("credit.dat", ios::in);
+
+	cout << "Account number to view(1-100 or 0 to quit): ";
+	cin >> client.accountNumber;
+
+	inCredit.seekg((client.accountNumber - 1) * sizeof(clientData));
+
+	inCredit.read(reinterpret_cast<char *>(&client), sizeof(clientData));
+
+	inCredit >> client.accountNumber;
+	inCredit >> client.firstName;
+	inCredit >> client.lastName;
+	inCredit >> client.balance;
+	cout << client.accountNumber << " " << client.firstName << " " << client.lastName << " " << client.balance << endl;
 	
+	line();
 
 	//print out all records that do not have accountNumber = 0
 
-	ifstream inCredit("credit.dat", ios::out);
+	/*ifstream inCredit("credit.dat", ios::out);
 
 	inCredit.read(reinterpret_cast<char *>(&client), sizeof(clientData));
 
@@ -95,7 +114,7 @@ int main()
 		}
 
 		inCredit.read(reinterpret_cast<char *>(&client), sizeof(clientData));
-	}
+	}*/
 
 
 
