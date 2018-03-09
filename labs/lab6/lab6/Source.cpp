@@ -47,9 +47,9 @@ int main()
 	for (int i = 0; i < 100; i++)
 	{
 		outCredit.write(reinterpret_cast<const char *>(&blankClient), sizeof(clientData));
-
+		
 	}
-
+	
 
 
 	//write data into the file
@@ -72,6 +72,8 @@ int main()
 		cin >> client.lastName;
 		cout << "Account balance: ";
 		cin >> client.balance;
+		
+		
 	}
 
 	//cout << endl << client.firstName << endl << client.lastName << endl << client.balance << endl;
