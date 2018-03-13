@@ -54,6 +54,10 @@ int main()
 
 	//write data into the file
 
+	string firstName = "";
+	string lastName = "";
+	
+
 	clientData client;
 
 	ofstream outCredit1("credit.dat", ios::ate); //ios::ate = access anywhere
@@ -67,13 +71,14 @@ int main()
 	else
 	{
 		cout << "First name: ";
-		cin >> client.firstName;
+		cin >> firstName;
 		cout << "Last name: ";
-		cin >> client.lastName;
+		cin >> lastName;
 		cout << "Account balance: ";
 		cin >> client.balance;
 		
-		
+		strncpy(client.firstName, firstName);
+
 	}
 
 	//cout << endl << client.firstName << endl << client.lastName << endl << client.balance << endl;
