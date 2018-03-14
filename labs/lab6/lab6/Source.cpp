@@ -116,9 +116,11 @@ int main()
 
 	ifstream inCredit("credit.dat", ios::in);
 	clientData print;
+
+
 	char response2 = 'a';
-	/*while (response2 != 'n' && 'N')
-	{*/
+	while (response2 != 'n' && 'N')
+	{
 
 		cout << "Account number to view(1-100 or 0 to quit): ";
 		cin >> print.accountNumber;
@@ -131,7 +133,7 @@ int main()
 			inCredit.seekg((print.accountNumber - 1) * sizeof(clientData));
 
 			inCredit.read(reinterpret_cast<char *>(&print), sizeof(clientData));
-			if (print.firstName == "")
+			if (print.firstName == "" || print.accountNumber == 0)
 			{
 				cout << "***ERROR: Account does not exist***" << endl;
 			}
@@ -142,7 +144,7 @@ int main()
 		
 		}
 
-		/*cout << "View another account? (y/n)" << endl;
+		cout << "View another account? (y/n)" << endl;
 		cin >> response2;
 		while (response2 != 'n' && response2 != 'N' && response2 != 'y' && response2 != 'Y')
 		{
@@ -151,27 +153,28 @@ int main()
 		}
 		
 		line();
+		
 	}
-*/
+
 
 	//print out all records that do not have accountNumber = 0
 
 	
 	cout << "Accounts that have been created: " << endl;
-	inCredit.read(reinterpret_cast<char *>(&client), sizeof(clientData));
+	inCredit.read(reinterpret_cast<char * >(&print), sizeof(clientData));
 
 	while (inCredit && !inCredit.eof())
 	{
-		if (client.accountNumber != 0)
+		if (print.accountNumber != 0 && print.firstName != "")
 		{
 			cout << endl;
-			cout << "Account num: " << client.accountNumber << endl;
-			cout << " Name: " << client.firstName << " " << client.lastName << endl;
-			cout << " Balance: " << client.balance << endl;
+			cout << "Account num: " << print.accountNumber << endl;
+			cout << " Name: " << print.firstName << " " << print.lastName << endl;
+			cout << " Balance: " << print.balance << endl;
 			cout << endl;
 		}
 
-		inCredit.read(reinterpret_cast<char *>(&client), sizeof(clientData));
+		inCredit.read(reinterpret_cast<char *>(&print), sizeof(clientData));
 	}
 
 
