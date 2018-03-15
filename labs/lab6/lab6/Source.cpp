@@ -66,19 +66,15 @@ int main()
 	while (response != 'n' && 'N')
 	{
 
-		cout << "Enter account number to edit. (1-100 or 0 to quit): ";
+		cout << "Enter account number to edit. (1-100): ";
 		cin >> client.accountNumber;
-		while (client.accountNumber > 100 || client.accountNumber < 0)
+		while (client.accountNumber > 100 || client.accountNumber < 1)
 		{
 			cout << "Invalid account number." << endl;
 			cin >> client.accountNumber;
 		}
-		if (client.accountNumber == 0)
-		{
-			
-		}
-		else
-		{
+		
+		
 			cout << "First name: ";
 			cin >> firstName;
 			while (firstName.size() > 10)
@@ -100,7 +96,7 @@ int main()
 
 			strcpy_s(client.firstName, firstName.c_str());
 			strcpy_s(client.lastName, lastName.c_str());
-		}
+		
 
 
 		//cout << endl << client.firstName << endl << client.lastName << endl << client.balance << endl;
@@ -131,13 +127,16 @@ int main()
 	while (response2 != 'n' && 'N')
 	{
 		ifstream inCredit("credit.dat", ios::in);
-		cout << "Account number to view(1-100 or 0 to quit): ";
+		cout << "Account number to view(1-100): ";
 		cin >> client.accountNumber;
 		
+
+
+
 			inCredit.seekg((client.accountNumber - 1) * sizeof(clientData));
 
 			inCredit.read(reinterpret_cast<char *>(&client), sizeof(clientData));
-			if (client.firstName == "" || client.accountNumber == 0)
+			if (client.firstName == "" && client.accountNumber == 0)
 			{
 				cout << "***ERROR: Account does not exist***" << endl;
 			}
@@ -145,8 +144,8 @@ int main()
 			{
 				cout << client.accountNumber << " " << client.firstName << " " << client.lastName << " " << client.balance << endl;
 			}
-		
 
+		
 		cout << "View another account? (y/n)" << endl;
 		cin >> response2;
 		while (response2 != 'n' && response2 != 'N' && response2 != 'y' && response2 != 'Y')
