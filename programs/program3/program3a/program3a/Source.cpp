@@ -1,6 +1,6 @@
-//Program Name
+//Program 3a
 //Nathanael Moyer
-//Date
+//Date 3-14-18
 
 
 #include <iostream>//cin and cout operators
