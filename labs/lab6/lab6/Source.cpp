@@ -165,7 +165,7 @@ int main()
 
 	while (inCredit && !inCredit.eof())
 	{
-		if (print.accountNumber != 0 && print.firstName != "")
+		if (print.accountNumber != 0)
 		{
 			cout << endl;
 			cout << "Account num: " << print.accountNumber << endl;
