@@ -14,8 +14,7 @@
 #include "Car.h"
 #include "Truck.h"
 
-#include <allegro5\allegro.h>
-#include <stdio.h>
+
 
 using namespace std;
 
