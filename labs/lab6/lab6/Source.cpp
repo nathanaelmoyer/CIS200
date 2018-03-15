@@ -81,7 +81,7 @@ int main()
 		{
 			cout << "First name: ";
 			cin >> firstName;
-			while (firstName.size() > 10)
+			while (firstName.size() > 9)
 			{
 				cout << "First name is too long. Must be 10 or less characters" << endl;
 				cin >> firstName;
@@ -89,7 +89,7 @@ int main()
 
 			cout << "Last name: ";
 			cin >> lastName;
-			while (lastName.size() > 15)
+			while (lastName.size() > 14)
 			{
 				cout << "Last name is too long. Must be 15 or less characters" << endl;
 				cin >> lastName;
@@ -152,7 +152,11 @@ int main()
 			}
 			else
 			{
-				cout << client.accountNumber << " " << client.firstName << " " << client.lastName << " " << client.balance << endl;
+				cout << endl;
+				cout << "Account num: " << client.accountNumber << endl;
+				cout << " Name: " << client.firstName << " " << client.lastName << endl;
+				cout << " Balance: " << client.balance << endl;
+				cout << endl;
 			}
 		
 		
