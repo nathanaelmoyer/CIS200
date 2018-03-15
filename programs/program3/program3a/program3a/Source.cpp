@@ -86,6 +86,39 @@ int main()
 		cout << "false" << endl;
 	}
 	cout << endl;
+	line();
+
+	//Test truck class
+	cout << "Initial truck values: " << endl;
+	cout << "Age: " << c.getAge() << " years" << endl;
+	cout << "Price: $" << c.getPrice() << endl;
+	cout << "Race car status: ";
+	if (c.getDieselTypeStatus() == 1)
+	{
+		cout << "true" << endl;
+	}
+	else
+	{
+		cout << "false" << endl;
+	}
+	cout << endl;
+
+	c.setAge(2);
+	c.setPrice(50000.00);
+	c.setDieselTypeStatus(true);
+	cout << "Updated truck values: " << endl;
+	cout << "Age: " << c.getAge() << " years" << endl;
+	cout << "Price: $" << c.getPrice() << endl;
+	cout << "Diesel Type status: ";
+	if (c.getDieselTypeStatus() == 1)
+	{
+		cout << "true" << endl;
+	}
+	else
+	{
+		cout << "false" << endl;
+	}
+	cout << endl;
 
 
 	//#####################################################################
