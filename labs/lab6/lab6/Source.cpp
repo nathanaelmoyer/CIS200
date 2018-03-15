@@ -66,7 +66,6 @@ int main()
 
 		cout << "Enter account number to edit. (1-100): ";
 		cin >> client.accountNumber;
-<<<<<<< HEAD
 		while (client.accountNumber > 100 || client.accountNumber < 1)
 		{
 			cout << "Invalid account number." << endl;
@@ -74,14 +73,12 @@ int main()
 		}
 		
 		
-=======
 		if (client.accountNumber == 0)
 		{
 			
 		}
 		else
 		{
->>>>>>> parent of 1f7191e... fixed some dumb ass logic
 			cout << "First name: ";
 			cin >> firstName;
 			while (firstName.size() > 10)
@@ -103,8 +100,8 @@ int main()
 
 			strcpy_s(client.firstName, firstName.c_str());
 			strcpy_s(client.lastName, lastName.c_str());
-		
 
+		}
 
 		//cout << endl << client.firstName << endl << client.lastName << endl << client.balance << endl;
 
@@ -125,51 +122,38 @@ int main()
 	//read data from the file requested by user
 
 	ifstream inCredit("credit.dat", ios::in);
-	clientData print;
+	
 
 
 	char response2 = 'a';
 	while (response2 != 'n' && 'N')
 	{
-<<<<<<< HEAD
+
 		ifstream inCredit("credit.dat", ios::in);
 		cout << "Account number to view(1-100): ";
 		cin >> client.accountNumber;
 		
 
+		while (client.accountNumber > 100 || client.accountNumber < 1)
+		{
+			cout << "Invalid account number." << endl;
+			cin >> client.accountNumber;
+		}
 
-
+			
 			inCredit.seekg((client.accountNumber - 1) * sizeof(clientData));
 
 			inCredit.read(reinterpret_cast<char *>(&client), sizeof(clientData));
-			if (client.firstName == "" && client.accountNumber == 0)
-=======
-
-		cout << "Account number to view(1-100 or 0 to quit): ";
-		cin >> print.accountNumber;
-		if (print.accountNumber == 0)
-		{
-			
-		}
-		else
-		{
-			inCredit.seekg((print.accountNumber - 1) * sizeof(clientData));
-
-			inCredit.read(reinterpret_cast<char *>(&print), sizeof(clientData));
-			if (print.firstName == "" || print.accountNumber == 0)
->>>>>>> parent of 1f7191e... fixed some dumb ass logic
+			if (client.firstName == "" || client.accountNumber == 0)
 			{
 				cout << "***ERROR: Account does not exist***" << endl;
 			}
 			else
 			{
-				cout << print.accountNumber << " " << print.firstName << " " << print.lastName << " " << print.balance << endl;
+				cout << client.accountNumber << " " << client.firstName << " " << client.lastName << " " << client.balance << endl;
 			}
-<<<<<<< HEAD
-=======
 		
-		}
->>>>>>> parent of 1f7191e... fixed some dumb ass logic
+		
 
 		
 		cout << "View another account? (y/n)" << endl;
@@ -189,20 +173,20 @@ int main()
 
 	
 	cout << "Accounts that have been created: " << endl;
-	inCredit.read(reinterpret_cast<char * >(&print), sizeof(clientData));
+	inCredit.read(reinterpret_cast<char * >(&client), sizeof(clientData));
 
 	while (inCredit && !inCredit.eof())
 	{
-		if (print.accountNumber != 0)
+		if (client.accountNumber != 0)
 		{
 			cout << endl;
-			cout << "Account num: " << print.accountNumber << endl;
-			cout << " Name: " << print.firstName << " " << print.lastName << endl;
-			cout << " Balance: " << print.balance << endl;
+			cout << "Account num: " << client.accountNumber << endl;
+			cout << " Name: " << client.firstName << " " << client.lastName << endl;
+			cout << " Balance: " << client.balance << endl;
 			cout << endl;
 		}
 
-		inCredit.read(reinterpret_cast<char *>(&print), sizeof(clientData));
+		inCredit.read(reinterpret_cast<char *>(&client), sizeof(clientData));
 	}
 
 
