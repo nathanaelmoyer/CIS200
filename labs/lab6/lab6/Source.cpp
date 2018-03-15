@@ -128,20 +128,22 @@ int main()
 	char response2 = 'a';
 	while (response2 != 'n' && 'N')
 	{
+		int account;
 
 		ifstream inCredit("credit.dat", ios::in);
+		client = { 0 , "" , "" , 0 };
 		cout << "Account number to view(1-100): ";
-		cin >> client.accountNumber;
+		cin >> account;
 		
 
-		while (client.accountNumber > 100 || client.accountNumber < 1)
+		while (account > 100 || account < 1)
 		{
 			cout << "Invalid account number." << endl;
-			cin >> client.accountNumber;
+			cin >> account;
 		}
 
 			
-			inCredit.seekg((client.accountNumber - 1) * sizeof(clientData));
+			inCredit.seekg((account - 1) * sizeof(clientData));
 
 			inCredit.read(reinterpret_cast<char *>(&client), sizeof(clientData));
 			if (client.firstName == "" || client.accountNumber == 0)
