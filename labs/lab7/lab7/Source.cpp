@@ -21,12 +21,38 @@ void line()
 
 }
 
-struct node
+struct sortedListNode
 {
-	int number;
-	node * next;
+	char letter;
+	int occurrences;
+	sortedListNode * next;
 };
 
+sortedListNode * fromString(string input)
+{
+	sortedListNode * temp = NULL;
+	for (int i = 0; i < input.size(); i++)
+	{
+		temp->letter == input[i];
+		temp = new sortedListNode;
+		temp->occurrences++;
+	}
+	
+	
+	
+	return temp;
+}
+
+void printList(sortedListNode input)
+{
+	for (int i = 0; i < input.occurrences; i++)
+	{
+		if (true)
+		{
+
+		}
+	}
+}
 
 int main()
 {
@@ -35,79 +61,27 @@ int main()
 	line();
 	//####################################################################
 	
-	node * head = NULL;
-	node * previous = NULL;
-	node * location = NULL;
-	node * temp = NULL;
-		
+	string word1;
+	string word2;
+	sortedListNode * list1 = NULL;
+	/*sortedListNode * list2;
+	sortedListNode * list3;*/
+
+	cout << "Enter first word: ";
+	cin >> word1;
+	cout << "Enter second word: ";
+	cin >> word2;
+
+	list1 = fromString(word1);
+	cout << "Letter list from word one: " << endl;
+	//printList(list1);
+	while (list1 != NULL)
+	{
+		cout << list1->letter << endl;
+		list1 = list1->next;
+
+	}
 	
-
-	for (int i = 5; i < 25; i = i + 5)
-	{
-	if (head == NULL)
-	{
-	head = new node;
-	location = head;
-	location->number = 5;
-	location->next = NULL;
-	}
-	else
-	{
-	location->next = new node;
-	location = location->next;
-	location->number = i;
-	location->next = NULL;
-
-	}
-	}
-
-	location = head;
-	while (location != NULL)
-	{
-	cout << location->number << endl;
-	location = location->next;
-	}
-
-
-
-
-	int inputNum;
-	cout << "Insert number: ";
-	cin >> inputNum;
-
-	if (head == NULL)
-	{
-		location = new node;
-		location->number = inputNum;
-		location->next = head;
-		head = location;
-	}
-	else
-	{
-		previous = head;
-		location = head->next;
-		while (location != NULL && location->number < inputNum)
-		{
-			previous = location;
-			location = location->next;
-		}
-		temp = new node;
-		temp->number = inputNum;
-		temp->next = location;
-		previous->next = temp;
-	}
-
-	location = head;
-
-	while (location != NULL)
-	{
-		cout << location->number << endl;
-		location = location->next;
-	}
-
-	
-
-
 
 	//#####################################################################
 	line();
