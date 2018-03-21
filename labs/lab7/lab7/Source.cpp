@@ -33,8 +33,7 @@ sortedListNode * fromString(string input)
 	sortedListNode * temp = NULL;
 	for (int i = 0; i < input.size(); i++)
 	{
-		temp->letter == input[i];
-		temp = new sortedListNode;
+		
 		temp->occurrences++;
 	}
 	
