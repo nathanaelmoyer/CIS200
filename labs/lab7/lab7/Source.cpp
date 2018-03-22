@@ -52,6 +52,7 @@ sortedListNode * fromString(string &input)
 			location = head;
 			location->letter = input.at(0);
 			location->next = NULL;
+			
 		}
 		else
 		{
@@ -59,6 +60,19 @@ sortedListNode * fromString(string &input)
 			location = location->next;
 			location->letter = input.at(i);
 			location->next = NULL;
+			
+		}
+	}
+
+	location = head;
+	
+
+	for (int i = 0; i < input.size(); i++)	// trying to add to occurrences
+	{
+		if (head != NULL)
+		{
+			location->occurrences = location->occurrences + 1;
+			location = location->next;
 		}
 	}
 	
@@ -73,9 +87,10 @@ void printList(sortedListNode * input)
 {
 	while (input != NULL)
 	{
-		cout << input->letter;
+		cout << "Letter: " << input->letter << setw(17) << "Occurrences: " << input->occurrences << endl;
 		input = input->next;
 	}
+	cout << endl;
 }
 
 
@@ -86,33 +101,41 @@ int main()
 	line();
 	//####################################################################
 	
-	sortedListNode * head = NULL;
-	sortedListNode * previous = NULL;
-	sortedListNode * location = NULL;
-	sortedListNode * temp = NULL;
+	char charArray1[255];	//words stored into arrays
+	char charArray2[255];
 
-	string word1;
+	string word1;	//user input stored into string variables
 	string word2;
-	sortedListNode * list1 = NULL;
-	/*sortedListNode * list2;
-	sortedListNode * list3;*/
 
-	cout << "Enter first word: ";
+	sortedListNode * list1 = NULL;
+	sortedListNode * list2 = NULL;
+	sortedListNode * list3 = NULL;
+
+	/*cout << "Enter first word: ";
 	cin >> word1;
-	/*cout << "Enter second word: ";
+	cout << "Enter second word: ";
 	cin >> word2;*/
 	
-	char charArray[255];
-	strcpy_s(charArray, word1.c_str());
+	word1 = "Hello";
+	word2 = "World";
 
-
-	list1 = fromString(word1);
-
+	cout << endl;
 	
+	strcpy_s(charArray1, word1.c_str());
+	strcpy_s(charArray2, word2.c_str());
+
+
+	list1 = fromString(word1);	//word one to list
 	cout << "Letter list from word one: " << endl;
-	
-	
-	printList(list1);
+	printList(list1);	//print list from word one
+
+	list2 = fromString(word2);	//word two to list
+	cout << "Letter list from word two: " << endl;
+	printList(list2);	//print list from word two
+
+	//list3 = list1 + list2;	//operator combines lists
+	//cout << "Letter list from both words" << endl;
+	//printList(list2);	//print combine list
 
 	
 	
