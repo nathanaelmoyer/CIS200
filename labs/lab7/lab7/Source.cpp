@@ -73,9 +73,8 @@ void printList(sortedListNode * input)
 {
 	while (input != NULL)
 	{
-		cout << input->letter << endl;
+		cout << input->letter;
 		input = input->next;
-
 	}
 }
 
@@ -106,21 +105,14 @@ int main()
 	char charArray[255];
 	strcpy_s(charArray, word1.c_str());
 
-	
-	
-	
 
 	list1 = fromString(word1);
 
 	
 	cout << "Letter list from word one: " << endl;
-	while (list1 != NULL)
-	{
-		cout << list1->letter;
-		list1 = list1->next;
-	}
 	
-	//printList(list1);
+	
+	printList(list1);
 
 	
 	
