@@ -32,16 +32,26 @@ void charCopy(string strInput, char chInput[])	//convert string to char array
 
 struct sortedListNode
 {
-	string letter;
+	char letter;
 	int occurrences;
 	sortedListNode * next;
 };
 
 sortedListNode * fromString(string &input)
 {
-	sortedListNode * temp;
-	temp->letter = input;
-	sort(temp->letter.begin(), temp->letter.end());
+	sortedListNode * temp = NULL;
+	char charArray[255];
+	strcpy_s(charArray, input.c_str());
+
+	int i = 0;
+	while (i < input.size())
+	{
+		
+		temp->letter = charArray[i];
+		temp = temp->next;
+		i++;
+	}
+	//sort(temp->letter.begin(), temp->letter.end());
 	
 	
 	return temp;
@@ -68,17 +78,18 @@ int main()
 
 	string word1;
 	string word2;
-	sortedListNode * list1 = NULL;
+	sortedListNode * list1;
 	/*sortedListNode * list2;
 	sortedListNode * list3;*/
 
 	cout << "Enter first word: ";
 	cin >> word1;
-	cout << "Enter second word: ";
-	cin >> word2;
+	/*cout << "Enter second word: ";
+	cin >> word2;*/
 	
 	char charArray[255];
-	charCopy(word1, charArray);
+	strcpy_s(charArray, word1.c_str());
+	//charCopy(word1, charArray);
 
 	/*for (int i = 0; i < word1.size(); i++)
 	{
@@ -86,15 +97,16 @@ int main()
 	}
 	cout << endl;
 */
-
-
-
-
 	
 
 	list1 = fromString(word1);
 	cout << "Letter list from word one: " << endl;
-	cout << list1->letter << endl;
+	while (list1 != NULL)
+	{
+		cout << list1->letter << endl;
+		list1 = list1->next;
+	}
+	
 	//printList(list1);
 
 	
