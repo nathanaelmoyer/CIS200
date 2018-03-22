@@ -96,6 +96,7 @@ int main()
 		temp->next = location;
 		previous->next = temp;
 	}
+	
 
 	location = head;
 
