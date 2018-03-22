@@ -1,6 +1,6 @@
-//Lab 7
+//Lab 8
 //Nathanael Moyer
-//Date 3-15-18
+//Date 3-22-18
 
 
 #include <iostream>//cin and cout operators

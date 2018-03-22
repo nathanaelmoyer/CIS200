@@ -39,22 +39,34 @@ struct sortedListNode
 
 sortedListNode * fromString(string &input)
 {
+	sortedListNode * head = NULL;
+	sortedListNode * previous = NULL;
+	sortedListNode * location = NULL;
 	sortedListNode * temp = NULL;
-	char charArray[255];
-	strcpy_s(charArray, input.c_str());
 
-	int i = 0;
-	while (i < input.size())
+	for (int i = 0; i < input.size(); i++)
 	{
-		
-		temp->letter = charArray[i];
-		temp = temp->next;
-		i++;
+		if (head == NULL)
+		{
+			head = new sortedListNode;
+			location = head;
+			location->letter = input.at(0);
+			location->next = NULL;
+		}
+		else
+		{
+			location->next = new sortedListNode;
+			location = location->next;
+			location->letter = input.at(i);
+			location->next = NULL;
+		}
 	}
+	
 	//sort(temp->letter.begin(), temp->letter.end());
 	
 	
-	return temp;
+	location = head;
+	return location;
 }
 
 void printList(sortedListNode * input)
@@ -75,10 +87,14 @@ int main()
 	line();
 	//####################################################################
 	
+	sortedListNode * head = NULL;
+	sortedListNode * previous = NULL;
+	sortedListNode * location = NULL;
+	sortedListNode * temp = NULL;
 
 	string word1;
 	string word2;
-	sortedListNode * list1;
+	sortedListNode * list1 = NULL;
 	/*sortedListNode * list2;
 	sortedListNode * list3;*/
 
@@ -89,21 +105,18 @@ int main()
 	
 	char charArray[255];
 	strcpy_s(charArray, word1.c_str());
-	//charCopy(word1, charArray);
 
-	/*for (int i = 0; i < word1.size(); i++)
-	{
-		cout << charArray[i];
-	}
-	cout << endl;
-*/
+	
+	
 	
 
 	list1 = fromString(word1);
+
+	
 	cout << "Letter list from word one: " << endl;
 	while (list1 != NULL)
 	{
-		cout << list1->letter << endl;
+		cout << list1->letter;
 		list1 = list1->next;
 	}
 	
