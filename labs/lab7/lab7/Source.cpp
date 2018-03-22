@@ -75,9 +75,7 @@ sortedListNode * fromString(string &input)
 			location = location->next;
 		}
 	}
-	
-	//sort(temp->letter.begin(), temp->letter.end());
-	
+		
 	
 	location = head;
 	return location;
@@ -92,6 +90,8 @@ void printList(sortedListNode * input)
 	}
 	cout << endl;
 }
+
+
 
 
 int main()
@@ -111,19 +111,22 @@ int main()
 	sortedListNode * list2 = NULL;
 	sortedListNode * list3 = NULL;
 
-	/*cout << "Enter first word: ";
+	cout << "Enter first word: ";
 	cin >> word1;
 	cout << "Enter second word: ";
-	cin >> word2;*/
+	cin >> word2;
 	
-	word1 = "Hello";
-	word2 = "World";
+	
+	sort(word1.begin(), word1.end());
+	sort(word2.begin(), word2.end());
+	
 
 	cout << endl;
 	
 	strcpy_s(charArray1, word1.c_str());
 	strcpy_s(charArray2, word2.c_str());
 
+	
 
 	list1 = fromString(word1);	//word one to list
 	cout << "Letter list from word one: " << endl;
