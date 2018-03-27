@@ -29,7 +29,19 @@ struct node
 	node * prev;
 };
 
-struct nodes	//node pointers
+//struct nodes	//node pointers
+//{
+//	node * head = NULL;
+//	node * forward = NULL;
+//	node * backward = NULL;
+//	node * location = NULL;
+//	node * temp = NULL;
+//
+//	node * forwardEven = NULL;
+//	node * backwardEven = NULL;
+//};
+
+void assignList(struct node **list, fstream &ints, int &sizeOfList)
 {
 	node * head = NULL;
 	node * forward = NULL;
@@ -39,32 +51,29 @@ struct nodes	//node pointers
 
 	node * forwardEven = NULL;
 	node * backwardEven = NULL;
-};
 
-void assignList(nodes &list, fstream &ints, int &sizeOfList)
-{
 	sizeOfList = 0;
 	while (!ints.eof())
 	{
-		if (list.head == NULL)
+		if (head == NULL)
 		{
-			list.head = new node;
-			list.location = list.head;
-			ints >> list.location->number;
-			list.location->next = NULL;
+			head = new node;
+			location = head;
+			ints >> location->number;
+			location->next = NULL;
 
 		}
 		else
 		{
-			list.location->next = new node;
-			list.location = list.location->next;
-			ints >> list.location->number;
-			list.location->next = NULL;
+			location->next = new node;
+			location = location->next;
+			ints >> location->number;
+			location->next = NULL;
 		}
 		sizeOfList++;
 	}
 
-	list.location = list.head;
+	location = head;
 }
 
 //void sortList(struct node **head_ref, int &sizeOfList)
@@ -85,23 +94,47 @@ void assignList(nodes &list, fstream &ints, int &sizeOfList)
 
 
 
-void sortList(struct node** head_ref)
+//void sortList(struct node * ints)
+//{
+//	int swapped, i;
+//	struct node *ptr1;
+//	struct node *lptr = NULL;
+//
+//	/* Checking for empty list */
+//	if (ptr1 == NULL)
+//		return;
+//
+//	do
+//	{
+//		swapped = 0;
+//		ptr1 = ints;
+//
+//		while (ptr1->next != lptr)
+//		{
+//			if (ptr1->number > ptr1->next->number)
+//			{
+//				swap(ptr1, ptr1->next);
+//				swapped = 1;
+//			}
+//			ptr1 = ptr1->next;
+//		}
+//		lptr = ptr1;
+//	} while (swapped);
+//}
+
+
+void printListAscending(struct node *list, int &sizeOfList)	//print list in ascending order
 {
-	
-}
-
-
-void printListAscending(nodes &list, int &sizeOfList)	//print list in ascending order
-{
-
+	struct node *temp = list;
 
 	line();
 	cout << "List in ascending order: " << endl;
 	cout << "Size of list: " << sizeOfList << endl;
-	while (list.location != NULL)
+	while (temp != NULL)
 	{
-		cout << list.location->number << " ";
-		list.location = list.location->next;
+		printf("%d ", temp->number);
+		//cout << list->number << " ";
+		temp = temp->next;
 	}
 }
 
@@ -142,9 +175,9 @@ int main()
 	//####################################################################
 
 	
-	nodes list;		//node pointers
+	struct node *list;		//node pointers
 	int sizeOfList = 0;
-	assignList(list, ints, sizeOfList);		//assign list to linked list
+	assignList(&list, ints, sizeOfList);		//assign list to linked list
 	
 
 
@@ -159,11 +192,12 @@ int main()
 		cin >> response;
 	}
 
-	sortList(&list.head);	//sort list
+	//sortList(ints);	//sort list
 
 	printListAscending(list, sizeOfList);	//print list in ascending order
 
 	ints.close();
+	log.close();
 
 	//#####################################################################
 	line();
