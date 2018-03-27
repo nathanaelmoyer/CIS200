@@ -125,16 +125,15 @@ void assignList(struct node **list, fstream &ints, int &sizeOfList)
 
 void printListAscending(struct node *list, int &sizeOfList)	//print list in ascending order
 {
-	struct node *temp = list;
+	//struct node *temp = list;
 
 	line();
 	cout << "List in ascending order: " << endl;
 	cout << "Size of list: " << sizeOfList << endl;
-	while (temp != NULL)
+	while (list != NULL)
 	{
-		printf("%d ", temp->number);
-		//cout << list->number << " ";
-		temp = temp->next;
+		cout << list->number << " ";
+		list = list->next;
 	}
 }
 
