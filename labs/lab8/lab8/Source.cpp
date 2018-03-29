@@ -49,6 +49,7 @@ void sortList(node * head, int sizeOfList)
 			next = next->next;
 		}
 		curr = curr->next;
+	}
 }
 
 
