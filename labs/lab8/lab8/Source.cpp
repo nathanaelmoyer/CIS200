@@ -52,6 +52,28 @@ void sortList(node * head, int sizeOfList)
 	}
 }
 
+void sortListDescending(node * head, int sizeOfList)
+{
+	node * curr = head;
+	node * next;
+	int temp;
+
+	while (curr && curr->next)
+	{
+
+		node * next = curr->next;
+		while (next)
+		{
+			if (curr->number < next->number)
+			{
+				swap(next->number, curr->number);
+			}
+			next = next->next;
+		}
+		curr = curr->next;
+	}
+}
+
 
 void printList(node *list)	//print list
 {
@@ -123,6 +145,7 @@ int main()
 
 	node * nextEven = NULL;
 	node * prevEven = NULL;
+	node * last = NULL;
 
 
 
@@ -136,22 +159,21 @@ int main()
 			location->number = a[i];
 			location->next = NULL;
 			tail = location;
-
 		}
 		else
 		{
 			location->next = new node;
+			prev = location;
 			location = location->next;
+			location->prev = last;
 			location->number = a[i];
 			location->next = NULL;
 			tail = location;
-
 		}
 	}
 
 
 
-	sortList(head, sizeOfList);	//sort list
 
 	string response = "f";
 
@@ -169,13 +191,15 @@ int main()
 
 	if (response == "a" || response == "A")		//printing file in ascending order
 	{
+		sortList(head, sizeOfList);	//sort list in ascedning order
 		cout << "Ascending: ";
 		printList(head);	//print list in ascending order
 	}
 	else		//printing file in descending order
 	{
+		sortListDescending(head, sizeOfList);	//sort list in deceding order
 		cout << "Descending: ";
-		printList(tail);
+		printList(head);
 	}
 
 	ints.close();
