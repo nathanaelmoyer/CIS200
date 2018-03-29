@@ -53,13 +53,13 @@ void sortList(node * head, int sizeOfList)
 }
 
 
-void printListAscending(node *head)	//print list in ascending order
+void printList(node *head)	//print list
 {
 	node *temp = NULL;
 	temp = head;
 
-	line();
-	cout << "List in ascending order: " << endl;
+	
+	
 	while (temp != NULL)
 	{
 		cout << temp->number << " ";
@@ -95,7 +95,7 @@ int main()
 		cout << "log.txt opened" << endl;
 	}
 	line();
-	
+
 
 	//####################################################################
 	line();
@@ -103,9 +103,9 @@ int main()
 	line();
 	//####################################################################
 
-	
+
 	struct node *list = NULL;		//node pointers
-	
+
 	int a[20];
 	int sizeOfList = 0;
 	while (!ints.eof() && sizeOfList <= 20)	//assign values in file to array
@@ -116,53 +116,70 @@ int main()
 
 
 	node * head = NULL;
-	//node * forward = NULL;
-	//node * backward = NULL;
+	node * tail = NULL;
+	node * next = NULL;
+	node * prev = NULL;
 	node * location = NULL;
-	//node * temp = NULL;
+	node * temp = NULL;
 
-	//node * forwardEven = NULL;
-	//node * backwardEven = NULL;
+	node * forwardEven = NULL;
+	node * backwardEven = NULL;
 
 
-	
+
 	for (int i = 0; i < sizeOfList; i++)	//assign list to values in array
 	{
 		if (head == NULL)
 		{
 			head = new node;
 			location = head;
+			location->prev = NULL;
 			location->number = a[i];
 			location->next = NULL;
+			tail = location;
 
 		}
 		else
 		{
 			location->next = new node;
 			location = location->next;
+			location->prev = prev;
 			location->number = a[i];
 			location->next = NULL;
+			tail = location;
 		}
 	}
 
-	location = head;
 
 
+	sortList(head, sizeOfList);	//sort list
 
 	string response = "f";
 
 
-	/*cout << "Print list of integers in ascending or descedning order? (A/D)" << endl;
+	cout << "Print list of integers in ascending or descedning order? (A/D)" << endl;
 	cin >> response;
-	while (response != "d" && response != "D" && response != "a" && response != "A")
+	while (response != "d" && response != "D" && response != "a" && response != "A")	//checking user input for response
 	{
 		cout << "Invalid response" << endl;
 		cin >> response;
-	}*/
+	}
 
-	sortList(head, sizeOfList);	//sort list
 
-	printListAscending(head);	//print list in ascending order
+	line();
+
+	if (response == "a" || response == "A")		//printing file in ascending order
+	{
+		cout << "Ascending: ";
+		location = head;
+		printList(head);	//print list in ascending order
+	}
+	else		//printing file in descending order
+	{
+		cout << "Descending: ";
+		location = tail;
+		printList(tail);
+	}
 
 	ints.close();
 	log.close();
