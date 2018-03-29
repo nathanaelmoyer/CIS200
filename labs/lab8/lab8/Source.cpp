@@ -53,13 +53,11 @@ void sortList(node * head, int sizeOfList)
 }
 
 
-void printList(node *head)	//print list
+void printList(node *list)	//print list
 {
 	node *temp = NULL;
-	temp = head;
-
-	
-	
+	temp = list;
+		
 	while (temp != NULL)
 	{
 		cout << temp->number << " ";
@@ -123,8 +121,8 @@ int main()
 	node * location = NULL;
 	node * temp = NULL;
 
-	node * forwardEven = NULL;
-	node * backwardEven = NULL;
+	node * nextEven = NULL;
+	node * prevEven = NULL;
 
 
 
@@ -144,10 +142,10 @@ int main()
 		{
 			location->next = new node;
 			location = location->next;
-			location->prev = prev;
 			location->number = a[i];
 			location->next = NULL;
 			tail = location;
+
 		}
 	}
 
@@ -172,13 +170,11 @@ int main()
 	if (response == "a" || response == "A")		//printing file in ascending order
 	{
 		cout << "Ascending: ";
-		location = head;
 		printList(head);	//print list in ascending order
 	}
 	else		//printing file in descending order
 	{
 		cout << "Descending: ";
-		location = tail;
 		printList(tail);
 	}
 
