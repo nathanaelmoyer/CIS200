@@ -29,111 +29,40 @@ struct node
 	node * prev;
 };
 
-//struct nodes	//node pointers
-//{
-//	node * head = NULL;
-//	node * forward = NULL;
-//	node * backward = NULL;
-//	node * location = NULL;
-//	node * temp = NULL;
-//
-//	node * forwardEven = NULL;
-//	node * backwardEven = NULL;
-//};
 
-void assignList(struct node **list, fstream &ints, int &sizeOfList)
+void sortList(node * head, int sizeOfList)
 {
-	node * head = NULL;
-	node * forward = NULL;
-	node * backward = NULL;
-	node * location = NULL;
-	node * temp = NULL;
+	node * curr = head;
+	node * next;
+	int temp;
 
-	node * forwardEven = NULL;
-	node * backwardEven = NULL;
-
-	sizeOfList = 0;
-	while (!ints.eof())
+	while (curr && curr->next)
 	{
-		if (head == NULL)
-		{
-			head = new node;
-			location = head;
-			ints >> location->number;
-			location->next = NULL;
 
-		}
-		else
+		node * next = curr->next;
+		while (next)
 		{
-			location->next = new node;
-			location = location->next;
-			ints >> location->number;
-			location->next = NULL;
+			if (curr->number > next->number)
+			{
+				swap(next->number, curr->number);
+			}
+			next = next->next;
 		}
-		sizeOfList++;
-	}
-
-	location = head;
+		curr = curr->next;
 }
 
-//void sortList(struct node **head_ref, int &sizeOfList)
-//{
-//	struct node * sorted = NULL;	//initialze sorted linked list
-//
-//	struct node * current = * head_ref;
-//
-//	while (current != NULL)
-//	{
-//		struct node * next = current->next;
-//
-//
-//	}
-//
-//}
 
-
-
-
-//void sortList(struct node * ints)
-//{
-//	int swapped, i;
-//	struct node *ptr1;
-//	struct node *lptr = NULL;
-//
-//	/* Checking for empty list */
-//	if (ptr1 == NULL)
-//		return;
-//
-//	do
-//	{
-//		swapped = 0;
-//		ptr1 = ints;
-//
-//		while (ptr1->next != lptr)
-//		{
-//			if (ptr1->number > ptr1->next->number)
-//			{
-//				swap(ptr1, ptr1->next);
-//				swapped = 1;
-//			}
-//			ptr1 = ptr1->next;
-//		}
-//		lptr = ptr1;
-//	} while (swapped);
-//}
-
-
-void printListAscending(struct node *list, int &sizeOfList)	//print list in ascending order
+void printListAscending(node *head)	//print list in ascending order
 {
-	//struct node *temp = list;
+	node *temp = NULL;
+	temp = head;
 
 	line();
 	cout << "List in ascending order: " << endl;
-	cout << "Size of list: " << sizeOfList << endl;
-	while (list != NULL)
+	while (temp != NULL)
 	{
-		cout << list->number << " ";
-		list = list->next;
+		cout << temp->number << " ";
+		temp = temp->next;
 	}
 }
 
@@ -174,26 +103,65 @@ int main()
 	//####################################################################
 
 	
-	struct node *list;		//node pointers
-	int sizeOfList = 0;
-	assignList(&list, ints, sizeOfList);		//assign list to linked list
+	struct node *list = NULL;		//node pointers
 	
+	int a[20];
+	int sizeOfList = 0;
+	while (!ints.eof() && sizeOfList <= 20)	//assign values in file to array
+	{
+		ints >> a[sizeOfList];
+		sizeOfList++;
+	}
+
+
+	node * head = NULL;
+	//node * forward = NULL;
+	//node * backward = NULL;
+	node * location = NULL;
+	//node * temp = NULL;
+
+	//node * forwardEven = NULL;
+	//node * backwardEven = NULL;
+
+
+	
+	for (int i = 0; i < sizeOfList; i++)	//assign list to values in array
+	{
+		if (head == NULL)
+		{
+			head = new node;
+			location = head;
+			location->number = a[i];
+			location->next = NULL;
+
+		}
+		else
+		{
+			location->next = new node;
+			location = location->next;
+			location->number = a[i];
+			location->next = NULL;
+		}
+	}
+
+	location = head;
+
 
 
 	string response = "f";
 
 
-	cout << "Print list of integers in ascending or descedning order? (A/D)" << endl;
+	/*cout << "Print list of integers in ascending or descedning order? (A/D)" << endl;
 	cin >> response;
 	while (response != "d" && response != "D" && response != "a" && response != "A")
 	{
 		cout << "Invalid response" << endl;
 		cin >> response;
-	}
+	}*/
 
-	//sortList(ints);	//sort list
+	sortList(head, sizeOfList);	//sort list
 
-	printListAscending(list, sizeOfList);	//print list in ascending order
+	printListAscending(head);	//print list in ascending order
 
 	ints.close();
 	log.close();
