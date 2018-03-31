@@ -51,7 +51,7 @@ void sortList(node * head, int sizeOfList)
 		curr = curr->next;
 	}
 }
-
+hello
 void sortListDescending(node * head, int sizeOfList)
 {
 	node * curr = head;
