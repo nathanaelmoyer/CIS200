@@ -18,6 +18,8 @@ public:
 	int getMileage();
 	void setMileage(int input);
 
-	void park();
+	void calcDistance(int input);	//add distance traveled to mileage
+
+	void park();	//switch gear to park
 };
 

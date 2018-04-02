@@ -39,6 +39,11 @@ void LandVehicle::setMileage(int input)
 	mileage = input;
 }
 
+void LandVehicle::calcDistance(int input)
+{
+	setDistance(input + getDistance());
+}
+
 void LandVehicle::park()
 {
 	if (gear == 0)

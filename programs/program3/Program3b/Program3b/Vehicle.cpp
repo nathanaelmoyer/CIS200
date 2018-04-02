@@ -115,6 +115,11 @@ int Vehicle::getDistance()
 
 void Vehicle::setDistance(int input)
 {
+	if (input < 0)
+	{
+		cout << "Distance must be greater than 0." << endl;
+		return;
+	}
 	distance = input;
 }
 
