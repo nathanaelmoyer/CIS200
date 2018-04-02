@@ -38,13 +38,12 @@ void readIntFile(ifstream &x, int intArray[20], int &length)
 		i++;
 		
 	}
-<<<<<<< HEAD
+
 	
 	
 	
-=======
+
 	length = i;
->>>>>>> 6063ac776e13ef02ad3348329ddafb3998964b64
 	if (length > 20)
 	{
 		cout << endl << "***ERROR: Length of input from file must be 20 characters or less***" << endl << endl;
@@ -56,12 +55,9 @@ void readIntFile(ifstream &x, int intArray[20], int &length)
 
 void printFileValues(int intArray[], int &length, string userFile)
 {
-<<<<<<< HEAD
 	cout << "Data in '" << userFile << "': " << endl;
 	for (int i = 0; intArray[i] != NULL; i++)
-=======
 	if (length <= 20) //won't print if length is greater than 20
->>>>>>> 6063ac776e13ef02ad3348329ddafb3998964b64
 	{
 		cout << "Data in '" << userFile << "': " << endl;
 		for (int i = 0; i < length; i++)

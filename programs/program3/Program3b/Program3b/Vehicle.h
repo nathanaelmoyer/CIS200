@@ -52,9 +52,9 @@ public:
 
 	void move(int input);	//add input to total distance moved
 
-	void acelleration(int input);	//add input to speed
+	void acelerate(int input);	//add input to speed
 	
-	void decellertion(int input);	//subtract input from speed
+	void decelerate(int input);	//subtract input from speed
 
 	void off();	//update engine status to fasle
 
