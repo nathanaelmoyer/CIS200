@@ -13,6 +13,7 @@
 #include "Vehicle.h"
 #include "LandVehicle.h"
 #include "Car.h"
+#include "Truck.h"
 
 using namespace std;
 
@@ -38,14 +39,12 @@ int main()
 
 	ofstream out;
 	out.open(onFile);
-	Car x;
+	Truck x;
 
 	x.turn("N");
-	out << "Heading set to N" << endl;
 	cout << "Heading: " << x.getHeading() << endl;
 
 	x.start();
-	out << "Engine started" << endl;
 	if (x.getEngineStatus() == 1)
 	{
 		cout << "Engine is on" << endl;
@@ -87,8 +86,14 @@ int main()
 	}
 	x.off();
 	
+	x.loadCargo(1000);
 
+	x.setCargoCapacity(4000);
 
+	x.loadCargo(2000);
+
+	x.loadCargo(3000);
+	
 
 
 

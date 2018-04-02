@@ -149,11 +149,13 @@
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="LandVehicle.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Truck.cpp" />
     <ClCompile Include="Vehicle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />
     <ClInclude Include="LandVehicle.h" />
+    <ClInclude Include="Truck.h" />
     <ClInclude Include="Vehicle.h" />
   </ItemGroup>
   <ItemGroup>
