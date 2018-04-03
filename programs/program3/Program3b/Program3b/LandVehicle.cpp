@@ -33,8 +33,8 @@ void LandVehicle::setMileage(int input)
 {
 	if (input < 0)
 	{
-		cout << "Invalid input. Must be greater than 0" << endl;
-		cin >> input;
+		cout << "Invalid mileage. Must be greater than 0." << endl;
+		return;
 	}
 	mileage = input;
 }

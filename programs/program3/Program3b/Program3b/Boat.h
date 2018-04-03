@@ -8,6 +8,7 @@ class Boat : public Vehicle
 private:
 	string boatType;
 	float boatLength;
+	bool dockStatus;
 public:
 	Boat();
 	~Boat();
@@ -17,6 +18,9 @@ public:
 
 	float getBoatLength();
 	void setBoatLength(float input);
+
+	bool getDockStatus();
+	void setDockStatus(bool input);
 
 	void launch();
 
