@@ -5,7 +5,7 @@
 Truck::Truck()
 {
 	dieselTypeStatus = false;
-	cargoCapacity = 0.0;
+	cargoCapacity = 10000.0;
 	currentCargo = 0.0;
 	liftKitHeight = 0.0;
 }
@@ -71,6 +71,12 @@ void Truck::loadCargo(float input)
 	{
 		cout << "Current total load: " << currentCargo << "lbs" << endl;
 		cout << "Cannot load " << input << "lbs more. It is too heavy for this truck." << endl;
+		return;
+	}
+	if ((input + currentCargo) < 0)
+	{
+		cout << "Current total load: " << currentCargo << "lbs" << endl;
+		cout << "Cannot unload " << input << "lbs. That is more than what is on the truck." << endl;
 		return;
 	}
 
