@@ -45,8 +45,9 @@ void mainMenu(string &input)
 	}
 }
 
-void carMenu(string &input)
+void carMenu(string &input2, Car &a)
 {
+	string input;
 	line();
 	cout << "What action would you like to take?" << endl;
 
@@ -57,20 +58,74 @@ void carMenu(string &input)
 	cout << "Decelerate: decrease speed by specified amount" << endl;
 	cout << "Stop: stop car" << endl;
 	cout << "Turn: turn in a specified heading" << endl;
+	cout << "Gear: change to specified gear" << endl;
+	cout << "Change: change vehicle" << endl;
+	cout << "Exit: exit program" << endl;
 
 	cin >> input;
 
 	while (input != "start" && input != "Start" && input != "off" && input != "Off" &&
 		input != "move" && input != "Move" && input != "acelerate" && input != "Acelerate" &&
-		input != "decelerate" && input != "decelerate" && input != "stop" && input != "Stop" && input != "turn" && input != "Turn")
+		input != "decelerate" && input != "decelerate" && input != "stop" && input != "Stop" && 
+		input != "turn" && input != "Turn" && input != "gear" && input != "Gear" && 
+		input != "change" && input != "Change" && input != "exit" && input != "Exit")
 	{
 		cout << "Invalid input" << endl;
 		cin >> input;
 	}
 
+	if (input == "Start" || input == "start")
+	{
+		a.start();
+	}
+	else if (input == "off" || input == "Off")
+	{
+		a.off();
+	}
+	else if (input == "move" || input == "Move")
+	{
+		a.move();
+	}
+	else if (input == "acelerate" || input == "Acelerate")
+	{
+		a.acelerate();
+	}
+	else if (input == "decelerate" || input == "Decelerate")
+	{
+		a.decelerate();
+	}
+	else if (input == "stop" || input == "Stop")
+	{
+		a.stop();
+	}
+	else if (input == "turn" || input == "Turn")
+	{
+		a.turn();
+	}
+	else if (input == "gear" || input == "Gear")
+	{
+		cout << "Current gear: " << a.getGear() << endl;;
+		cout << "Change to what gear?" << endl;
+		int x;
+		cin >> x;
+		while (x < 0)
+		{
+			cout << "Gear cannot be negeative." << endl;
+			cin >> x;
+		}
+		a.setGear(x);
+	}
+	else if (input == "change" || input == "Change")
+	{
+		mainMenu(input2);
+	}
+	else if (input == "exit" || input == "Exit")
+	{
+		
+	}
 }
 
-void carAction(string input, Car &a)
+void carAction(string &input, Car &a)	//execure car actions based on input
 {
 	if (input == "Start" || input == "start")
 	{
@@ -86,8 +141,39 @@ void carAction(string input, Car &a)
 	}
 	else if (input == "acelerate" || input == "Acelerate")
 	{
-
-		//a.acelerate();
+		a.acelerate();	
+	}
+	else if (input == "decelerate" || input == "Decelerate")
+	{
+		a.decelerate();
+	}
+	else if (input == "stop" || input == "Stop")
+	{
+		a.stop();
+	}
+	else if (input == "turn" || input == "Turn")
+	{
+		a.turn();
+	}
+	else if (input == "gear" || input == "Gear")
+	{
+		cout << "Current gear: " << a.getGear() << endl;;
+		cout << "Change to what gear?" << endl;
+		int a;
+		cin >> a;
+		while (a < 0)
+		{
+			cout << "Gear cannot be negeative." << endl;
+			cin >> a;
+		}
+	}
+	else if (input == "change" || input == "Change")
+	{
+		mainMenu(input);
+	}
+	else if (input == "exit" || input == "Exit")
+	{
+		input = "n";
 	}
 }
 
@@ -102,20 +188,38 @@ int main()
 	out.open(onFile);
 
 	string inputStn = "car";
+	string inputStn2 = "";
+	string response = "a";
 
-	//mainMenu(inputStn);
+	Car a;
 
-	if (inputStn == "car" || inputStn == "Car")
+	while (response != "n" || response != "N")
 	{
-		Car a;
-		carMenu(inputStn);
-		carAction(inputStn, a);
-	}
-	else
-	{
-		cout << "FUCK YOU" << endl;
-	}
+
+
+
+		//mainMenu(inputStn);
+
+		
+
+		if (inputStn == "car" || inputStn == "Car")
+		{
+			
+			carMenu(inputStn, a);
+			
+			//carAction(inputStn2, a);
+		}
+		else
+		{
+			cout << "FUCK YOU" << endl;
+		}
+
+
+
 	
+
+
+	}
 
 	/*
 	Truck x;

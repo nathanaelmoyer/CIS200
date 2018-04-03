@@ -5,6 +5,7 @@ using namespace std;
 class Vehicle
 {
 private:
+	int gear;
 	int age;
 	float price;
 	int speed;
@@ -18,6 +19,9 @@ private:
 public:
 	Vehicle();
 	~Vehicle();
+
+	int getGear();
+	void setGear(int input);
 
 	int getAge();
 	void setAge(int input);
@@ -52,12 +56,12 @@ public:
 
 	void move();	//add input to total distance moved
 
-	void acelerate(int input);	//add input to speed
+	void acelerate();	//add input to speed
 	
-	void decelerate(int input);	//subtract input from speed
+	void decelerate();	//subtract input from speed
 
 	void off();	//update engine status to fasle
 
-	void turn(string input); //update heading
+	void turn(); //update heading
 };
 

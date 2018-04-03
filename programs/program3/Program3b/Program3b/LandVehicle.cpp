@@ -5,7 +5,6 @@
 
 LandVehicle::LandVehicle()
 {
-	gear = 0;
 	mileage = 0;
 }
 
@@ -14,15 +13,7 @@ LandVehicle::~LandVehicle()
 {
 }
 
-int LandVehicle::getGear()
-{
-	return gear;
-}
 
-void LandVehicle::setGear(int input)
-{
-	gear = input;
-}
 
 int LandVehicle::getMileage()
 {
@@ -46,14 +37,14 @@ void LandVehicle::calcDistance(int input)
 
 void LandVehicle::park()
 {
-	if (gear == 0)
+	if (getGear() == 0)
 	{
 		cout << "Gear is already in park." << endl;
 		return;
 	}
 	if (getSpeed() == 0)
 	{
-		gear = 0;
+		setGear(0);
 		cout << "Gear switched to park." << endl;
 	}
 	else if (getSpeed() > 0)
