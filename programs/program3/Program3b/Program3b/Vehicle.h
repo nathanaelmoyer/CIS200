@@ -50,7 +50,7 @@ public:
 
 	void stop();	//update speed to 0
 
-	void move(int input);	//add input to total distance moved
+	void move();	//add input to total distance moved
 
 	void acelerate(int input);	//add input to speed
 	

@@ -130,6 +130,7 @@ void Vehicle::start()
 		cout << "Engine is already on" << endl;
 		return;
 	}
+	cout << "Car has been started" << endl;
 	engineStatus = true;
 }
 
@@ -138,9 +139,19 @@ void Vehicle::stop()
 	speed = 0;
 }
 
-void Vehicle::move(int input)
+void Vehicle::move()
 {
+	if (engineStatus == 0)
+	{
+		cout << "Engine must be on to move car." << endl;
+		return;
+	}
+	int input;
+	cout << "How far would you like to move? (in miles)" << endl;
+	cin >> input;
 	distance = distance + input;
+	cout << "Distance just moved: " << input << endl;
+	cout << "Total distance traveled: " << distance << endl;
 }
 
 void Vehicle::acelerate(int input)
@@ -160,6 +171,7 @@ void Vehicle::off()
 		cout << "Engine is already off" << endl;
 		return;
 	}
+	cout << "Car has been turned off" << endl;
 	engineStatus = false;
 
 }

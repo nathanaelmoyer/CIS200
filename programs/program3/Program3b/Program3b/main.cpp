@@ -70,6 +70,26 @@ void carMenu(string &input)
 
 }
 
+void carAction(string input, Car &a)
+{
+	if (input == "Start" || input == "start")
+	{
+		a.start();
+	}
+	else if (input == "off" || input == "Off")
+	{
+		a.off();
+	}
+	else if (input == "move" || input == "Move")
+	{
+		a.move();
+	}
+	else if (input == "acelerate" || input == "Acelerate")
+	{
+
+		//a.acelerate();
+	}
+}
 
 int main()
 {
@@ -87,7 +107,9 @@ int main()
 
 	if (inputStn == "car" || inputStn == "Car")
 	{
+		Car a;
 		carMenu(inputStn);
+		carAction(inputStn, a);
 	}
 	else
 	{
