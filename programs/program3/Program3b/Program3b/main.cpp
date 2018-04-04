@@ -467,7 +467,9 @@ int main()
 		
 	}
 	line();
-	cout << a.getDistance() + b.getDistance() + c.getDistance() + d.getDistance() << endl;
+	cout << "Total distance traveled: ";
+	cout << a.getDistance() + b.getDistance() + c.getDistance() + d.getDistance();
+	cout << " miles" << endl;
 
 	//#####################################################################
 	line();
