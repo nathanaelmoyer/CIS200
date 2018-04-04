@@ -213,7 +213,7 @@ void Vehicle::off()
 		cout << "Engine is already off" << endl;
 		return;
 	}
-	cout << "Car has been turned off" << endl;
+	cout << "Vehicle has been turned off" << endl;
 	engineStatus = false;
 
 }

@@ -316,7 +316,7 @@ void boatMenu(string &input2, string &response, Boat &a)
 	line();
 }
 
-void planeMenu(string &input2, string &response, Boat &a)
+void planeMenu(string &input2, string &response, Plane &a)
 {
 	string input;
 	int x;
@@ -334,6 +334,7 @@ void planeMenu(string &input2, string &response, Boat &a)
 	cout << "Gear: change to specified gear" << endl;
 	cout << "Take-off: take off" << endl;
 	cout << "Land: land plane" << endl;
+	cout << "Altitude: change altitude" << endl;
 	cout << "Change: change vehicle" << endl;
 	cout << "Exit: exit program" << endl;
 
@@ -344,7 +345,7 @@ void planeMenu(string &input2, string &response, Boat &a)
 		input != "decelerate" && input != "decelerate" && input != "stop" && input != "Stop" &&
 		input != "turn" && input != "Turn" && input != "gear" && input != "Gear" &&
 		input != "change" && input != "Change" && input != "exit" && input != "Exit" &&
-		input != "launch" && input != "Launch" && input != "dock" && input != "Dock")
+		input != "take-off" && input != "Take-off" && input != "land" && input != "Land" && input != "altitude" && input != "Altitude")
 	{
 		cout << "Invalid input" << endl;
 		cin >> input;
@@ -393,13 +394,19 @@ void planeMenu(string &input2, string &response, Boat &a)
 		}
 		a.setGear(x);
 	}
-	else if (input == "launch" || input == "Launch")
+	else if (input == "take-off" || input == "Take-off")
 	{
-		a.launch();
+		a.takeOff();
 	}
-	else if (input == "dock" || input == "Dock")
+	else if (input == "land" || input == "Land")
 	{
-		a.dock();
+		a.land();
+	}
+	else if (input == "altitude" || input == "Altitude")
+	{
+		cout << "New altitude: ";
+		cin >> y;
+		a.setAltitude(y);
 	}
 	else if (input == "change" || input == "Change")
 	{
@@ -422,7 +429,7 @@ int main()
 	ofstream out;
 	out.open(onFile);
 
-	string inputStn = "car";
+	string inputStn = "a";
 	string inputStn2 = "";
 	string response = "a";
 
@@ -431,14 +438,10 @@ int main()
 	Boat c;
 	Plane d;
 
+	mainMenu(inputStn);	//menu for selecting vehicle
+
 	while (response != "n")
 	{
-
-
-
-		//mainMenu(inputStn);
-
-		
 
 		if (inputStn == "car" || inputStn == "Car")
 		{
@@ -459,112 +462,12 @@ int main()
 		else if (inputStn == "Plane" || inputStn == "plane")
 		{
 			cout << "Current vehicle: Plane" << endl;
-
+			planeMenu(inputStn, response, d);
 		}
 		
-
-
-	
-
-
 	}
-
-	/*
-	Truck x;
-
-	x.turn("N");
-	cout << "Heading: " << x.getHeading() << endl;
-
-	x.start();
-	if (x.getEngineStatus() == 1)
-	{
-		cout << "Engine is on" << endl;
-	}
-	else
-	{
-		cout << "Engine is off" << endl;
-	}
-
-	x.start();
-	x.setGear(1);
-	cout << "Speed: " << x.getSpeed() << endl;
-	x.acelerate(25);
-	cout << "Speed: " << x.getSpeed() << endl;
-
-	x.park();
-
-
-	x.turn("E");
-	cout << "Heading: " << x.getHeading() << endl;
-
-	x.decelerate(5);
-	cout << "Speed: " << x.getSpeed() << endl;
-
-	x.stop();
-	cout << "Speed: " << x.getSpeed() << endl;
-
-	x.park();
-	x.park();
-
-	x.off();
-	if (x.getEngineStatus() == 1)
-	{
-		cout << "Engine is on" << endl;
-	}
-	else
-	{
-		cout << "Engine is off" << endl;
-	}
-	x.off();
-	
-	x.loadCargo(1000);
-
-	x.setCargoCapacity(4000);
-
-	x.loadCargo(2000);
-
-	x.loadCargo(3000);
-	
-	Boat a;
-
-	a.setBoatType("Speed-boat");
-	a.setBoatLength(15);
-
-	cout << "Boat type: " << a.getBoatType() << endl;
-	cout << "Boat length: " << a.getBoatLength() << "ft" <<endl;
-
-
-	a.launch();
-	a.launch();
-
-	a.dock();
-	a.dock();
-
-
-
-	Plane b;
-
-	b.setJetEngineStatus(true);
-	if (b.getJetEngineStatus() == 1)
-	{
-		cout << "Plane has jet engines." << endl;
-	}
-	else
-	{
-		cout << "Plane does not have jet engines." << endl;
-	}
-
-	b.land();
-	b.takeOff();
-	b.takeOff();
-
-
-	cout << "Current altitude: " << b.getAltitude() << endl;
-	b.setAltitude(50);
-	cout << "Current altitude: " << b.getAltitude() << endl;
-	b.setAltitude(1000);
-	cout << "Current altitude: " << b.getAltitude() << endl;
-	*/
+	line();
+	cout << a.getDistance() + b.getDistance() + c.getDistance() + d.getDistance() << endl;
 
 	//#####################################################################
 	line();
