@@ -27,11 +27,23 @@ bool isEmpty(ifstream& input)
 	return input.peek() == ifstream::traits_type::eof();
 }
 
+struct node
+{
+	int value;
+	node * next;
+	node * prev;
+};
 
 template <typename T> class listClass
 {
 private:
-	T head;
+	node * head = NULL;
+	node * location = NULL;
+	node * previous = NULL;
+	node * tail = NULL;
+
+	int size = 0;
+
 
 public:
 	listClass()
@@ -41,10 +53,87 @@ public:
 	{
 	}
 
-	T minMaxFunc(T value[5], string input)	//returns min or max value based on input
+	T PUSH(T input)
 	{
+		size = 0;
+		if (head == NULL)
+		{
+			head = new node;
+			head->value = input;
+			head->next = NULL;
+			head->prev = NULL:
+		}
+		else
+		{
+			location = head;
+			previous = location;
+			while (location->next != NULL)
+			{
+				location = location->next;
+				if (size > 0)
+				{
+					previous = previous->next;
+				}
+				size++;
+			}
+			location->next = new node;
+			location->prev = previous;
+			localion->next->value = input;
+		}
+	}
 
-		return 0;
+	T POP()
+	{
+		T end;
+		location = head;
+		previous = location;
+		while (location->next != NULL)
+		{
+			location = location->next;
+			
+		}
+		location->prev->next = NULL;
+		end = location->value;
+		delete location;
+
+		return end;
+
+
+	}
+
+	T PEEK()
+	{
+		while (location->next != NULL)
+		{
+			location = location->next;
+
+		}
+
+		return location->value;
+	}
+
+	bool ISFULL()
+	{
+		if (size == 5)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	bool ISEMPTY()
+	{
+		if (size == 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 };
@@ -122,6 +211,26 @@ public:
 };
 
 
+template <typename T> 
+T minMaxFunc(listClass<T> stack, string input)	//returns min or max value based on input
+{
+
+	return 0;
+}
+
+template <typename T>
+listClass<T> listBuild(T &array[], int &size)
+{
+	listClass<T> result;
+	arrayClass<T> temp;
+
+	if (size == 0)
+	{
+		temp.PUSH(array[size]);
+	}
+
+	return result;
+}
 
 int main()
 {
@@ -133,13 +242,13 @@ int main()
 	ifstream ins;
 	ofstream ons;
 
-	ins.open("data.dat"); //open file
-	//ons.open("out.txt"); //open file
+	ins.open(inFile); //open file
+	ons.open(onFile); //open file
 	ins.peek();
 		  
 	if (ins.fail())	//check if file is exists
 	{
-		cout << "***ERROR: File data.dat does not exist***" << endl;
+		cout << "***ERROR: File " << inFile << " does not exist***" << endl;
 		ins.close();
 		ons.close();
 		return 0;
@@ -147,7 +256,7 @@ int main()
 
 	if (isEmpty(ins)) //check if file is empty
 	{
-		cout << "***ERROR: File data.dat is empty***" << endl;
+		cout << "***ERROR: File " << inFile << " is empty***" << endl;
 		ins.close();
 		ons.close();
 		return 0;
@@ -155,19 +264,25 @@ int main()
 
 	if (ons.fail())	//check if file is exists
 	{
-		cout << "***ERROR: File out.txt does not exist***" << endl;
+		cout << "***ERROR: File " << onFile << " does not exist***" << endl;
 		ons.close();
 		ins.close();
 		return 0;
 	}
 
 
-	listClass<int> * location = NULL;
-	listClass<int> * head = NULL;
-	listClass<int> * next = NULL;
-	listClass<int> * temp = NULL;
+	int arr[5] = { 1, 3, 6, 4, 8 };
 
-	string choice = "";
+	listBuild<int>(arr, 5);
+
+
+
+
+
+
+
+
+	/*string choice = "";
 
 	cout << "Max(1) or min(2) value" << endl;
 	cin >> choice;
@@ -175,7 +290,7 @@ int main()
 	{
 		cout << "Invalid input" << endl;
 		cin >> choice;
-	}
+	}*/
 
 	
 
