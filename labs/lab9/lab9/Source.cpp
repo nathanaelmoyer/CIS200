@@ -43,8 +43,8 @@ public:
 
 	T minMaxFunc(T value[5], string input)	//returns min or max value based on input
 	{
-		return 0;
 
+		return 0;
 	}
 
 };
@@ -90,11 +90,11 @@ int main()
 	}
 
 
-	/*node * location = NULL;
-	node * head = NULL;
-	node * next = NULL;
-	node * temp = NULL;*/
-	node<int> a;
+	node<int> * location = NULL;
+	node<int> * head = NULL;
+	node<int> * next = NULL;
+	node<int> * temp = NULL;
+
 	string choice = "";
 
 	cout << "Max(1) or min(2) value" << endl;
