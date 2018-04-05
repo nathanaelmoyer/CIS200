@@ -149,7 +149,7 @@ public:
 	arrayClass()
 	{
 		size = 1;
-		value = { -1, -1, -1, -1, -1 };
+		
 	}
 	~arrayClass()
 	{
@@ -164,7 +164,7 @@ public:
 		}
 		else
 		{
-			return;
+			return 0;
 		}
 	}
 
@@ -219,7 +219,7 @@ T minMaxFunc(listClass<T> stack, string input)	//returns min or max value based 
 }
 
 template <typename T>
-listClass<T> listBuild(T &array[], int &size)
+listClass<T> listBuild(T array[], int &size)
 {
 	listClass<T> result;
 	arrayClass<T> temp;
@@ -227,7 +227,14 @@ listClass<T> listBuild(T &array[], int &size)
 	if (size == 0)
 	{
 		temp.PUSH(array[size]);
+		size++;
 	}
+	else
+	{
+		temp.PUSH(array[size]);
+	}
+		
+	
 
 	return result;
 }
@@ -270,14 +277,17 @@ int main()
 		return 0;
 	}
 
-
+	int size = 5;
 	int arr[5] = { 1, 3, 6, 4, 8 };
+	listClass<int> head;
 
-	listBuild<int>(arr, 5);
+	head = listBuild(arr, size);
 
-
-
-
+	/*while (head != NULL)
+	{
+		cout << head->value << " ";
+		head = head->next;
+	}*/
 
 
 
