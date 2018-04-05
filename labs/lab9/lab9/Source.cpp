@@ -28,16 +28,16 @@ bool isEmpty(ifstream& input)
 }
 
 
-template <typename T> class node
+template <typename T> class listClass
 {
 private:
-	T value[5];
+	T head;
 
 public:
-	node()
+	listClass()
 	{
 	}
-	~node()
+	~listClass()
 	{
 	}
 
@@ -50,8 +50,76 @@ public:
 };
 
 
+template <typename T> class arrayClass
+{
+private:
+	T value[5];
+	int size;
 
+public:
+	arrayClass()
+	{
+		size = 1;
+		value = { -1, -1, -1, -1, -1 };
+	}
+	~arrayClass()
+	{
+	}
 
+	T PUSH(T input)
+	{
+		if (ISFULL() == false)
+		{
+			value[size] = input;
+			size++;
+		}
+		else
+		{
+			return;
+		}
+	}
+
+	T POP()
+	{
+		if (ISEMPTY() == false)
+		{
+			size--;
+			return value[size + 1];
+
+		}
+	}
+
+	T PEEK()
+	{
+		return value[size];
+	}
+
+	bool ISFULL()
+	{
+		if (size == 5)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	bool ISEMPTY()
+	{
+		if (size == 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+
+};
 
 
 
@@ -65,35 +133,39 @@ int main()
 	ifstream ins;
 	ofstream ons;
 
-	ins.open(inFile); //open file
-
-					  
+	ins.open("data.dat"); //open file
+	//ons.open("out.txt"); //open file
+	ins.peek();
+		  
 	if (ins.fail())	//check if file is exists
 	{
-		cout << "***ERROR: File data.dat does not exist***" << inFile << endl;
+		cout << "***ERROR: File data.dat does not exist***" << endl;
 		ins.close();
+		ons.close();
 		return 0;
 	}
 
 	if (isEmpty(ins)) //check if file is empty
 	{
-		cout << "***ERROR: File data.dat is empty***" << inFile << endl;
+		cout << "***ERROR: File data.dat is empty***" << endl;
 		ins.close();
+		ons.close();
 		return 0;
 	}
 
 	if (ons.fail())	//check if file is exists
 	{
-		cout << "***ERROR: File out.txt does not exist***" << inFile << endl;
+		cout << "***ERROR: File out.txt does not exist***" << endl;
+		ons.close();
 		ins.close();
 		return 0;
 	}
 
 
-	node<int> * location = NULL;
-	node<int> * head = NULL;
-	node<int> * next = NULL;
-	node<int> * temp = NULL;
+	listClass<int> * location = NULL;
+	listClass<int> * head = NULL;
+	listClass<int> * next = NULL;
+	listClass<int> * temp = NULL;
 
 	string choice = "";
 
