@@ -21,6 +21,7 @@ void line()
 
 }
 
+
 template <class T>
 class A
 {
@@ -69,6 +70,12 @@ public:
 
 };
 
+struct Date
+{
+	int day;
+	int month;
+	int year;
+};
 
 
 int main()
@@ -87,14 +94,84 @@ int main()
 		ons.close();
 		return 0;
 	}
+
+	B<float> floatType;
+
+	floatType.setValuea(1.34);
+	floatType.setValueb(3.14);
+
+	cout << "Float type" << endl;
+	cout << "Valuea: " << floatType.getValuea() << endl;
+	cout << "Valueb: " << floatType.getValueb() << endl;
+
+	ons << "Float type" << endl;
+	ons << "Valuea: " << floatType.getValuea() << endl;
+	ons << "Valueb: " << floatType.getValueb() << endl;
+
+	line();
+	ons << endl << "--------------------------------------------------------------------------------" << endl;
+
+	B<int> intType;
+
+	intType.setValuea(1.34);
+	intType.setValueb(3.14);
+
+	cout << "Int type" << endl;
+	cout << "Valuea: " << intType.getValuea() << endl;
+	cout << "Valueb: " << intType.getValueb() << endl;
+
+	ons << "Int type" << endl;
+	ons << "Valuea: " << intType.getValuea() << endl;
+	ons << "Valueb: " << intType.getValueb() << endl;
+
+	line();
+	ons << endl << "--------------------------------------------------------------------------------" << endl;
+
+	B<char> charType;
+
+
+	charType.setValuea('a');
+	charType.setValueb('c');
+
+	cout << "Char type" << endl;
+	cout << "Valuea: " << charType.getValuea() << endl;
+	cout << "Valueb: " << charType.getValueb() << endl;
+
+	ons << "Char type" << endl;
+	ons << "Valuea: " << charType.getValuea() << endl;
+	ons << "Valueb: " << charType.getValueb() << endl;
+
+	line();
+	ons << endl << "--------------------------------------------------------------------------------" << endl;
+
+	B<string> stringType;
+
+	stringType.setValuea("good");
+	stringType.setValueb("morning");
+
+	cout << "String type" << endl;
+	cout << "Valuea: " << stringType.getValuea() << endl;
+	cout << "Valueb: " << stringType.getValueb() << endl;
+
+	ons << "String type" << endl;
+	ons << "Valuea: " << stringType.getValuea() << endl;
+	ons << "Valueb: " << stringType.getValueb() << endl;
+
+	line();
+	ons << endl << "--------------------------------------------------------------------------------" << endl;
+
+	B<Date> dateType;
+
+	dateType.setValuea({27, 10, 2015});
+	dateType.setValueb({ 2,11,2015 });
+
+	cout << "Date type" << endl;
+	cout << "Valuea: " << dateType.getValuea().month << "/" << dateType.getValuea().day << "/" << dateType.getValuea().year << endl;
+	cout << "Valuea: " << dateType.getValueb().month << "/" << dateType.getValueb().day << "/" << dateType.getValueb().year << endl;
 	
-	B<float> x;
-
-	x.setValuea(1.34);
-	x.setValueb(3.14);
-
-
-
+	ons << "Date type" << endl;
+	ons << "Valuea: " << dateType.getValuea().month << "/" << dateType.getValuea().day << "/" << dateType.getValuea().year << endl;
+	ons << "Valuea: " << dateType.getValueb().month << "/" << dateType.getValueb().day << "/" << dateType.getValueb().year << endl;
 
 	//#####################################################################
 	line();
