@@ -148,7 +148,7 @@ private:
 public:
 	arrayClass()
 	{
-		size = 1;
+		size = 0;
 		
 	}
 	~arrayClass()
@@ -180,7 +180,7 @@ public:
 
 	T PEEK()
 	{
-		return value[size];
+		return value[size - 1];
 	}
 
 	bool ISFULL()
@@ -224,20 +224,28 @@ listClass<T> listBuild(T array[], int &size)
 	listClass<T> result;
 	arrayClass<T> temp;
 
-	if (size == 0)
-	{
-		temp.PUSH(array[size]);
-		size++;
-	}
-	else
-	{
-		temp.PUSH(array[size]);
-	}
-		
 	
+	for (int i = 0; i < 5; i++)
+	{
+
+
+		if (i == 0)
+		{
+			temp.PUSH(array[i]);
+		
+		}
+		else
+		{
+			temp.PUSH(array[i]);
+		
+		}
+
+	}
 
 	return result;
 }
+
+
 
 int main()
 {
@@ -277,17 +285,26 @@ int main()
 		return 0;
 	}
 
-	int size = 5;
+	/*int size = 5;
 	int arr[5] = { 1, 3, 6, 4, 8 };
 	listClass<int> head;
+	listClass<int> location;
+
 
 	head = listBuild(arr, size);
-
-	/*while (head != NULL)
+	location = head;
+	
+	do
 	{
-		cout << head->value << " ";
-		head = head->next;
-	}*/
+		cout << location->value << " ";
+		location = location->next;
+	} while (location != NULL));*/
+		
+		
+
+
+	
+
 
 
 
