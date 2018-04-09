@@ -30,9 +30,59 @@ struct date
 };
 
 
-date converStringToDate(string input)
+void convertDate(date input)
 {
+	line();
+	if (input.month == 1)
+	{
+		cout << "January";
+	}
+	if (input.month == 2)
+	{
+		cout << "February";
+	}
+	if (input.month == 3)
+	{
+		cout << "March";
+	}
+	if (input.month == 4)
+	{
+		cout << "April";
+	}
+	if (input.month == 5)
+	{
+		cout << "May";
+	}
+	if (input.month == 6)
+	{
+		cout << "June";
+	}
+	if (input.month == 7)
+	{
+		cout << "July";
+	}
+	if (input.month == 8)
+	{
+		cout << "August";
+	}
+	if (input.month == 9)
+	{
+		cout << "September";
+	}
+	if (input.month == 10)
+	{
+		cout << "October";
+	}
+	if (input.month == 11)
+	{
+		cout << "November";
+	}
+	if (input.month == 12)
+	{
+		cout << "December";
+	}
 
+	cout << " " << input.day << ", " << input.year << endl;
 }
 
 
@@ -43,35 +93,62 @@ int main()
 	line();
 	//####################################################################
 
-	date x;
-	string input;
+	date x = { 0, 0, 0 };
 
 	try
 	{
-		cout << "Please enter your birth date. (Format ex: 08-27-1990)" << endl;
-		cin >> input;
+		cout << "Enter birth month: ";
+		cin >> x.month;
 
-		if (input.at(2) != '-')
-		{
-			throw string("Invalid date format");
-		}
-		else if (input.at(5) != '-')
-		{
-			throw string("Invalid date format");
-		}
+		cout << "Enter day of birth: ";
+		cin >> x.day;
 
-		if ((input.at(0) + input.at(1) > 31))
+		cout << "Enter birth year: ";
+		cin >> x.year;
+
+
+		if (x.month < 1 || x.month > 12)
 		{
 			throw string("Invalid month");
 		}
+
+		if (x.day < 1 || x.day > 31)
+		{
+			throw string("Invalid day");
+		}
+
+		if (x.year < 1915 || x.year > 2017)
+		{
+			throw int();
+		}
+		
+		
 	}
 	catch (string s)
 	{
 		cout << s << endl;
+		cout << "Re-enter dates" << endl;
+		cout << "Enter birth month: ";
+		cin >> x.month;
+
+		cout << "Enter day of birth: ";
+		cin >> x.day;
+
+		cout << "Enter birth year: ";
+		cin >> x.year;
+
 	}
 
+	catch (...)
+	{
+		cout << "Invalid year" << endl;
+		cout << "Re-enter year" << endl;
+		cin >> x.year;
+	}
 	
 
+
+	convertDate(x);
 
 
 
