@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include <string>
 
 using namespace std;
 
@@ -33,7 +34,7 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * listSo
 	listNode * temp = NULL;
 	listNode * previous = NULL;
 
-	string stringInput = "";
+	string stringInput = "a";
 	int intInput = 0;
 	double input = 0.0;
 
@@ -57,7 +58,19 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * listSo
 	{
 		cout << "Tool name: ";
 		cin >> stringInput;
+		while (stringInput.length() > 20)	//check name length
+		{
+			cout << "Name is too long. Must be 20 or less characters." << endl;
+			cin >> stringInput;
+		}
+		char toolName[21];
+		strcpy_s(toolName, stringInput.c_str());	//copy stringInput to toolName array
 
+		cout << "Quantity: ";
+		cin >> intInput;
+		
+		
+		
 	}
 }
 
