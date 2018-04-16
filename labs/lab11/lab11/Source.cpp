@@ -16,7 +16,7 @@ struct listNode
 	char toolName[20];
 	int quantity;
 	double cost;
-	listNode next;
+	listNode * next;
 };
 
 struct recordArr
@@ -27,7 +27,7 @@ struct recordArr
 	double cost;
 };
 
-void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * listSorted, listNode * listUnsorted, fstream ons)
+void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * listSorted, listNode * listUnsorted, fstream &ons)
 {
 	listNode * location = NULL;
 	listNode * temp = NULL;
@@ -52,9 +52,28 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * listSo
 		location = location->next;
 		comparisons++;
 	}
+
+	if (location == NULL)
+	{
+		cout << "Tool name: ";
+		cin >> stringInput;
+
+	}
 }
 
 int main()
 {
+	recordArr arrSorted[100];
+	recordArr arrUnsorted[100];
+	listNode * listSortedHead = NULL;
+	listNode * listUnsortedHead = NULL;
+	fstream ons;
+
+	ons.open(onFile);
+
+	addRecord(arrSorted, arrUnsorted, listSortedHead, listUnsortedHead, ons);
+
+
+	//cout << arrSorted[0].recordNum << endl;;
 	return 0;
 }
