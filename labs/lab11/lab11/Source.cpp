@@ -14,7 +14,7 @@ using namespace std;
 struct listNode
 {
 	int recordNum;
-	char toolName[20];
+	string toolName;
 	int quantity;
 	double cost;
 	listNode * next;
@@ -36,7 +36,7 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headLi
 	listNode * previous = NULL;
 
 	string stringInput = "a";
-	char toolName[21];
+	//char toolName[21];
 	int intInput = 0;
 	int userNum = 0;
 	double doubleInput = 0.0;
@@ -67,7 +67,7 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headLi
 			cin >> stringInput;
 		}
 		
-		strcpy_s(toolName, stringInput.c_str());	//copy stringInput to toolName array
+		//strcpy_s(toolName, stringInput.c_str());	//copy stringInput to toolName array
 
 		cout << "Quantity: ";
 		cin >> intInput;
@@ -93,10 +93,11 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headLi
 		headListSorted = new listNode;
 		location = headListSorted;
 		location->recordNum = userNum;
-		for (int i = 0; toolName[i] == NULL; i++)
+		location->toolName = stringInput;
+		/*for (int i = 0; toolName[i] == NULL; i++)
 		{
 			location->toolName[i] = toolName[i];
-		}
+		}*/
 		location->quantity = intInput;
 		location->cost = doubleInput;
 		location->next = headListSorted;
@@ -106,10 +107,11 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headLi
 	{
 		temp = new listNode;
 		temp->recordNum = userNum;
-		for (int i = 0; toolName[i] == NULL; i++)
+		location->toolName = stringInput;
+		/*for (int i = 0; toolName[i] == NULL; i++)
 		{
 			temp->toolName[i] = toolName[i];
-		}
+		}*/
 		temp->quantity = intInput;
 		temp->cost = doubleInput;
 		temp->next = headListSorted;
@@ -131,10 +133,11 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headLi
 		{
 			temp = new listNode;
 			temp->recordNum = userNum;
-			for (int i = 0; toolName[i] == NULL; i++)
+			location->toolName = stringInput;
+			/*for (int i = 0; toolName[i] == NULL; i++)
 			{
 				temp->toolName[i] = toolName[i];
-			}
+			}*/
 			temp->quantity = intInput;
 			temp->cost = doubleInput;
 			temp->next = headListSorted;
@@ -148,10 +151,11 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headLi
 		{
 			temp = new listNode;
 			temp->recordNum = userNum;
-			for (int i = 0; toolName[i] == NULL; i++)
+			location->toolName = stringInput;
+			/*for (int i = 0; toolName[i] == NULL; i++)
 			{
 				temp->toolName[i] = toolName[i];
-			}
+			}*/
 			temp->quantity = intInput;
 			temp->cost = doubleInput;
 			temp->next = headListSorted;
@@ -161,6 +165,8 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headLi
 			temp->next = location;
 		}
 	}
+
+	
 }
 
 int main()
@@ -177,9 +183,9 @@ int main()
 	
 
 	addRecord(arrSorted, arrUnsorted, listSortedHead, listUnsortedHead, ons);
-	addRecord(arrSorted, arrUnsorted, listSortedHead, listUnsortedHead, ons);
+	//addRecord(arrSorted, arrUnsorted, listSortedHead, listUnsortedHead, ons);
 
-
+	cout << listSortedHead->toolName << endl;
 	
 	
 
