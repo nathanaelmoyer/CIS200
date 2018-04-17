@@ -18,6 +18,7 @@ void selectionSort(int a[])
 		{
 			minVal = a[i];
 		}
+
 	}
 }
 
