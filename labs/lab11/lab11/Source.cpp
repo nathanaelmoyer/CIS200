@@ -28,8 +28,9 @@ struct recordArr
 	double cost;
 };
 
-void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode  headListSorted, listNode * headListUnsorted, fstream &ons)
+void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headListSorted, listNode * headListUnsorted, fstream &ons)
 {
+
 	listNode * location = NULL;
 	listNode * temp = NULL;
 	listNode * previous = NULL;
@@ -87,6 +88,20 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode  headLis
 
 	//adding to sorted linked list
 	comparisons = 0;
+	if (headListSorted == NULL)
+	{
+		headListSorted = new listNode;
+		location = headListSorted;
+		location->recordNum = userNum;
+		for (int i = 0; toolName[i] == NULL; i++)
+		{
+			location->toolName[i] = toolName[i];
+		}
+		location->quantity = intInput;
+		location->cost = doubleInput;
+		location->next = headListSorted;
+		headListSorted = location;
+	}
 	if (headListSorted->recordNum > userNum)
 	{
 		temp = new listNode;
@@ -146,7 +161,6 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode  headLis
 			temp->next = location;
 		}
 	}
-
 }
 
 int main()
@@ -159,12 +173,16 @@ int main()
 
 	ons.open(onFile);
 
-	listSortedHead = 0;
+
 	
 
 	addRecord(arrSorted, arrUnsorted, listSortedHead, listUnsortedHead, ons);
+	addRecord(arrSorted, arrUnsorted, listSortedHead, listUnsortedHead, ons);
 
 
-	//cout << arrSorted[0].recordNum << endl;;
+	
+	
+
+	
 	return 0;
 }
