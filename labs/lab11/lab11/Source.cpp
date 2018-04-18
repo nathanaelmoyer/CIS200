@@ -11,6 +11,9 @@ using namespace std;
 
 #define onFile "outputFile.txt"
 
+
+
+
 struct listNode
 {
 	int recordNum;
@@ -23,10 +26,26 @@ struct listNode
 struct recordArr
 {
 	int recordNum;
-	char toolName[20];
+	string toolName;
 	int quantity;
 	double cost;
 };
+
+void printList(listNode *list)	//print list
+{
+	listNode *temp = NULL;
+	temp = list;
+
+	while (temp != NULL)
+	{
+		cout << temp->recordNum << " ";
+		cout << temp->toolName << " ";
+		cout << temp->quantity << " ";
+		cout << temp->cost << " ";
+		cout << endl;
+		temp = temp->next;
+	}
+}
 
 void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headListSorted, listNode * headListUnsorted, fstream &ons)
 {
@@ -36,10 +55,10 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headLi
 	listNode * previous = NULL;
 
 	string stringInput = "a";
-	//char toolName[21];
 	int intInput = 0;
 	int userNum = 0;
 	double doubleInput = 0.0;
+	int comparisons = 0;
 
 	cout << "Enter a record number: ";
 	cin >> userNum;
@@ -50,7 +69,7 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headLi
 		cin >> userNum;
 	}
 
-	int comparisons = 0;
+
 	while (location != NULL && location->recordNum != userNum)
 	{
 		location = location->next;
@@ -61,13 +80,6 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headLi
 	{
 		cout << "Tool name: ";
 		cin >> stringInput;
-		while (stringInput.length() > 20)	//check name length
-		{
-			cout << "Name is too long. Must be 20 or less characters." << endl;
-			cin >> stringInput;
-		}
-		
-		//strcpy_s(toolName, stringInput.c_str());	//copy stringInput to toolName array
 
 		cout << "Quantity: ";
 		cin >> intInput;
@@ -94,24 +106,19 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headLi
 		location = headListSorted;
 		location->recordNum = userNum;
 		location->toolName = stringInput;
-		/*for (int i = 0; toolName[i] == NULL; i++)
-		{
-			location->toolName[i] = toolName[i];
-		}*/
+		
 		location->quantity = intInput;
 		location->cost = doubleInput;
 		location->next = headListSorted;
 		headListSorted = location;
+		comparisons++;
 	}
 	if (headListSorted->recordNum > userNum)
 	{
 		temp = new listNode;
 		temp->recordNum = userNum;
 		location->toolName = stringInput;
-		/*for (int i = 0; toolName[i] == NULL; i++)
-		{
-			temp->toolName[i] = toolName[i];
-		}*/
+		
 		temp->quantity = intInput;
 		temp->cost = doubleInput;
 		temp->next = headListSorted;
@@ -134,10 +141,7 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headLi
 			temp = new listNode;
 			temp->recordNum = userNum;
 			location->toolName = stringInput;
-			/*for (int i = 0; toolName[i] == NULL; i++)
-			{
-				temp->toolName[i] = toolName[i];
-			}*/
+			
 			temp->quantity = intInput;
 			temp->cost = doubleInput;
 			temp->next = headListSorted;
@@ -145,6 +149,7 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headLi
 
 			previous->next = temp;
 			temp->next = location;
+			comparisons++;
 		}
 
 		if (location->recordNum > userNum)
@@ -152,10 +157,7 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headLi
 			temp = new listNode;
 			temp->recordNum = userNum;
 			location->toolName = stringInput;
-			/*for (int i = 0; toolName[i] == NULL; i++)
-			{
-				temp->toolName[i] = toolName[i];
-			}*/
+			
 			temp->quantity = intInput;
 			temp->cost = doubleInput;
 			temp->next = headListSorted;
@@ -163,11 +165,31 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headLi
 
 			previous->next = temp;
 			temp->next = location;
+			comparisons++;
 		}
 	}
-
+	ons << "Sorted linked list comparisons: " << comparisons << endl << endl;
+	location = headListSorted;
 	
+	//End sorted linked list
+
+	//add to unsorted linked list
+
+	//end unsorted linked list
+
+	//add to sorted array
+
+	arrSorted[userNum - 1].cost = doubleInput;
+	arrSorted[userNum - 1].quantity = intInput;
+	arrSorted[userNum - 1].recordNum = userNum;
+	arrSorted[userNum - 1].toolName = stringInput;
+	comparisons = 1;
+	ons << "Sorted array comparisons: " << comparisons << endl << endl;
+
 }
+
+
+
 
 int main()
 {
@@ -175,6 +197,7 @@ int main()
 	recordArr arrUnsorted[100];
 	listNode * listSortedHead = NULL;
 	listNode * listUnsortedHead = NULL;
+	listNode * location = NULL;
 	fstream ons;
 
 	ons.open(onFile);
@@ -183,9 +206,11 @@ int main()
 	
 
 	addRecord(arrSorted, arrUnsorted, listSortedHead, listUnsortedHead, ons);
-	//addRecord(arrSorted, arrUnsorted, listSortedHead, listUnsortedHead, ons);
+	addRecord(arrSorted, arrUnsorted, listSortedHead, listUnsortedHead, ons);
 
-	cout << listSortedHead->toolName << endl;
+
+	location = listSortedHead;
+	printList(location);
 	
 	
 

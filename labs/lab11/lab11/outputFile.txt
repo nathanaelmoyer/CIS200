@@ -1,0 +1,8 @@
+Sorted linked list comparisons: 1
+
+Sorted array comparisons: 1
+
+Sorted linked list comparisons: 1
+
+Sorted array comparisons: 1
+
