@@ -96,96 +96,110 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headLi
 			cout << "Cost must be greater than 0." << endl;
 			cin >> doubleInput;
 		}
-	}
 
-	//adding to sorted linked list
-	comparisons = 0;
-	if (headListSorted == NULL)
-	{
-		headListSorted = new listNode;
+
+		//adding to sorted linked list
+		comparisons = 0;
+		if (headListSorted == NULL)
+		{
+			headListSorted = new listNode;
+			location = headListSorted;
+			location->recordNum = userNum;
+			location->toolName = stringInput;
+
+			location->quantity = intInput;
+			location->cost = doubleInput;
+			location->next = headListSorted;
+			headListSorted = location;
+			comparisons++;
+		}
+		if (headListSorted->recordNum > userNum)
+		{
+			temp = new listNode;
+			temp->recordNum = userNum;
+			location->toolName = stringInput;
+
+			temp->quantity = intInput;
+			temp->cost = doubleInput;
+			temp->next = headListSorted;
+			headListSorted = temp;
+			comparisons++;
+		}
+		else
+		{
+			previous = headListSorted;
+			location = headListSorted->next;
+			while (location != NULL && location->recordNum < userNum)
+			{
+				previous = location;
+				location = location->next;
+				comparisons++;
+			}
+
+			if (location == NULL)
+			{
+				temp = new listNode;
+				temp->recordNum = userNum;
+				location->toolName = stringInput;
+
+				temp->quantity = intInput;
+				temp->cost = doubleInput;
+				temp->next = headListSorted;
+				headListSorted = temp;
+
+				previous->next = temp;
+				temp->next = location;
+				comparisons++;
+			}
+
+			if (location->recordNum > userNum)
+			{
+				temp = new listNode;
+				temp->recordNum = userNum;
+				location->toolName = stringInput;
+
+				temp->quantity = intInput;
+				temp->cost = doubleInput;
+				temp->next = headListSorted;
+				headListSorted = temp;
+
+				previous->next = temp;
+				temp->next = location;
+				comparisons++;
+			}
+		}
+		ons << "Sorted linked list comparisons: " << comparisons << endl << endl;
 		location = headListSorted;
-		location->recordNum = userNum;
-		location->toolName = stringInput;
-		
-		location->quantity = intInput;
-		location->cost = doubleInput;
-		location->next = headListSorted;
-		headListSorted = location;
-		comparisons++;
-	}
-	if (headListSorted->recordNum > userNum)
-	{
-		temp = new listNode;
-		temp->recordNum = userNum;
-		location->toolName = stringInput;
-		
-		temp->quantity = intInput;
-		temp->cost = doubleInput;
-		temp->next = headListSorted;
-		headListSorted = temp;
-		comparisons++;
-	}
-	else
-	{
-		previous = headListSorted;
-		location = headListSorted->next;
-		while (location != NULL && location->recordNum < userNum)
+
+		//End sorted linked list
+
+		//add to unsorted linked list
+
+		//end unsorted linked list
+
+		//add to sorted array
+
+		arrSorted[userNum - 1].cost = doubleInput;
+		arrSorted[userNum - 1].quantity = intInput;
+		arrSorted[userNum - 1].recordNum = userNum;
+		arrSorted[userNum - 1].toolName = stringInput;
+		comparisons = 1;
+		ons << "Sorted array comparisons: " << comparisons << endl << endl;
+
+		//end sorted array
+
+		//add to unsorted array
+
+		comparisons = 0;
+
+		int x = 0;
+		while (arrUnsorted[x].recordNum != 0)
 		{
-			previous = location;
-			location = location->next;
-			comparisons++;
+
 		}
 
-		if (location == NULL)
-		{
-			temp = new listNode;
-			temp->recordNum = userNum;
-			location->toolName = stringInput;
-			
-			temp->quantity = intInput;
-			temp->cost = doubleInput;
-			temp->next = headListSorted;
-			headListSorted = temp;
 
-			previous->next = temp;
-			temp->next = location;
-			comparisons++;
-		}
-
-		if (location->recordNum > userNum)
-		{
-			temp = new listNode;
-			temp->recordNum = userNum;
-			location->toolName = stringInput;
-			
-			temp->quantity = intInput;
-			temp->cost = doubleInput;
-			temp->next = headListSorted;
-			headListSorted = temp;
-
-			previous->next = temp;
-			temp->next = location;
-			comparisons++;
-		}
 	}
-	ons << "Sorted linked list comparisons: " << comparisons << endl << endl;
-	location = headListSorted;
-	
-	//End sorted linked list
-
-	//add to unsorted linked list
-
-	//end unsorted linked list
-
-	//add to sorted array
-
-	arrSorted[userNum - 1].cost = doubleInput;
-	arrSorted[userNum - 1].quantity = intInput;
-	arrSorted[userNum - 1].recordNum = userNum;
-	arrSorted[userNum - 1].toolName = stringInput;
-	comparisons = 1;
-	ons << "Sorted array comparisons: " << comparisons << endl << endl;
-
 }
 
 
