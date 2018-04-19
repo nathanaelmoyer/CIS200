@@ -47,63 +47,97 @@ int main()
 	Data C = { (24 + rand() % 3), (11 + rand() % 5), 'A' };
 	Data D = { (25 + rand() % 11), (8 + rand() % 5), 'A' };
 
-	bool cpuStatus = false;// true = cpu is busy false = cpu is idle
+	char cpuStatus = 'Q';// true = cpu is busy false = cpu is idle
 
 	for (int i = 1; i <= 10000; i++)
 	{
-		//if (i < 500)//wait 500 time units before outputting data
+		//if (i >= 500)//start outputting data
 		//{
-		//	if (cpuStatus == false)
+		//	//command line output
+
+		//	if (cpuStatus == 'Q')
 		//	{
 		//		if ((i % A.arrivalTime) == 0)
 		//		{
-		//			cpuStatus = true;
+		//			cpuStatus = 'A';
 		//		}
 		//		if ((i % B.arrivalTime) == 0)
 		//		{
-		//			cpuStatus = true;
+		//			cpuStatus = 'B';
 		//		}
 		//		if ((i % C.arrivalTime) == 0)
 		//		{
-		//			cpuStatus = true;
+		//			cpuStatus = 'C';
 		//		}
-
-
 		//	}
 		//	else
 		//	{
-		//		//do nothing since cpu is busy
+
 		//	}
-		//}
-		//
+
 		if (i >= 500)//start outputting data
 		{
 			//command line output
 			cout << i << ") ";
 
-			if (cpuStatus == false)
+			if (cpuStatus == 'Q')
 			{
 				if ((i % A.arrivalTime) == 0)
 				{
-					cout << "Job A hast started";
-					cpuStatus = true;
+					cout << "Job A has started. ";
+					cpuStatus = 'A';
 				}
+			}
+			
+			if (cpuStatus == 'Q')
+			{
 				if ((i % B.arrivalTime) == 0)
 				{
-					cout << "Job B has started";
-					cpuStatus = true;
+					cout << "Job B has started. ";
+					cpuStatus = 'B';
 				}
+			}
+			if (cpuStatus == 'Q')
+			{
 				if ((i % C.arrivalTime) == 0)
 				{
-					cout << "Job C has started";
-					cpuStatus = true;
+					cout << "Job C has started. ";
+					cpuStatus = 'C';
 				}
 			}
-			else
+
+
+			if (cpuStatus == 'Q')//idle cpu check
 			{
-				cout << "CPU is busy";
+				cout << "CPU is idle";
 			}
-					
+			
+			if (cpuStatus != 'Q')//busy cpu check
+			{
+				cout << "CPU is running job " << cpuStatus << ".";
+			}
+
+			if (cpuStatus == 'A')//end jobs after processing time has finished
+			{
+				if (i % A.processingTime == 0)
+				{
+					cpuStatus = 'Q';
+				}
+			}
+			if (cpuStatus == 'B')
+			{
+				if (i % B.processingTime == 0)
+				{
+					cpuStatus = 'Q';
+				}
+			}
+			if (cpuStatus == 'C')
+			{
+				if (i % C.processingTime == 0)
+				{
+					cpuStatus = 'Q';
+				}
+			}
 
 			cout << endl;
 
