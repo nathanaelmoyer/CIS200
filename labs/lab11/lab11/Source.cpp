@@ -9,7 +9,7 @@
 
 using namespace std;
 
-#define onFile "outputFile.txt"
+#define onFile "log.txt"
 
 
 
@@ -36,6 +36,10 @@ void printList(listNode *list)	//print list
 	listNode *temp = NULL;
 	temp = list;
 
+	if (temp == NULL)
+	{
+		cout << "Record does not exist" << endl;
+	}
 	while (temp != NULL)
 	{
 		cout << temp->recordNum << " ";
@@ -47,7 +51,7 @@ void printList(listNode *list)	//print list
 	}
 }
 
-void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headListSorted, listNode * headListUnsorted, fstream &ons)
+void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode *&headListSorted, listNode * headListUnsorted, fstream &ons)
 {
 
 	listNode * location = NULL;
@@ -125,6 +129,7 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headLi
 			headListSorted = temp;
 			comparisons++;
 		}
+		
 		else
 		{
 			previous = headListSorted;
@@ -135,7 +140,7 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headLi
 				location = location->next;
 				comparisons++;
 			}
-
+			
 			if (location == NULL)
 			{
 				temp = new listNode;
@@ -151,7 +156,7 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headLi
 				temp->next = location;
 				comparisons++;
 			}
-
+			
 			if (location->recordNum > userNum)
 			{
 				temp = new listNode;
@@ -167,7 +172,9 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headLi
 				temp->next = location;
 				comparisons++;
 			}
+			
 		}
+		
 		ons << "Sorted linked list comparisons: " << comparisons << endl << endl;
 		location = headListSorted;
 
@@ -181,7 +188,6 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headLi
 
 		arrSorted[userNum - 1].cost = doubleInput;
 		arrSorted[userNum - 1].quantity = intInput;
-		arrSorted[userNum - 1].recordNum = userNum;
 		arrSorted[userNum - 1].toolName = stringInput;
 		comparisons = 1;
 		ons << "Sorted array comparisons: " << comparisons << endl << endl;
@@ -193,9 +199,12 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headLi
 		comparisons = 0;
 
 		int x = 0;
-		while (arrUnsorted[x].recordNum != 0)
+		while (arrUnsorted[x].cost != 0)
 		{
-
+			arrUnsorted[x].cost = doubleInput;
+			arrUnsorted[x].quantity = intInput;
+			arrUnsorted[x].toolName = stringInput;
+			x++;
 		}
 
 
@@ -208,23 +217,40 @@ void addRecord(recordArr arrSorted[], recordArr arrUnsorted[], listNode * headLi
 int main()
 {
 	recordArr arrSorted[100];
+	for (int i = 0; i < 100; i++)
+	{
+		arrSorted[i].recordNum = i + 1;
+		arrSorted[i].toolName = " ";
+		arrSorted[i].quantity = 0;
+		arrSorted[i].cost = 0;
+	}
 	recordArr arrUnsorted[100];
-	listNode * listSortedHead = NULL;
-	listNode * listUnsortedHead = NULL;
+	for (int i = 0; i < 100; i++)
+	{
+		arrUnsorted[i].recordNum = i + 1;
+		arrUnsorted[i].toolName = " ";
+		arrUnsorted[i].quantity = 0;
+		arrUnsorted[i].cost = 0;
+	}
+	listNode * headSorted = NULL;
+	listNode * headUnsorted = NULL;
 	listNode * location = NULL;
-	fstream ons;
+	fstream outFile;
 
-	ons.open(onFile);
+	outFile.open(onFile);
 
-
+	cout << "Welcome to lab 11." << endl;
 	
 
-	addRecord(arrSorted, arrUnsorted, listSortedHead, listUnsortedHead, ons);
-	addRecord(arrSorted, arrUnsorted, listSortedHead, listUnsortedHead, ons);
+	addRecord(arrSorted, arrUnsorted, headSorted, headUnsorted, outFile);
+	addRecord(arrSorted, arrUnsorted, headSorted, headUnsorted, outFile);
 
+	for (int i = 0; i < 100; i++)
+	{
+		cout << arrSorted[i].toolName << " " << arrSorted[i].cost << " " << arrSorted[1].quantity << endl;
 
-	location = listSortedHead;
-	printList(location);
+	}
+	//printList(headSorted);
 	
 	
 
