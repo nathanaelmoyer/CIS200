@@ -245,12 +245,8 @@ int main()
 	addRecord(arrSorted, arrUnsorted, headSorted, headUnsorted, outFile);
 	addRecord(arrSorted, arrUnsorted, headSorted, headUnsorted, outFile);
 
-	for (int i = 0; i < 100; i++)
-	{
-		cout << arrSorted[i].toolName << " " << arrSorted[i].cost << " " << arrSorted[1].quantity << endl;
-
-	}
-	//printList(headSorted);
+	
+	printList(headSorted);
 	
 	
 
