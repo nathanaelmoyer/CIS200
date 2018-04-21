@@ -61,7 +61,7 @@ public:
 	int getMin() { return heaparray[0]; }
 
 	// Inserts a new key 'k'
-	void insertKey(int k);
+	void insertKey(int k, char jobType, int &numJobsInterrupted, bool idleStatus);
 
 	int getHeapSize()//get the size of the queue
 	{
@@ -77,7 +77,7 @@ MinHeap::MinHeap(int cap)
 }
 
 // Inserts a new key 'k'
-void MinHeap::insertKey(int k)
+void MinHeap::insertKey(int k, char jobType, int &numJobsInterrupted, bool idleStatus)
 {
 	if (heap_size == capacity)
 	{
@@ -85,10 +85,24 @@ void MinHeap::insertKey(int k)
 		return;
 	}
 
-	// First insert the new key at the end
+	
 	heap_size++;
 	int i = heap_size - 1;
-	heaparray[i] = k;
+	if (jobType == 'D')//if jobType is D then put next in queue
+	{
+		heaparray[0] = k;
+		if (idleStatus == false)
+		{
+			numJobsInterrupted++;
+		}
+	
+	}
+	else// First insert the new key at the end
+	{
+		heaparray[i] = k;
+	}
+	
+	
 
 	// Fix the min heap property if it is violated
 	while (i != 0 && heaparray[parent(i)] > heaparray[i])
@@ -157,7 +171,7 @@ int main()
 	cout << "File " << onFile << " opened" << endl << endl;
 
 
-	MinHeap queue(3000);
+	MinHeap queue(4000);
 	Data jobs[10000];
 
 	int counter = 0;	//used to know when to know what time jobs are placed
@@ -176,57 +190,111 @@ int main()
 	int maxJobs = 0; //max number of jobs in the queue
 	int totalJobsComplete = 0;
 	int numJobsInterrupted = 0; //number of jobs that were interrupted
-	int numberOfCPU = 0; //number of cpus used for simulation
+	int numberOfCPU = 1; //number of cpus used for simulation
 	int totalTime = 0; //total number of time units the cpu runs
 	int totalTimeProcessed = 0; //total time the processors spent processing
 
 	for (int i = 0; i < 2000; i++)//create jobs by setting time of arrivals and processing times
 	{
-		if (counter % 5 == 0)
+		if (counter % 5 == 0)//job A
 		{
 			jobs[b].jobType = 'A';
 			jobs[b].arrivalTime = counter + 4 + rand() % 3;
 			jobs[b].processingTime = counter + 1 + rand() % 5;
 			b++;
 		}
-		if (counter % 10 == 0)
+		if (counter % 10 == 0)//job B
 		{
 			jobs[b].jobType = 'B';
 			jobs[b].arrivalTime = counter + 9 + rand() % 3;
 			jobs[b].processingTime = counter + 6 + rand() % 5;
 			b++;
 		}
-		if (counter % 25 == 0)
+		if (counter % 25 == 0)//job C
 		{
 			jobs[b].jobType = 'C';
 			jobs[b].arrivalTime = counter + 24 + rand() % 3;
 			jobs[b].processingTime = counter + 11 + rand() % 5;
 			b++;
 		}
-		if (counter % 30 == 0)
+		if (counter % 30 == 0)//job D
 		{
 			jobs[b].jobType = 'D';
 			jobs[b].arrivalTime = counter + 25 + rand() % 11;
 			jobs[b].processingTime = counter + 8 + rand() % 5;
 			b++;
 		}
-		counter = counter + 5;
+		counter = counter + 5;//increment count of 5
 	}
 
 	int jobI = 0;
+	int stop = 0;
 
-	for (int i = 1; i <= 10000; i++)
+	for (int i = 1; i <= 10000; i++)//CPU simulation
 	{
 		cout << i << ") ";
-		if (i >= jobs[jobI].arrivalTime)
+		if (i >= jobs[jobI].arrivalTime)//start job if arrival time has been reached
 		{
-			cout << "Job " << jobs[jobI].jobType << " has started" << endl;
+			cout << "Job " << jobs[jobI].jobType << " has been added to the queue" << endl;
+			queue.insertKey(jobs[jobI].processingTime, jobs[jobI].jobType, numJobsInterrupted, idleStatus);
 
+			if (jobs[jobI].jobType == 'A')
+			{
+				aJobCount++;
+			}
+			if (jobs[jobI].jobType == 'B')
+			{
+				bJobCount++;
+			}
+			if (jobs[jobI].jobType == 'C')
+			{
+				cJobCount++;
+			}
+			if (jobs[jobI].jobType == 'D')
+			{
+				dJobCount++;
+			}
+			averageTimeInQueue++;
 			jobI++;
 		}
-		cout << endl;
 
+		if (idleStatus == false)
+		{
+			cout << "Processing job " << jobs[jobI].jobType << endl;
+			totalTimeProcessed++;
+			totalTime++;
+		}
+		else
+		{
+			idleTime++;
+		}
+
+		if (idleStatus == true && queue.getHeapSize() > 0)
+		{
+			cout << "Processing job " << jobs[jobI].jobType << endl;
+			stop = (i + queue.extractMin());
+			idleStatus = false;
+		}
+		else
+		{
+			if (i >= stop)
+			{
+				idleStatus = true;
+				totalJobsComplete++;
+			}
+		}
+
+		if (queue.getHeapSize() > maxJobs)
+		{
+			maxJobs = queue.getHeapSize();
+		}
+
+
+		cout << endl;
+		averageQueueSize = averageQueueSize + queue.getHeapSize();
 	}
+
+	averageQueueSize = averageQueueSize / 10000;
 
 	cout << endl << endl;
 	cout << "Queue size: " << queue.getHeapSize() << endl;
