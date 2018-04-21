@@ -79,9 +79,12 @@ MinHeap::MinHeap(int cap)
 // Inserts a new key 'k'
 void MinHeap::insertKey(int k, char jobType, int &numJobsInterrupted, bool idleStatus)
 {
+	fstream ons;
+	ons.open(onFile);
 	if (heap_size == capacity)
 	{
 		cout << "\nOverflow: Could not insertKey\n";
+		ons << "\nOverflow: Could not insertKey\n";
 		return;
 	}
 
@@ -233,9 +236,11 @@ int main()
 	for (int i = 1; i <= 10000; i++)//CPU simulation
 	{
 		cout << i << ") ";
+		ons << i << ") ";
 		if (i >= jobs[jobI].arrivalTime)//start job if arrival time has been reached
 		{
-			cout << "Job " << jobs[jobI].jobType << " has been added to the queue" << endl;
+			cout << "Job " << jobs[jobI].jobType << " has been added to the queue";
+			ons << "Job " << jobs[jobI].jobType << " has been added to the queue";
 			queue.insertKey(jobs[jobI].processingTime, jobs[jobI].jobType, numJobsInterrupted, idleStatus);
 
 			if (jobs[jobI].jobType == 'A')
@@ -261,17 +266,21 @@ int main()
 		if (idleStatus == false)
 		{
 			cout << "Processing job " << jobs[jobI].jobType << endl;
+			ons << "Processing job " << jobs[jobI].jobType << endl;
 			totalTimeProcessed++;
 			totalTime++;
 		}
 		else
 		{
+			cout << "CPU is idle";
+			ons << "CPU is idle";
 			idleTime++;
 		}
 
 		if (idleStatus == true && queue.getHeapSize() > 0)
 		{
 			cout << "Processing job " << jobs[jobI].jobType << endl;
+			ons << "Processing job " << jobs[jobI].jobType << endl;
 			stop = (i + queue.extractMin());
 			idleStatus = false;
 		}
@@ -291,6 +300,7 @@ int main()
 
 
 		cout << endl;
+		ons << endl;
 		averageQueueSize = averageQueueSize + queue.getHeapSize();
 	}
 
