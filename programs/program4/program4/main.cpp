@@ -62,6 +62,11 @@ public:
 
 	// Inserts a new key 'k'
 	void insertKey(int k);
+
+	int getHeapSize()//get the size of the queue
+	{
+		return heap_size;
+	}
 };
 
 MinHeap::MinHeap(int cap)
@@ -157,6 +162,7 @@ int main()
 
 	int counter = 0;	//used to know when to know what time jobs are placed
 	int b = 0; //used to place job in correct order
+	bool idleStatus = true; //used to check if cpu is busy
 
 	//metric variables
 	int averageQueueSize = 0;
@@ -169,11 +175,12 @@ int main()
 	int totalWaitTime = 0; //total wait time in the queue
 	int maxJobs = 0; //max number of jobs in the queue
 	int totalJobsComplete = 0;
+	int numJobsInterrupted = 0; //number of jobs that were interrupted
 	int numberOfCPU = 0; //number of cpus used for simulation
 	int totalTime = 0; //total number of time units the cpu runs
 	int totalTimeProcessed = 0; //total time the processors spent processing
 
-	for (int i = 0; i < 200; i++)//create jobs by setting time of arrivals and processing times
+	for (int i = 0; i < 2000; i++)//create jobs by setting time of arrivals and processing times
 	{
 		if (counter % 5 == 0)
 		{
@@ -206,19 +213,36 @@ int main()
 		counter = counter + 5;
 	}
 
+	int jobI = 0;
 
 	for (int i = 1; i <= 10000; i++)
 	{
-		
+		cout << i << ") ";
+		if (i >= jobs[jobI].arrivalTime)
+		{
+			cout << "Job " << jobs[jobI].jobType << " has started" << endl;
 
+			jobI++;
+		}
+		cout << endl;
 
 	}
 
 	cout << endl << endl;
-	//cout << "Queue size: " << jobs.getSize() << endl;
+	cout << "Queue size: " << queue.getHeapSize() << endl;
 	cout << "Average queue size: " << averageQueueSize << endl;
 	cout << "Average time in queue: " << averageTimeInQueue << endl;
-	
+	cout << "Idle time: " << idleTime << endl;
+	cout << "Total number of jobs A arrived: " << aJobCount << endl;
+	cout << "Total number of jobs B arrived: " << bJobCount << endl;
+	cout << "Total number of jobs C arrived: " << cJobCount << endl;
+	cout << "Total number of jobs D arrived: " << dJobCount << endl;
+	cout << "Max number of jobs in queue: " << maxJobs << endl;
+	cout << "Jobs interrupted: " << numJobsInterrupted << endl;
+	cout << "Total jobs completed: " << totalJobsComplete << endl;
+	cout << "Numbe of processors: " << numberOfCPU << endl;
+	cout << "Total number of time units the processors (s) run: " << totalTime << endl;
+	cout << "Total time processor (s) spent processing : " << totalTimeProcessed << endl;
 
 
 	//#####################################################################
