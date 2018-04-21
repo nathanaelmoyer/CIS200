@@ -24,6 +24,13 @@ void line()
 
 }
 
+// A utility function to swap two elements
+void swap(int *x, int *y)
+{
+	int temp = *x;
+	*x = *y;
+	*y = temp;
+}
 
 class MinHeap
 {
@@ -122,14 +129,6 @@ void MinHeap::MinHeapify(int i)
 }
 
 
-// A utility function to swap two elements
-void swap(int *x, int *y)
-{
-	int temp = *x;
-	*x = *y;
-	*y = temp;
-}
-
 struct Data
 {
 	int arrivalTime;
@@ -152,29 +151,73 @@ int main()
 
 	cout << "File " << onFile << " opened" << endl << endl;
 
+
 	MinHeap queue(3000);
+	Data jobs[10000];
+
+	int counter = 0;	//used to know when to know what time jobs are placed
+	int b = 0; //used to place job in correct order
+
+	//metric variables
+	int averageQueueSize = 0;
+	int averageTimeInQueue = 0;
+	int idleTime = 0;
+	int aJobCount = 0;
+	int bJobCount = 0;
+	int cJobCount = 0;
+	int dJobCount = 0;
+	int totalWaitTime = 0; //total wait time in the queue
+	int maxJobs = 0; //max number of jobs in the queue
+	int totalJobsComplete = 0;
+	int numberOfCPU = 0; //number of cpus used for simulation
+	int totalTime = 0; //total number of time units the cpu runs
+	int totalTimeProcessed = 0; //total time the processors spent processing
+
+	for (int i = 0; i < 200; i++)//create jobs by setting time of arrivals and processing times
+	{
+		if (counter % 5 == 0)
+		{
+			jobs[b].jobType = 'A';
+			jobs[b].arrivalTime = counter + 4 + rand() % 3;
+			jobs[b].processingTime = counter + 1 + rand() % 5;
+			b++;
+		}
+		if (counter % 10 == 0)
+		{
+			jobs[b].jobType = 'B';
+			jobs[b].arrivalTime = counter + 9 + rand() % 3;
+			jobs[b].processingTime = counter + 6 + rand() % 5;
+			b++;
+		}
+		if (counter % 25 == 0)
+		{
+			jobs[b].jobType = 'C';
+			jobs[b].arrivalTime = counter + 24 + rand() % 3;
+			jobs[b].processingTime = counter + 11 + rand() % 5;
+			b++;
+		}
+		if (counter % 30 == 0)
+		{
+			jobs[b].jobType = 'D';
+			jobs[b].arrivalTime = counter + 25 + rand() % 11;
+			jobs[b].processingTime = counter + 8 + rand() % 5;
+			b++;
+		}
+		counter = counter + 5;
+	}
 
 
-	Data A = { (4 + rand() % 3), (1 + rand() % 5), 'A' };
-	Data B = { (9 + rand() % 3), (6 + rand() % 5), 'A' };
-	Data C = { (24 + rand() % 3), (11 + rand() % 5), 'A' };
-	Data D = { (25 + rand() % 11), (8 + rand() % 5), 'A' };
-
-
-
-
-	cout << A.arrivalTime << " " << A.processingTime << " " << A.jobType << endl;
 	for (int i = 1; i <= 10000; i++)
 	{
 		
 
 
-			//file output
-			ons << i << ") ";
-			ons << endl;
-		}
+	}
 
-	
+	cout << endl << endl;
+	//cout << "Queue size: " << jobs.getSize() << endl;
+	cout << "Average queue size: " << averageQueueSize << endl;
+	cout << "Average time in queue: " << averageTimeInQueue << endl;
 	
 
 
