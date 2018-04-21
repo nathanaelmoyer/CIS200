@@ -153,6 +153,79 @@ int main()
 
 	cout << "File " << onFile << " opened" << endl << endl;
 
+<<<<<<< HEAD
+=======
+	Data A = { (4 + rand() % 3), (1 + rand() % 5), 'A' };
+	Data B = { (9 + rand() % 3), (6 + rand() % 5), 'A' };
+	Data C = { (24 + rand() % 3), (11 + rand() % 5), 'A' };
+	Data D = { (25 + rand() % 11), (8 + rand() % 5), 'A' };
+
+	bool cpuStatus = false;// true = cpu is busy false = cpu is idle
+
+	for (int i = 1; i <= 10000; i++)
+	{
+		//if (i < 500)//wait 500 time units before outputting data
+		//{
+		//	if (cpuStatus == false)
+		//	{
+		//		if ((i % A.arrivalTime) == 0)
+		//		{
+		//			cpuStatus = true;
+		//		}
+		//		if ((i % B.arrivalTime) == 0)
+		//		{
+		//			cpuStatus = true;
+		//		}
+		//		if ((i % C.arrivalTime) == 0)
+		//		{
+		//			cpuStatus = true;
+		//		}
+
+
+		//	}
+		//	else
+		//	{
+		//		//do nothing since cpu is busy
+		//	}
+		//}
+		//
+		if (i >= 500)//start outputting data
+		{
+			//command line output
+			cout << i << ") ";
+
+			if (cpuStatus == false)
+			{
+				if ((i % A.arrivalTime) == 0)
+				{
+					cout << "Job A hast started";
+					cpuStatus = true;
+				}
+				if ((i % B.arrivalTime) == 0)
+				{
+					cout << "Job B has started";
+					cpuStatus = true;
+				}
+				if ((i % C.arrivalTime) == 0)
+				{
+					cout << "Job C has started";
+					cpuStatus = true;
+				}
+			}
+			else
+			{
+				cout << "CPU is busy";
+			}
+					
+
+			cout << endl;
+
+
+			//file output
+			ons << i << ") ";
+			ons << endl;
+		}
+>>>>>>> parent of c5123d6... Job A is a shit hole
 
 	
 	
