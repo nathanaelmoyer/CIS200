@@ -1,4 +1,4 @@
-//Program Name
+//Program 4
 //Nathanael Moyer
 //Date
 
@@ -93,9 +93,10 @@ void MinHeap::insertKey(int k, char jobType, int &numJobsInterrupted, bool idleS
 	int i = heap_size - 1;
 	if (jobType == 'D')//if jobType is D then put next in queue
 	{
-		heaparray[0] = k;
+		
 		if (idleStatus == false)
 		{
+			heaparray[0] = k;
 			numJobsInterrupted++;
 		}
 	
@@ -151,6 +152,8 @@ void MinHeap::MinHeapify(int i)
 }
 
 
+
+
 struct Data
 {
 	int arrivalTime;
@@ -173,8 +176,7 @@ int main()
 
 	cout << "File " << onFile << " opened" << endl << endl;
 
-
-	MinHeap queue(4000);
+	MinHeap queue1(4000);
 	Data jobs[10000];
 
 	int counter = 0;	//used to know when to know what time jobs are placed
@@ -196,6 +198,8 @@ int main()
 	int numberOfCPU = 1; //number of cpus used for simulation
 	int totalTime = 0; //total number of time units the cpu runs
 	int totalTimeProcessed = 0; //total time the processors spent processing
+
+
 
 	for (int i = 0; i < 2000; i++)//create jobs by setting time of arrivals and processing times
 	{
@@ -230,8 +234,8 @@ int main()
 		counter = counter + 5;//increment count of 5
 	}
 
-	int jobI = 0;
-	int stop = 0;
+	int jobI = 0;//index for which job is starting/running
+	int stop = 0;//used to know when to stop the job
 
 	for (int i = 1; i <= 10000; i++)//CPU simulation
 	{
@@ -241,7 +245,7 @@ int main()
 		{
 			cout << "Job " << jobs[jobI].jobType << " has been added to the queue";
 			ons << "Job " << jobs[jobI].jobType << " has been added to the queue";
-			queue.insertKey(jobs[jobI].processingTime, jobs[jobI].jobType, numJobsInterrupted, idleStatus);
+			queue1.insertKey(jobs[jobI].processingTime, jobs[jobI].jobType, numJobsInterrupted, idleStatus);
 
 			if (jobs[jobI].jobType == 'A')
 			{
@@ -277,11 +281,11 @@ int main()
 			idleTime++;
 		}
 
-		if (idleStatus == true && queue.getHeapSize() > 0)
+		if (idleStatus == true && queue1.getHeapSize() > 0)
 		{
 			cout << "Processing job " << jobs[jobI].jobType << endl;
 			ons << "Processing job " << jobs[jobI].jobType << endl;
-			stop = (i + queue.extractMin());
+			stop = (i + queue1.extractMin());
 			idleStatus = false;
 		}
 		else
@@ -293,21 +297,21 @@ int main()
 			}
 		}
 
-		if (queue.getHeapSize() > maxJobs)
+		if (queue1.getHeapSize() > maxJobs)
 		{
-			maxJobs = queue.getHeapSize();
+			maxJobs = queue1.getHeapSize();
 		}
 
 
 		cout << endl;
 		ons << endl;
-		averageQueueSize = averageQueueSize + queue.getHeapSize();
+		averageQueueSize = averageQueueSize + queue1.getHeapSize();
 	}
 
 	averageQueueSize = averageQueueSize / 10000;
 
 	cout << endl << endl;
-	cout << "Queue size: " << queue.getHeapSize() << endl;
+	cout << "Queue size: " << queue1.getHeapSize() << endl;
 	cout << "Average queue size: " << averageQueueSize << endl;
 	cout << "Average time in queue: " << averageTimeInQueue << endl;
 	cout << "Idle time: " << idleTime << endl;
